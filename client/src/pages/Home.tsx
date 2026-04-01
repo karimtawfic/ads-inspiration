@@ -14,12 +14,14 @@ import {
   ALL_FORMATS,
   ANGLE_COLORS,
   ANGLE_BG,
+  AD_INTELLIGENCE_SOURCES,
   type AdExample,
   type Angle,
   type Niche,
   type Format,
+  type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database } from "lucide-react";
 
 // ─── Angle Badge ─────────────────────────────────────────────
 function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
@@ -36,6 +38,23 @@ function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
 }
 
 // ─── Format Badge ─────────────────────────────────────────────
+function SourceBadge({ sourceType }: { sourceType: SourceType }) {
+  const map: Record<SourceType, { color: string; label: string }> = {
+    "Meta Ad Library": { color: "#1877F2", label: "Meta Library" },
+    "SwipeFile": { color: "#10B981", label: "SwipeFile" },
+    "AI Pattern": { color: "#8B5CF6", label: "AI Pattern" },
+  };
+  const { color, label } = map[sourceType];
+  return (
+    <span
+      className="inline-flex items-center rounded-sm font-mono text-[10px] px-1.5 py-0.5 font-medium"
+      style={{ color, background: `${color}18`, border: `1px solid ${color}30` }}
+    >
+      {label}
+    </span>
+  );
+}
+
 function FormatBadge({ format }: { format: Format }) {
   const map: Record<Format, string> = {
     "Static Image": "#6366F1",
@@ -175,9 +194,17 @@ function AdDetailDrawer({ ad, onClose }: { ad: AdExample; onClose: () => void })
                 <ReplicationRow label="Copy Formula" value={ad.copyFormula} />
                 <ReplicationRow label="Trust Element" value={ad.trustElement} />
                 <ReplicationRow label="CTA Type" value={ad.ctaType} />
-                <ReplicationRow label="Execution Notes" value={ad.replicationNotes} />
+                <ReplicationRow label="Replication Prompt" value={ad.replicationPrompt} />
               </div>
             </div>
+
+            {/* Advertiser info */}
+            {ad.advertiser && (
+              <div className="rounded-md px-4 py-3 flex items-center gap-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                <SourceBadge sourceType={ad.sourceType} />
+                <span className="text-xs font-mono" style={{ color: "#9CA3AF" }}>{ad.advertiser}</span>
+              </div>
+            )}
 
             {/* Source link */}
             <a
@@ -188,7 +215,7 @@ function AdDetailDrawer({ ad, onClose }: { ad: AdExample; onClose: () => void })
               style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#F0EEE9", fontFamily: "'Space Grotesk', sans-serif" }}
             >
               <ExternalLink size={14} />
-              View Source
+              View Source / Ad Library
             </a>
           </div>
         </motion.div>
@@ -255,7 +282,7 @@ function AdCard({ ad, index, onClick }: { ad: AdExample; index: number; onClick:
         </p>
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-mono" style={{ color: "#6B7280" }}>{ad.niche}</span>
-          <span className="text-[11px] font-mono" style={{ color: "#4B5563" }}>{ad.sourceName}</span>
+          <SourceBadge sourceType={ad.sourceType} />
         </div>
       </div>
     </motion.div>
@@ -508,30 +535,66 @@ export default function Home() {
         </AnimatePresence>
 
         {/* Main grid */}
-        <main className="flex-1 overflow-y-auto p-5">
-          {filtered.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-64 gap-3">
-              <Search size={32} style={{ color: "#374151" }} />
-              <p className="text-sm font-mono" style={{ color: "#6B7280" }}>No examples match your filters.</p>
-              <button onClick={clearAll} className="text-xs font-mono underline" style={{ color: "#3B82F6" }}>Clear all filters</button>
+        <main className="flex-1 overflow-y-auto p-5 flex flex-col gap-8">
+          <div>
+            {filtered.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-64 gap-3">
+                <Search size={32} style={{ color: "#374151" }} />
+                <p className="text-sm font-mono" style={{ color: "#6B7280" }}>No examples match your filters.</p>
+                <button onClick={clearAll} className="text-xs font-mono underline" style={{ color: "#3B82F6" }}>Clear all filters</button>
+              </div>
+            ) : (
+              <div
+                className="grid gap-4"
+                style={{
+                  gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                }}
+              >
+                {filtered.map((ad, i) => (
+                  <AdCard
+                    key={ad.id}
+                    ad={ad}
+                    index={i}
+                    onClick={() => setSelectedAd(ad)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Ad Intelligence Sources */}
+          <div className="rounded-xl p-6" style={{ background: "#111113", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <div className="flex items-center gap-2 mb-5">
+              <Database size={14} style={{ color: "#6B7280" }} />
+              <span className="text-xs font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B7280" }}>Ad Intelligence Sources</span>
+              <span className="text-[10px] font-mono rounded px-1.5 py-0.5 ml-1" style={{ color: "#4B5563", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>Where to find real winning ads</span>
             </div>
-          ) : (
-            <div
-              className="grid gap-4"
-              style={{
-                gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-              }}
-            >
-              {filtered.map((ad, i) => (
-                <AdCard
-                  key={ad.id}
-                  ad={ad}
-                  index={i}
-                  onClick={() => setSelectedAd(ad)}
-                />
+            <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
+              {AD_INTELLIGENCE_SOURCES.map((src) => (
+                <a
+                  key={src.name}
+                  href={src.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col gap-2 rounded-lg p-4 transition-all hover:border-white/15 group"
+                  style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.07)" }}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#E5E3DF" }}>{src.name}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ color: src.tier === "Free" ? "#10B981" : "#F59E0B", background: src.tier === "Free" ? "#10B98118" : "#F59E0B18", border: `1px solid ${src.tier === "Free" ? "#10B98130" : "#F59E0B30"}` }}>{src.tier}</span>
+                      <ExternalLink size={11} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#6B7280" }} />
+                    </div>
+                  </div>
+                  <p className="text-xs leading-relaxed" style={{ color: "#6B7280" }}>{src.description}</p>
+                  <div className="flex items-start gap-1.5 mt-1">
+                    <BookOpen size={10} className="flex-shrink-0 mt-0.5" style={{ color: "#4B5563" }} />
+                    <span className="text-[11px] font-mono" style={{ color: "#4B5563" }}>{src.bestFor}</span>
+                  </div>
+                </a>
               ))}
             </div>
-          )}
+          </div>
         </main>
       </div>
 
