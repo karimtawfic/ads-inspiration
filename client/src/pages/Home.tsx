@@ -21,8 +21,9 @@ import {
   type Format,
   type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2 } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target } from "lucide-react";
 import { GenerateAdPanel } from "@/components/GenerateAdPanel";
+import CompetitorIntel from "@/pages/CompetitorIntel";
 
 // ─── Angle Badge ─────────────────────────────────────────────
 function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
@@ -42,8 +43,8 @@ function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
 function SourceBadge({ sourceType }: { sourceType: SourceType }) {
   const map: Record<SourceType, { color: string; label: string }> = {
     "Meta Ad Library": { color: "#1877F2", label: "Meta Library" },
-    "SwipeFile": { color: "#10B981", label: "SwipeFile" },
-    "AI Pattern": { color: "#8B5CF6", label: "AI Pattern" },
+    "Agency Curated": { color: "#10B981", label: "Agency Curated" },
+    "AI Generated": { color: "#8B5CF6", label: "AI Generated" },
   };
   const { color, label } = map[sourceType];
   return (
@@ -352,6 +353,7 @@ export default function Home() {
   const [activeFormats, setActiveFormats] = useState<Set<Format>>(new Set());
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [generateOpen, setGenerateOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<"swipe" | "competitor">("swipe");
 
   const toggleAngle = (a: Angle) => {
     setActiveAngles((prev) => {
@@ -475,6 +477,34 @@ export default function Home() {
               Clear filters
             </button>
           )}
+          {/* Tab switcher */}
+          <div className="flex items-center rounded-lg p-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            <button
+              onClick={() => setActiveTab("swipe")}
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
+              style={{
+                background: activeTab === "swipe" ? "rgba(255,255,255,0.1)" : "transparent",
+                color: activeTab === "swipe" ? "#F0EEE9" : "#6B7280",
+                fontFamily: "'Space Grotesk', sans-serif",
+              }}
+            >
+              <Database size={12} />
+              Swipe File
+            </button>
+            <button
+              onClick={() => setActiveTab("competitor")}
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
+              style={{
+                background: activeTab === "competitor" ? "rgba(255,255,255,0.1)" : "transparent",
+                color: activeTab === "competitor" ? "#F0EEE9" : "#6B7280",
+                fontFamily: "'Space Grotesk', sans-serif",
+              }}
+            >
+              <Target size={12} />
+              Competitor Intel
+            </button>
+          </div>
+
           <button
             onClick={() => setGenerateOpen(true)}
             className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-bold transition-all hover:opacity-90 active:scale-[0.98]"
@@ -492,9 +522,9 @@ export default function Home() {
       </header>
 
       <div className="flex flex-1 min-h-0">
-        {/* Sidebar */}
+        {/* Sidebar — only show on swipe file tab */}
         <AnimatePresence>
-          {sidebarOpen && (
+          {sidebarOpen && activeTab === "swipe" && (
             <motion.aside
               className="flex-shrink-0 overflow-y-auto flex flex-col gap-6 py-5 px-3"
               style={{
@@ -549,8 +579,15 @@ export default function Home() {
           )}
         </AnimatePresence>
 
-        {/* Main grid */}
-        <main className="flex-1 overflow-y-auto p-5 flex flex-col gap-8">
+        {/* Competitor Intel tab */}
+        {activeTab === "competitor" && (
+          <div className="flex-1 overflow-y-auto">
+            <CompetitorIntel />
+          </div>
+        )}
+
+        {/* Main grid — Swipe File tab */}
+        <main className="flex-1 overflow-y-auto p-5 flex flex-col gap-8" style={{ display: activeTab === "swipe" ? "flex" : "none" }}>
           <div>
             {filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-64 gap-3">
