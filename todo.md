@@ -15,7 +15,7 @@
 ## Option A: AI Generator (already built — improve quality)
 - [x] Improved image generation prompts (AI-generated, not Pillow compositing)
 - [x] Generate button in header opens full generator panel
-- [ ] Add "Generate All Angles" batch mode
+- [x] Add "Generate All Angles" batch mode (sequential, progress bar, 2-col grid, save each)
 
 ## Full Canvas UI Rebuild
 - [x] Rebuild Home.tsx with 2 tabs: Swipe File | Competitor Intel + Generate button
@@ -25,5 +25,5 @@
 ## Tests & Delivery
 - [x] Vitest tests for generate router (4 tests passing)
 - [x] Vitest tests for auth.logout (1 test passing)
-- [ ] Vitest tests for competitor router
-- [ ] Save checkpoint
+- [x] Vitest tests for competitor router (5 tests passing)
+- [x] Save checkpoint

@@ -312,6 +312,10 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
   const [location, setLocation] = useState("North America");
   const [tagline, setTagline] = useState("");
   const [result, setResult] = useState<GeneratedAd | null>(null);
+  const [batchMode, setBatchMode] = useState(false);
+  const [batchResults, setBatchResults] = useState<GeneratedAd[]>([]);
+  const [batchProgress, setBatchProgress] = useState(0);
+  const [batchTotal, setBatchTotal] = useState(0);
 
   const generateMutation = trpc.generate.createAdCreative.useMutation({
     onSuccess: (data) => {
@@ -321,6 +325,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
 
   const handleGenerate = () => {
     setResult(null);
+    setBatchMode(false);
     generateMutation.mutate({
       niche,
       angle,
@@ -329,6 +334,38 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
       location,
       tagline,
     });
+  };
+
+  const handleGenerateAllAngles = async () => {
+    setBatchMode(true);
+    setBatchResults([]);
+    setBatchProgress(0);
+    setBatchTotal(ALL_ANGLES.length);
+    setResult(null);
+    // Fire each angle sequentially to avoid rate limits
+    for (let i = 0; i < ALL_ANGLES.length; i++) {
+      const currentAngle = ALL_ANGLES[i];
+      try {
+        await new Promise<void>((resolve) => {
+          generateMutation.mutate(
+            { niche, angle: currentAngle, companyName, offer, location, tagline },
+            {
+              onSuccess: (data) => {
+                setBatchResults((prev) => [...prev, data as GeneratedAd]);
+                setBatchProgress(i + 1);
+                resolve();
+              },
+              onError: () => {
+                setBatchProgress(i + 1);
+                resolve();
+              },
+            }
+          );
+        });
+      } catch {
+        setBatchProgress(i + 1);
+      }
+    }
   };
 
   const angleColor = ANGLE_COLORS[angle as Angle] || "#6366F1";
@@ -504,7 +541,23 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                 )}
               </button>
 
-              {generateMutation.isPending && (
+              {/* Generate All Angles button */}
+              <button
+                onClick={handleGenerateAllAngles}
+                disabled={generateMutation.isPending || batchMode}
+                className="flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed"
+                style={{
+                  background: "rgba(99,102,241,0.1)",
+                  color: "#818CF8",
+                  border: "1px solid rgba(99,102,241,0.3)",
+                  fontFamily: "'Space Grotesk', sans-serif",
+                }}
+              >
+                <Sparkles size={15} />
+                Generate All {ALL_ANGLES.length} Angles for {niche}
+              </button>
+
+              {generateMutation.isPending && !batchMode && (
                 <div className="flex flex-col items-center gap-2 py-2">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#6366F1", animationDelay: "0ms" }} />
@@ -514,6 +567,73 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                   <p className="text-xs font-mono" style={{ color: "#6B7280" }}>
                     Building image + replication blueprint in parallel…
                   </p>
+                </div>
+              )}
+
+              {/* Batch mode progress */}
+              {batchMode && (
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono" style={{ color: "#9CA3AF" }}>
+                      {batchProgress < batchTotal ? `Generating angle ${batchProgress + 1} of ${batchTotal}…` : `All ${batchTotal} angles complete`}
+                    </span>
+                    <span className="text-xs font-mono" style={{ color: "#6366F1" }}>
+                      {batchResults.length} ready
+                    </span>
+                  </div>
+                  {/* Progress bar */}
+                  <div className="w-full rounded-full h-1.5" style={{ background: "rgba(255,255,255,0.08)" }}>
+                    <div
+                      className="h-1.5 rounded-full transition-all duration-500"
+                      style={{
+                        width: `${batchTotal > 0 ? (batchProgress / batchTotal) * 100 : 0}%`,
+                        background: "linear-gradient(90deg, #6366F1, #A78BFA)",
+                      }}
+                    />
+                  </div>
+                  {/* Batch results grid */}
+                  {batchResults.length > 0 && (
+                    <div className="grid grid-cols-2 gap-3 mt-2">
+                      {batchResults.map((r, i) => (
+                        <div
+                          key={i}
+                          className="rounded-lg overflow-hidden"
+                          style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+                        >
+                          <img
+                            src={r.imageUrl}
+                            alt={r.angle}
+                            className="w-full object-cover"
+                            style={{ height: "120px", objectPosition: "top" }}
+                          />
+                          <div className="px-2 py-1.5 flex items-center justify-between" style={{ background: "#161618" }}>
+                            <span className="text-[10px] font-mono" style={{ color: ANGLE_COLORS[r.angle as Angle] || "#9CA3AF" }}>
+                              {r.angle}
+                            </span>
+                            <a
+                              href={r.imageUrl}
+                              download
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[10px] font-mono hover:opacity-80"
+                              style={{ color: "#6B7280" }}
+                            >
+                              Save
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {batchProgress >= batchTotal && batchResults.length > 0 && (
+                    <button
+                      onClick={() => { setBatchMode(false); setBatchResults([]); setBatchProgress(0); }}
+                      className="text-xs font-mono rounded-md px-3 py-1.5 transition-colors hover:bg-white/8 self-start"
+                      style={{ color: "#6B7280", border: "1px solid rgba(255,255,255,0.1)" }}
+                    >
+                      Clear batch results
+                    </button>
+                  )}
                 </div>
               )}
 
