@@ -1,7 +1,7 @@
 // ============================================================
-// Meta Ad Creative Canvas — Service Business Lead Gen
-// Design: Dark Intelligence Board
-// All images served from CDN. Angle taxonomy color-coded.
+// Meta Ad Creative Canvas — Ad Data
+// 10 AI-generated examples, one per creative angle
+// All images served from CDN
 // ============================================================
 
 export type Angle =
@@ -11,356 +11,24 @@ export type Angle =
   | "Pain / FOMO"
   | "Hero Shot"
   | "Features / Benefits"
-  | "Process / How It Works"
-  | "Seasonal / Urgency"
+  | "Lead Magnet"
   | "UGC / Testimonial"
-  | "Lead Magnet";
+  | "Process / How It Works"
+  | "Seasonal / Urgency";
 
-export type Format = "Static Image" | "Carousel" | "Video" | "Lead Form";
 export type Niche =
+  | "Remodeling"
   | "HVAC"
   | "Roofing"
+  | "Pest Control"
   | "Pressure Washing"
   | "Epoxy / Flooring"
   | "Landscaping"
-  | "Remodeling"
+  | "Windows"
   | "Plumbing"
-  | "Electrical"
-  | "General Home Services";
+  | "Roofing / Storm";
 
-export interface AdExample {
-  id: string;
-  title: string;
-  niche: Niche;
-  angle: Angle;
-  format: Format;
-  imageUrl: string;
-  sourceUrl: string;
-  sourceName: string;
-  hook: string;
-  trustElement: string;
-  ctaType: string;
-  copyFormula: string;
-  replicationNotes: string;
-  whyItWorks: string;
-}
-
-export const ANGLE_COLORS: Record<Angle, string> = {
-  "Before / After": "#3B82F6",       // blue-500
-  "Offer / Discount": "#F59E0B",     // amber-500
-  "Social Proof": "#10B981",         // emerald-500
-  "Pain / FOMO": "#EF4444",          // red-500
-  "Hero Shot": "#8B5CF6",            // violet-500
-  "Features / Benefits": "#6366F1",  // indigo-500
-  "Process / How It Works": "#A855F7", // purple-500
-  "Seasonal / Urgency": "#F97316",   // orange-500
-  "UGC / Testimonial": "#14B8A6",    // teal-500
-  "Lead Magnet": "#EC4899",          // pink-500
-};
-
-export const ANGLE_BG: Record<Angle, string> = {
-  "Before / After": "rgba(59,130,246,0.15)",
-  "Offer / Discount": "rgba(245,158,11,0.15)",
-  "Social Proof": "rgba(16,185,129,0.15)",
-  "Pain / FOMO": "rgba(239,68,68,0.15)",
-  "Hero Shot": "rgba(139,92,246,0.15)",
-  "Features / Benefits": "rgba(99,102,241,0.15)",
-  "Process / How It Works": "rgba(168,85,247,0.15)",
-  "Seasonal / Urgency": "rgba(249,115,22,0.15)",
-  "UGC / Testimonial": "rgba(20,184,166,0.15)",
-  "Lead Magnet": "rgba(236,72,153,0.15)",
-};
-
-export const AD_EXAMPLES: AdExample[] = [
-  {
-    id: "1",
-    title: "Home Improvement Planning — Free Quote Hook",
-    niche: "Remodeling",
-    angle: "Lead Magnet",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/LYRhxYy6hAg6_77bc2475.png",
-    sourceUrl: "https://handoff.ai/blog/facebook-ad-types-remodeling",
-    sourceName: "Handoff AI",
-    hook: "Planning a Home Remodel? — question-based hook targeting homeowners in research mode",
-    trustElement: "Free Quote badge + friendly CTA copy",
-    ctaType: "Free Quote",
-    copyFormula: "Question Hook → Value Promise → Low-friction CTA",
-    replicationNotes: "Use a high-quality lifestyle kitchen/bathroom photo. Bold question headline in contrasting color block. 'FREE QUOTE' badge bottom-right. Keep copy under 6 words on image.",
-    whyItWorks: "Catches homeowners mid-research. Question format creates self-identification. Free quote removes commitment barrier.",
-  },
-  {
-    id: "2",
-    title: "Plumbing Solutions — Services List + Branded Technician",
-    niche: "Plumbing",
-    angle: "Features / Benefits",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/7QkzFHEZjPVj_24dbbc4d.jpg",
-    sourceUrl: "https://posterMyWall.com",
-    sourceName: "PosterMyWall",
-    hook: "PLUMBING SOLUTIONS — We Fix All Your Plumbing Problems",
-    trustElement: "Uniformed technician, 24/7 badge, phone number prominent",
-    ctaType: "Call Us",
-    copyFormula: "Bold Service Category → Bulleted Service List → Phone CTA",
-    replicationNotes: "Branded color block (navy/orange). Technician in uniform, hard hat. Service list with checkmarks. Phone number large. '24/7 OPEN' badge. Works for any trade.",
-    whyItWorks: "Immediately communicates what you do. Uniform builds trust. Service list handles objections visually. Phone CTA captures high-intent leads.",
-  },
-  {
-    id: "3",
-    title: "Modern Plumbing — Social Proof Wall + Awards",
-    niche: "Plumbing",
-    angle: "Social Proof",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/DciJUcxjWH73_30249e79.jpg",
-    sourceUrl: "https://roiminds.com/blog/plumbing-ads",
-    sourceName: "ROI Minds",
-    hook: "Serviced Once, Customer For Life — 270+ Five Star Reviews",
-    trustElement: "3× 'Best of Flathead' award badges, review count, team photo",
-    ctaType: "Contact Us",
-    copyFormula: "Tagline → Proof Points (awards + reviews) → Team photo → Phone",
-    replicationNotes: "Stack award badges prominently. Include team/owner photo for authenticity. Review count in bold. Value differentiators as bullet list (no upsell, senior discounts, etc.).",
-    whyItWorks: "Award badges act as third-party validation. Review count provides social proof at scale. Team photo humanizes the brand.",
-  },
-  {
-    id: "4",
-    title: "Electrical Services — Expert Care Grid",
-    niche: "Electrical",
-    angle: "Features / Benefits",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/2PShMoItqQ6v_1761af61.png",
-    sourceUrl: "https://lokalhq.com/blog/electrician-facebook-ads",
-    sourceName: "Lokal HQ",
-    hook: "Expert Care For All Your Electrical Needs",
-    trustElement: "Branded uniform, service icons (Repairs / Installations / Inspections / 24/7 Emergency)",
-    ctaType: "Visit Instagram / Call",
-    copyFormula: "Headline → Icon Grid of Services → Branded Technician Photo → Phone",
-    replicationNotes: "Dark background makes brand colors pop. 4-icon service grid is scannable in 1 second. Technician in branded shirt. Emergency badge drives urgency.",
-    whyItWorks: "Icon grid communicates breadth of services instantly. Dark background = premium feel. Emergency angle creates urgency without being pushy.",
-  },
-  {
-    id: "5",
-    title: "Pressure Washing — Before/After Multi-Surface",
-    niche: "Pressure Washing",
-    angle: "Before / After",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/E1LUyjE4bEgM_304eb323.jpg",
-    sourceUrl: "https://zeely.ai/blog/15-pressure-washing-ads",
-    sourceName: "Zeely AI",
-    hook: "Refer a Neighbor, Get $25 — Restore / Remove / Keep",
-    trustElement: "Real before/after photos across 3 surfaces (fence, deck, car)",
-    ctaType: "Book Now (×3)",
-    copyFormula: "Referral Incentive → 3-column Before/After Grid → Benefit Labels → Book Now",
-    replicationNotes: "3-column grid showing different surfaces = broader appeal. Referral hook adds virality. Each column has its own CTA button. Warm background color (dusty rose) stands out in feed.",
-    whyItWorks: "Multiple surfaces = multiple homeowner pain points hit simultaneously. Referral mechanic turns customers into lead sources. Visual transformation is the proof.",
-  },
-  {
-    id: "6",
-    title: "Power Washing — Drone Aerial Before/After",
-    niche: "Pressure Washing",
-    angle: "Before / After",
-    format: "Video",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/6AfFYIKpiX5N_780fc7e2.png",
-    sourceUrl: "https://facebook.com/ads/library",
-    sourceName: "Meta Ad Library",
-    hook: "10% Off Spring Power Washing Promo — Seasonal discount on soft wash",
-    trustElement: "Real job photo, company name, direct website link",
-    ctaType: "Get Quote",
-    copyFormula: "Seasonal Offer → Process Explanation → Social Proof → CTA",
-    replicationNotes: "Aerial or wide-angle shot of actual job site. Seasonal discount creates urgency. Soft wash differentiation builds expertise. Simple layout, no design needed — authenticity wins.",
-    whyItWorks: "Seasonal timing (spring clean) aligns with homeowner mindset. Discount lowers barrier. Real photo = trust. Simple copy outperforms polished design in this niche.",
-  },
-  {
-    id: "7",
-    title: "Epoxy Garage Floors — Tiered Pricing Offer",
-    niche: "Epoxy / Flooring",
-    angle: "Offer / Discount",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/YVcXck5Po74H_94f30098.png",
-    sourceUrl: "https://roiminds.com/blog/epoxy-ads",
-    sourceName: "ROI Minds",
-    hook: "$200 OFF 1-Car / $300 OFF 2-Car / $400 OFF 3-Car Garage",
-    trustElement: "Lifetime warranty badge, phone number, website URL",
-    ctaType: "Free Quote / Call",
-    copyFormula: "Tiered Discount Grid → Lifetime Warranty → Phone CTA",
-    replicationNotes: "Tiered pricing makes the 3-car option feel like the obvious choice (anchoring). Blue/white brand colors. Garage icons for each tier. Warranty badge handles the main objection. Works for any flooring niche.",
-    whyItWorks: "Tiered offer creates anchoring effect — 3-car looks like best value. Lifetime warranty removes risk objection. Specific dollar amounts feel more credible than % discounts.",
-  },
-  {
-    id: "8",
-    title: "Epoxy Flooring — Product Demo UGC Style",
-    niche: "Epoxy / Flooring",
-    angle: "UGC / Testimonial",
-    format: "Video",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/0qyLKacRpKsc_b24825e3.png",
-    sourceUrl: "https://roiminds.com/blog/epoxy-ads",
-    sourceName: "ROI Minds",
-    hook: "Everything You Need To Pour — product demo in action",
-    trustElement: "Hands-on product demo, brand name prominent, real application footage",
-    ctaType: "Shop / Learn More",
-    copyFormula: "Action Hook → Product Demo → Brand Name → Shop CTA",
-    replicationNotes: "POV/hands-on video of the product being applied. Bold text overlay on dark background. No voiceover needed — visual is the hook. Works for any service with a visible transformation process.",
-    whyItWorks: "Process video builds confidence in the product/service. POV angle creates immersion. Bold text overlay works with sound off (90% of feed views).",
-  },
-  {
-    id: "9",
-    title: "Siding Contractor — Carousel Financing Offer",
-    niche: "General Home Services",
-    angle: "Offer / Discount",
-    format: "Carousel",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/5ZWSuYROJFUB_105d20f4.png",
-    sourceUrl: "https://tradiedigital.co/blog/home-improvement-ads",
-    sourceName: "Tradie Digital",
-    hook: "CARL'S has several financing options to choose from — making it even easier to start that summer siding project!",
-    trustElement: "#1 Local Siding Company badge, real project photos",
-    ctaType: "Get Quote",
-    copyFormula: "Financing Offer → Project Photos → Social Proof Badge → Get Quote",
-    replicationNotes: "Carousel: Card 1 = financing hook + project photo. Card 2 = #1 badge + testimonial. Card 3 = CTA. Financing angle removes the biggest objection (cost). Summer timing creates urgency.",
-    whyItWorks: "Financing removes the #1 objection (price). Carousel format lets you tell a story across multiple cards. '#1 Local' badge is credible and local-specific.",
-  },
-  {
-    id: "10",
-    title: "Roofing — Hail Damage Free Inspection",
-    niche: "Roofing",
-    angle: "Seasonal / Urgency",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/MZl5wFY1w4VW_0c2b8140.webp",
-    sourceUrl: "https://roiminds.com/blog/roofing-facebook-ads",
-    sourceName: "ROI Minds",
-    hook: "Hail Damage? Can't Be Seen Without Close Inspection — FREE Inspection",
-    trustElement: "Real hail damage photo, FREE badge, licensed contractor implied",
-    ctaType: "Free Inspection",
-    copyFormula: "Event Trigger (storm) → Hidden Risk Education → Free Offer → CTA",
-    replicationNotes: "Run after any weather event in the target area. Real damage photo is the hook — no design needed. 'Can't be seen' creates fear of unknown damage. Free inspection = zero barrier to entry.",
-    whyItWorks: "Event-triggered ads have 3–5× higher relevance scores. Hidden damage angle creates urgency without being alarmist. Free inspection is the lowest-friction offer in roofing.",
-  },
-  {
-    id: "11",
-    title: "Roofing — High-Performing Facebook Ads Examples",
-    niche: "Roofing",
-    angle: "Social Proof",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/JhW8sbGZBqVh_603aa366.png",
-    sourceUrl: "https://lokalhq.com/blog/roofing-facebook-ads",
-    sourceName: "Lokal HQ",
-    hook: "Multiple roofing ad creative formats showing what works for lead gen",
-    trustElement: "Real project photos, review counts, local business credibility",
-    ctaType: "Get Free Estimate",
-    copyFormula: "Social Proof → Project Photos → Local Credibility → Estimate CTA",
-    replicationNotes: "Compile 3–4 real project photos in a grid. Add star rating and review count. Local city name in headline. 'Free Estimate' is the universal roofing CTA.",
-    whyItWorks: "Real photos outperform stock. Review count provides social proof. Local specificity increases relevance score and CTR.",
-  },
-  {
-    id: "12",
-    title: "Grayhawk Remodeling — Interior Transformation",
-    niche: "Remodeling",
-    angle: "Hero Shot",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/cy4KBDah3S3f_45f4b50b.png",
-    sourceUrl: "https://facebook.com/ads/library",
-    sourceName: "Meta Ad Library — Grayhawk Systems",
-    hook: "Make Your House A Home — Book Now",
-    trustElement: "Beautiful interior photo, company name, Book Now CTA",
-    ctaType: "Book Now",
-    copyFormula: "Aspirational Headline → Beautiful Hero Photo → Simple CTA",
-    replicationNotes: "High-quality interior/exterior photo is 90% of the work. Minimal text overlay. Aspirational copy (not features). 'Book Now' CTA. Works for kitchens, bathrooms, windows, siding.",
-    whyItWorks: "Aspirational imagery creates desire before the copy does any work. Minimal text lets the photo breathe. Book Now CTA captures high-intent traffic.",
-  },
-  {
-    id: "13",
-    title: "Home Remodeling — Free Consultation Lead Form",
-    niche: "Remodeling",
-    angle: "Lead Magnet",
-    format: "Lead Form",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/DGf6u259CFUp_a356d499.png",
-    sourceUrl: "https://tradiedigital.co/blog/home-improvement-ads",
-    sourceName: "Tradie Digital",
-    hook: "Ready to Transform Your Bathroom? Get a Free Consultation Today!",
-    trustElement: "No-obligation promise, free consultation offer, simple form",
-    ctaType: "Get Free Consultation",
-    copyFormula: "Transformation Question → No-Obligation Promise → Simple Form → CTA",
-    replicationNotes: "Lead form ads keep users on Facebook — higher conversion rate for cold traffic. 'No-obligation' removes risk. Ask only name, email, phone. Follow up within 5 minutes.",
-    whyItWorks: "Lead forms remove the landing page friction point. Pre-filled data from Facebook profile increases completion rate. No-obligation language reduces hesitation.",
-  },
-  {
-    id: "14",
-    title: "HVAC — Strategy Overview for Lead Gen",
-    niche: "HVAC",
-    angle: "Features / Benefits",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/MJoCA92fxqKJ_429fd129.jpg",
-    sourceUrl: "https://hookagency.com/blog/hvac-facebook-ads",
-    sourceName: "Hook Agency",
-    hook: "Mastering HVAC Facebook Ads — Strategies for Effective Campaigns",
-    trustElement: "Professional imagery, service credibility, local trust signals",
-    ctaType: "Learn More / Book Service",
-    copyFormula: "Seasonal Relevance → Service Benefit → Trust Signals → CTA",
-    replicationNotes: "HVAC ads perform best with seasonal hooks (AC before summer, heating before winter). Show the unit + comfortable family. Energy savings angle works year-round.",
-    whyItWorks: "Seasonal timing creates natural urgency. Energy savings is a financial benefit that resonates universally. Comfort imagery creates emotional connection.",
-  },
-  {
-    id: "15",
-    title: "Landscaping — Project Showcase Carousel",
-    niche: "Landscaping",
-    angle: "Hero Shot",
-    format: "Carousel",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/kDlyv09uEqvK_3d6ee62f.png",
-    sourceUrl: "https://facebook.com/ads/library",
-    sourceName: "Meta Ad Library — Your Local Landscaper",
-    hook: "Check out this amazing project completed on 1.5 acres — Book Now",
-    trustElement: "Real project photos, specific project details (1.5 acres), team names",
-    ctaType: "Book Now",
-    copyFormula: "Real Project Story → Specific Details → Team Mention → Book Now",
-    replicationNotes: "Use real project photos — never stock. Mention specific details (acreage, project type). Name the crew members for authenticity. Carousel shows the full transformation.",
-    whyItWorks: "Specificity (1.5 acres, crew names) signals authenticity. Real project photos create aspiration. Carousel format increases engagement time.",
-  },
-  {
-    id: "16",
-    title: "Client Testimonial Video Ad",
-    niche: "General Home Services",
-    angle: "UGC / Testimonial",
-    format: "Video",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/8uoyrDSSZJe7_85c19cb2.jpg",
-    sourceUrl: "https://hookagency.com/blog/home-services-facebook-ads-guide",
-    sourceName: "Hook Agency",
-    hook: "The best review is a client review — What are your client successes?",
-    trustElement: "Real client quote, client name + title, video testimonial format",
-    ctaType: "Call Now",
-    copyFormula: "Client Quote → Client Name/Title → Company Branding → CTA",
-    replicationNotes: "Record 30–60 sec video testimonials from happy clients. Ask: 'What problem did we solve?' and 'What would you tell a neighbor?' Branded lower-third with client name. Works across all service niches.",
-    whyItWorks: "Third-party validation is 10× more credible than self-promotion. Video testimonials are the highest-trust format. Specific results ('made my company grow') beat generic praise.",
-  },
-  {
-    id: "17",
-    title: "Home Services — Lead Gen Framework Overview",
-    niche: "General Home Services",
-    angle: "Lead Magnet",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/EAxHvWSZsiJC_0ba3f177.png",
-    sourceUrl: "https://seominteractive.com/blog/facebook-ads-lead-gen",
-    sourceName: "SEOM Interactive",
-    hook: "Lead Generation on Facebook: What Works Now",
-    trustElement: "Compelling offer, optimized instant forms, relatable creative",
-    ctaType: "Submit / Get Access",
-    copyFormula: "Framework Headline → 3-Pillar Visual → CTA",
-    replicationNotes: "The 3-pillar framework (Compelling Offer + Optimized Form + Relatable Creative) is the replication blueprint for any service business. Use this as your testing matrix.",
-    whyItWorks: "Visual frameworks are highly shareable and educational. Position your agency or service as the expert. Works as a lead magnet for B2B (agencies selling to contractors).",
-  },
-  {
-    id: "18",
-    title: "Epoxy Flooring — Design + Financing Combo",
-    niche: "Epoxy / Flooring",
-    angle: "Offer / Discount",
-    format: "Static Image",
-    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/yseKEc3gBNLh_ab01866f.png",
-    sourceUrl: "https://behance.net",
-    sourceName: "Behance",
-    hook: "Elevate Your Space with Stunning Epoxy Flooring — 60 Days No Payments",
-    trustElement: "Financing offer, why choose us list, free consultation CTA",
-    ctaType: "Schedule Free Consultation",
-    copyFormula: "Aspirational Headline → Why Choose Us → Financing Offer → Free Consult CTA",
-    replicationNotes: "Blue brand color = trust. Beautiful finished floor photo. 'Why Choose Us' bullet list handles objections. 60-day financing removes price barrier. Free consultation is low-friction entry.",
-    whyItWorks: "Financing offer (60 days no payments) removes the #1 objection. Beautiful result photo creates desire. Free consultation CTA is zero-commitment.",
-  },
-];
+export type Format = "Static Image" | "Carousel" | "Video" | "Lead Form";
 
 export const ALL_ANGLES: Angle[] = [
   "Before / After",
@@ -369,22 +37,23 @@ export const ALL_ANGLES: Angle[] = [
   "Pain / FOMO",
   "Hero Shot",
   "Features / Benefits",
+  "Lead Magnet",
+  "UGC / Testimonial",
   "Process / How It Works",
   "Seasonal / Urgency",
-  "UGC / Testimonial",
-  "Lead Magnet",
 ];
 
 export const ALL_NICHES: Niche[] = [
+  "Remodeling",
   "HVAC",
   "Roofing",
+  "Pest Control",
   "Pressure Washing",
   "Epoxy / Flooring",
   "Landscaping",
-  "Remodeling",
+  "Windows",
   "Plumbing",
-  "Electrical",
-  "General Home Services",
+  "Roofing / Storm",
 ];
 
 export const ALL_FORMATS: Format[] = [
@@ -392,4 +61,269 @@ export const ALL_FORMATS: Format[] = [
   "Carousel",
   "Video",
   "Lead Form",
+];
+
+export const ANGLE_COLORS: Record<Angle, string> = {
+  "Before / After": "#F59E0B",
+  "Offer / Discount": "#EF4444",
+  "Social Proof": "#10B981",
+  "Pain / FOMO": "#F97316",
+  "Hero Shot": "#3B82F6",
+  "Features / Benefits": "#8B5CF6",
+  "Lead Magnet": "#06B6D4",
+  "UGC / Testimonial": "#EC4899",
+  "Process / How It Works": "#6366F1",
+  "Seasonal / Urgency": "#84CC16",
+};
+
+export const ANGLE_BG: Record<Angle, string> = {
+  "Before / After": "#F59E0B18",
+  "Offer / Discount": "#EF444418",
+  "Social Proof": "#10B98118",
+  "Pain / FOMO": "#F9731618",
+  "Hero Shot": "#3B82F618",
+  "Features / Benefits": "#8B5CF618",
+  "Lead Magnet": "#06B6D418",
+  "UGC / Testimonial": "#EC489918",
+  "Process / How It Works": "#6366F118",
+  "Seasonal / Urgency": "#84CC1618",
+};
+
+export interface AdExample {
+  id: string;
+  title: string;
+  angle: Angle;
+  niche: Niche;
+  format: Format;
+  imageUrl: string;
+  sourceName: string;
+  sourceUrl: string;
+  whyItWorks: string;
+  hook: string;
+  copyFormula: string;
+  trustElement: string;
+  ctaType: string;
+  replicationNotes: string;
+}
+
+export const AD_EXAMPLES: AdExample[] = [
+  {
+    id: "1",
+    title: "Kitchen Remodel — Split Before/After + Free Quote Hook",
+    angle: "Before / After",
+    niche: "Remodeling",
+    format: "Static Image",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_before_after-Ke9YU7xbaSEpyfVJcqvjgM.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "The split-screen creates an instant visual contrast that stops the scroll. The brain processes transformation imagery in under 150ms. The 'BEFORE' label anchors the pain state, while 'AFTER' delivers the aspiration. The bottom bar consolidates all trust signals (stars, count, CTA) into one scannable strip — reducing cognitive load at the decision moment.",
+    hook: "Transform Your Kitchen in 14 Days",
+    copyFormula:
+      "Visual transformation + time-bound promise + social proof count + zero-risk CTA. The number '14 Days' creates a specific, believable timeline that generic 'fast service' claims can't match.",
+    trustElement:
+      "847 Homeowners Served (volume = social proof) + 5-star rating. Both are in the same visual zone as the CTA to reduce friction.",
+    ctaType: "Get Free Quote — zero commitment, low friction",
+    replicationNotes:
+      "Use real job photos, not stock. The before must look genuinely bad — don't sanitize it. The after must be aspirational. Headline should include a specific timeframe or number. Bottom bar: logo left, stars center, CTA button right. Orange CTA on dark bar = highest contrast ratio for click.",
+  },
+  {
+    id: "2",
+    title: "HVAC — $500 Off Offer + Urgency + Technician Hero",
+    angle: "Offer / Discount",
+    niche: "HVAC",
+    format: "Static Image",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_offer_discount-3ZLNYmZjYubTZ9autivnm5.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "The dollar amount dominates the visual hierarchy — it's the first thing the eye lands on. The technician photo humanizes the brand and signals professionalism. The red urgency banner creates scarcity. The bottom trust strip (BBB, stars, phone, CTA) handles all objections in one row. The 0% financing starburst removes the biggest barrier to high-ticket service purchases.",
+    hook: "$500 OFF New AC Installation",
+    copyFormula:
+      "Dominant offer number + service name + urgency deadline + financing objection removal + trust badges + CTA. The offer is the entire creative — copy is secondary.",
+    trustElement:
+      "BBB A+ badge + 5-star rating + phone number. The BBB badge specifically converts skeptical homeowners who've been burned before.",
+    ctaType: "Book Now — Free Estimate (dual benefit: book + free)",
+    replicationNotes:
+      "The offer number must be the largest element on the canvas. Navy blue background = trust + authority for trades. Red urgency banner must be bold and specific — 'Expires Friday' beats 'Limited Time'. Technician must be in branded uniform, smiling, holding tools. Starburst badge top-right = financing objection handled before they even read the copy.",
+  },
+  {
+    id: "3",
+    title: "Roofing — Facebook Post Style Social Proof Wall",
+    angle: "Social Proof",
+    niche: "Roofing",
+    format: "Static Image",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_social_proof-VPjhfmxwec2Xt9d7cS5bgk.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "Rendered as a native Facebook post — not an ad — which dramatically reduces ad blindness. The quote is specific, emotional, and uses real objections ('no mess, no stress'). The circular profile photo adds authenticity. The completed roof photo provides visual proof of quality. The Google rating with review count is the most trusted social proof signal for home services.",
+    hook:
+      '"They replaced our entire roof in one day. No mess, no stress. Best contractor we\'ve ever hired."',
+    copyFormula:
+      "Verbatim customer quote (specific, emotional) + reviewer name + city + stars + visual proof of work + aggregate rating + trust badges + CTA.",
+    trustElement:
+      "Google Rating 4.9★ from 312 reviews + GAF Certified + BBB A+ + Licensed & Insured. The review count (312) signals volume of satisfied customers.",
+    ctaType:
+      "Get Your Free Roof Inspection — inspection = low commitment entry point",
+    replicationNotes:
+      "The quote must include a specific objection overcome (speed, cleanliness, professionalism). Never use generic quotes like 'Great service!'. Include the reviewer's first name and city — specificity = credibility. The circular profile photo must look like a real person, not a stock model. Completed work photo should be aerial or wide-angle to show full scope.",
+  },
+  {
+    id: "4",
+    title: "Pest Control — Neighbor FOMO + Termite Damage Contrast",
+    angle: "Pain / FOMO",
+    niche: "Pest Control",
+    format: "Static Image",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_pain_fomo-KY5pgRqTHWxojVxn9wm2st.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "The headline triggers two psychological mechanisms simultaneously: social comparison ('your neighbors') and FOMO ('are you next?'). The split image creates a visceral before/after of the stakes — cozy home vs. structural destruction. The seasonal hook ('peaks in April') adds urgency tied to a real external trigger. The yellow CTA button on dark background has the highest contrast ratio for click-through.",
+    hook: "Your Neighbors Are Getting Treated This Week. Are You Next?",
+    copyFormula:
+      "Social comparison hook + seasonal urgency trigger + pain visualization (damage photo) + educational credibility statement + zero-risk CTA + response guarantee.",
+    trustElement:
+      "24-Hour Response Guaranteed badge + company logo with shield icon (protection symbolism). The guarantee removes the 'what if I call and they don't show' objection.",
+    ctaType:
+      "Get a FREE Inspection Before It's Too Late — urgency embedded in CTA copy",
+    replicationNotes:
+      "The neighbor reference works because homeowners are competitive about their property. The damage photo must be genuinely alarming — structural, not surface-level. The seasonal hook must be real and timely. Red headline bar = danger/warning signal. Yellow CTA = action/urgency. The 'before it's too late' phrasing in the CTA reinforces the FOMO without being manipulative.",
+  },
+  {
+    id: "5",
+    title: "Pressure Washing — Cinematic Hero Shot + Satisfaction Hook",
+    angle: "Hero Shot",
+    niche: "Pressure Washing",
+    format: "Static Image",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_hero_shot-UjTbEqjUkeyBMjxNwUM4Fo.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "The action shot of water spraying on a driveway triggers the 'satisfying clean' dopamine response — the same mechanism behind viral pressure washing videos. The branded uniform establishes professionalism. The clean stripe in the driveway is the visual proof of the result. The gradient overlay keeps text readable without obscuring the hero image. The 'Instant Quote' CTA removes the friction of scheduling.",
+    hook: "Your Driveway Deserves Better",
+    copyFormula:
+      "Aspirational identity hook (your property deserves X) + visual proof of result + speed/convenience promise + social proof count + instant-action CTA.",
+    trustElement:
+      "500+ Jobs This Season (recency + volume) + 5-star rating. 'This Season' signals active, current demand — not a stale business.",
+    ctaType:
+      "Book Online — Instant Quote (online booking + instant = zero friction)",
+    replicationNotes:
+      "The action shot must show the clean stripe — the contrast between dirty and clean in the same frame is the entire value proposition. Technician must be in branded uniform with logo visible. Cinematic lighting (golden hour or dramatic) elevates perceived quality. Bottom gradient overlay: transparent at top, dark at bottom — keeps the image visible while making text readable. The headline should address the homeowner's identity, not just the service.",
+  },
+  {
+    id: "6",
+    title: "Epoxy Flooring — 4-Benefit Checklist + Luxury Result Photo",
+    angle: "Features / Benefits",
+    niche: "Epoxy / Flooring",
+    format: "Static Image",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_features_benefits-hgLnZi7n3cVQJNeSEz3EEC.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "The checklist format is the highest-performing layout for features/benefits ads because it allows rapid scanning. Each benefit is paired with a specific outcome, not just a feature name. The luxury car on the finished floor creates aspirational context — it's not just a floor, it's a lifestyle upgrade. The '3D Floor Preview' in the CTA is a unique differentiator that reduces purchase anxiety for a high-ticket, permanent installation.",
+    hook: "Why 500+ Homeowners Chose Us for Their Garage Floor",
+    copyFormula:
+      "Social proof number in headline + 4 benefit/outcome pairs (feature → what it means for you) + aspirational visual + unique CTA differentiator.",
+    trustElement:
+      "500+ homeowners (volume) + Licensed & Insured + 5-star rating. The 'Licensed & Insured' badge is critical for in-home service businesses — it's a top objection.",
+    ctaType:
+      "Get Your Free Quote + 3D Floor Preview — the '3D Preview' is a unique hook that differentiates from competitors",
+    replicationNotes:
+      "Each checklist item must follow the formula: Feature Name — What It Means For You. Never list features without outcomes. The result photo must be aspirational — luxury car, clean space, dramatic lighting. Dark background makes the green checkmarks and white text pop. The CTA must include a unique differentiator (3D preview, same-day quote, etc.) that competitors don't offer.",
+  },
+  {
+    id: "7",
+    title: "Landscaping — Free Design Guide Lead Magnet",
+    angle: "Lead Magnet",
+    niche: "Landscaping",
+    format: "Lead Form",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_lead_magnet-Dv2cEiEExrYqbb4ZHrzZdz.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "The lead magnet angle works because it offers value before asking for anything. The aspirational backyard photo creates desire. The white card overlay creates a clean, editorial feel that signals quality. The specific content description ('12 Pages. Backyard Layouts, Plant Palettes...') makes the guide feel tangible and worth the email exchange. The 'No spam' micro-copy removes the email opt-in objection.",
+    hook: "FREE: 2025 Outdoor Living Design Guide",
+    copyFormula:
+      "Free resource offer + specific content description (pages, topics) + geographic relevance (Montreal Homeowners) + email capture + trust signal (As Seen In) + no-spam reassurance.",
+    trustElement:
+      "As Seen In: Montreal Gazette, HomeStars — media mentions signal credibility and authority in the local market.",
+    ctaType:
+      "Send Me the Free Guide — first-person CTA copy outperforms 'Download' or 'Get'",
+    replicationNotes:
+      "The guide must be specific — page count, topics covered, geographic relevance. Vague lead magnets ('Free Tips!') don't convert. The aspirational photo must match the guide topic exactly. White card overlay creates contrast and draws the eye to the offer. First-person CTA ('Send Me') outperforms third-person ('Download Now') by 15-25% in A/B tests. The 'No spam' line must be present — it directly addresses the #1 opt-in objection.",
+  },
+  {
+    id: "8",
+    title: "Windows — UGC Video Style: Homeowner Savings Story",
+    angle: "UGC / Testimonial",
+    niche: "Windows",
+    format: "Video",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_ugc_testimonial-EQMRnerwpu8Wohh33YXjTy.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "UGC-style ads outperform polished brand ads by 4x for service businesses because they feel like a recommendation from a neighbor, not an advertisement. The selfie format signals authenticity. The specific savings claim ('$180/month') is concrete and believable. Rendering it as a native Facebook post with the play button makes it feel organic — reducing ad blindness. The caption copy continues the story, driving curiosity to watch.",
+    hook: "I saved $180/month on heating after these windows!",
+    copyFormula:
+      "Authentic selfie thumbnail + specific financial outcome in text overlay + story-continuation caption + play button (implies more content) + Learn More CTA.",
+    trustElement:
+      "The UGC format itself is the trust element — it looks like a real person's post, not an ad. The specific dollar amount ($180/month) is the credibility anchor.",
+    ctaType:
+      "Learn More — soft CTA appropriate for video/story format; hard CTAs reduce video completion rates",
+    replicationNotes:
+      "Film this with a real customer in their home, not an actor. The selfie must look genuinely amateur — professional lighting kills the UGC effect. The text overlay must include a specific, verifiable claim (savings amount, time saved, problem solved). The caption must create curiosity and continue the story. Never use 'Watch Now' as CTA for UGC — 'Learn More' or 'See How' performs better.",
+  },
+  {
+    id: "9",
+    title: "Plumbing — 3-Step Process + Technician Handshake",
+    angle: "Process / How It Works",
+    niche: "Plumbing",
+    format: "Static Image",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_process_howto-Lo5yb8bCnJpHijrHNg6wrY.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "The process format reduces the #1 barrier to booking home services: uncertainty about what happens next. By making the process transparent and simple (3 steps), it removes the 'I don't know what I'm getting into' objection. The flat-rate pricing callout in Step 2 directly addresses the 'surprise bill' fear. The handshake photo signals partnership and satisfaction. The Facebook post chrome makes it feel native.",
+    hook: "How We Fix Your Plumbing in 3 Simple Steps",
+    copyFormula:
+      "Process transparency headline + 3 numbered steps (each with icon + outcome + objection removal) + visual proof of satisfied customer + geographic trust signal + CTA.",
+    trustElement:
+      "5-star rating + 'Serving Greater Toronto Area' (geographic specificity = local trust) + verified badge on company name.",
+    ctaType:
+      "Book Your Appointment Now — direct, action-oriented, no ambiguity",
+    replicationNotes:
+      "Each step must include an objection removal: Step 1 (availability: 'We Answer 24/7'), Step 2 (pricing fear: 'Flat Rate, No Surprises'), Step 3 (quality guarantee: 'Or We Come Back Free'). The handshake photo must show a professional technician in uniform — not a stock photo of two businesspeople. Geographic specificity in the trust strip is critical for local service businesses. Facebook post chrome increases native feel.",
+  },
+  {
+    id: "10",
+    title: "Roofing — Storm Season Urgency + Free Inspection Scarcity",
+    angle: "Seasonal / Urgency",
+    niche: "Roofing / Storm",
+    format: "Static Image",
+    imageUrl:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663030950457/dRncbxXNmUf38BsvK4wvny/ad_seasonal_urgency-X5LoMZPLrrELkHYhR9vtRf.webp",
+    sourceName: "Agency Creative Pattern",
+    sourceUrl: "https://www.facebook.com/ads/library/",
+    whyItWorks:
+      "Storm damage ads are the highest-converting seasonal trigger for roofing because the external event (weather) creates urgency the advertiser doesn't have to manufacture. The damaged roof photo is visceral and immediately relevant to any homeowner. 'Limited to 25 Homes' creates genuine scarcity. The insurance claim assistance callout is a massive differentiator — most homeowners don't know they can get help navigating claims. The GAF Master Elite badge is the highest trust signal in roofing.",
+    hook: "Storm Season Is Here. Is Your Roof Ready?",
+    copyFormula:
+      "Seasonal threat hook (question format) + scarcity offer + 3 differentiating benefits + trust badges + phone number + CTA. The question format engages the reader's self-assessment instinct.",
+    trustElement:
+      "GAF Master Elite badge (top 3% of roofers nationally) + BBB A+ + phone number with branded vanity number (888-ROOF-911 signals emergency availability).",
+    ctaType:
+      "Claim Your Free Inspection — 'Claim' implies the offer is theirs to take, not a request",
+    replicationNotes:
+      "Run this ad the week before and after any major storm event in your target market. The damaged roof photo must look like a real suburban home, not a commercial building. 'Limited to 25 Homes' must be a real constraint — don't fake scarcity. Insurance claim assistance is the #1 differentiator for storm-season roofing — always include it. The GAF Master Elite or equivalent manufacturer certification is the most credible trust badge in roofing.",
+  },
 ];
