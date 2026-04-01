@@ -21,9 +21,10 @@ import {
   type Format,
   type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2 } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star } from "lucide-react";
 import { GenerateAdPanel } from "@/components/GenerateAdPanel";
 import CompetitorIntel from "@/pages/CompetitorIntel";
+import { useSavedAds } from "@/hooks/useSavedAds";
 
 // ─── Angle Badge ─────────────────────────────────────────────
 function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
@@ -101,7 +102,7 @@ function ReplicationRow({ label, value }: { label: string; value: string }) {
 }
 
 // ─── Lightbox / Detail Drawer ─────────────────────────────────
-function AdDetailDrawer({ ad, onClose }: { ad: AdExample; onClose: () => void }) {
+function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave }: { ad: AdExample; onClose: () => void; isSaved: boolean; onToggleSave: () => void }) {
   return (
     <AnimatePresence>
       <motion.div
@@ -139,13 +140,23 @@ function AdDetailDrawer({ ad, onClose }: { ad: AdExample; onClose: () => void })
               <FormatBadge format={ad.format} />
               <span className="text-xs font-mono" style={{ color: "#6B7280" }}>{ad.niche}</span>
             </div>
-            <button
-              onClick={onClose}
-              className="rounded-md p-1.5 transition-colors hover:bg-white/10"
-              style={{ color: "#9CA3AF" }}
-            >
-              <X size={18} />
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={(e) => { e.stopPropagation(); onToggleSave(); }}
+                className="rounded-md p-1.5 transition-all hover:bg-white/10"
+                style={{ color: isSaved ? "#F59E0B" : "#6B7280" }}
+                title={isSaved ? "Remove from saved" : "Save creative"}
+              >
+                <Star size={16} fill={isSaved ? "#F59E0B" : "none"} />
+              </button>
+              <button
+                onClick={onClose}
+                className="rounded-md p-1.5 transition-colors hover:bg-white/10"
+                style={{ color: "#9CA3AF" }}
+              >
+                <X size={18} />
+              </button>
+            </div>
           </div>
 
           {/* Image */}
@@ -227,17 +238,17 @@ function AdDetailDrawer({ ad, onClose }: { ad: AdExample; onClose: () => void })
 }
 
 // ─── Ad Card ──────────────────────────────────────────────────
-function AdCard({ ad, index, onClick }: { ad: AdExample; index: number; onClick: () => void }) {
+function AdCard({ ad, index, onClick, isSaved, onToggleSave }: { ad: AdExample; index: number; onClick: () => void; isSaved: boolean; onToggleSave: () => void }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
       className="relative rounded-lg overflow-hidden cursor-pointer group"
-      style={{ background: "#161618", border: "1px solid rgba(255,255,255,0.07)" }}
+      style={{ background: "#161618", border: isSaved ? "1px solid rgba(245,158,11,0.35)" : "1px solid rgba(255,255,255,0.07)" }}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.04, duration: 0.4, ease: "easeOut" }}
-      whileHover={{ scale: 1.015, borderColor: "rgba(255,255,255,0.15)" }}
+      whileHover={{ scale: 1.015, borderColor: isSaved ? "rgba(245,158,11,0.55)" : "rgba(255,255,255,0.15)" }}
       onClick={onClick}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
@@ -271,10 +282,20 @@ function AdCard({ ad, index, onClick }: { ad: AdExample; index: number; onClick:
         <div className="absolute top-2 left-2">
           <AngleBadge angle={ad.angle} small />
         </div>
-        {/* Format badge top-right */}
-        <div className="absolute top-2 right-2">
-          <FormatBadge format={ad.format} />
-        </div>
+        {/* Star button top-right */}
+        <button
+          className="absolute top-2 right-2 rounded-md p-1 transition-all"
+          style={{
+            background: isSaved ? "rgba(245,158,11,0.18)" : "rgba(0,0,0,0.45)",
+            color: isSaved ? "#F59E0B" : "#9CA3AF",
+            border: isSaved ? "1px solid rgba(245,158,11,0.35)" : "1px solid rgba(255,255,255,0.1)",
+            backdropFilter: "blur(4px)",
+          }}
+          onClick={(e) => { e.stopPropagation(); onToggleSave(); }}
+          title={isSaved ? "Remove from saved" : "Save creative"}
+        >
+          <Star size={12} fill={isSaved ? "#F59E0B" : "none"} />
+        </button>
       </div>
 
       {/* Bottom strip */}
@@ -355,8 +376,10 @@ export default function Home() {
   const [activeFormats, setActiveFormats] = useState<Set<Format>>(new Set());
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [generateOpen, setGenerateOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<"swipe" | "competitor">("swipe");
+  const [activeTab, setActiveTab] = useState<"swipe" | "competitor" | "saved">("swipe");
   const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
+  const { saved: savedIds, toggle: toggleSave, isSaved, clearAll: clearSaved } = useSavedAds();
+  const savedAds = useMemo(() => AD_EXAMPLES.filter((a) => savedIds.has(a.id)), [savedIds]);
   const mainScrollRef = useRef<HTMLElement>(null);
   const nicheSectionRefs = useRef<Partial<Record<Niche, HTMLDivElement | null>>>({});
 
@@ -526,6 +549,23 @@ export default function Home() {
               Swipe File
             </button>
             <button
+              onClick={() => setActiveTab("saved")}
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
+              style={{
+                background: activeTab === "saved" ? "rgba(245,158,11,0.15)" : "transparent",
+                color: activeTab === "saved" ? "#F59E0B" : "#6B7280",
+                fontFamily: "'Space Grotesk', sans-serif",
+              }}
+            >
+              <Star size={12} fill={activeTab === "saved" ? "#F59E0B" : "none"} />
+              Saved
+              {savedIds.size > 0 && (
+                <span className="ml-0.5 rounded-full px-1.5 py-0.5 text-[10px] font-bold leading-none" style={{ background: "rgba(245,158,11,0.25)", color: "#F59E0B" }}>
+                  {savedIds.size}
+                </span>
+              )}
+            </button>
+            <button
               onClick={() => setActiveTab("competitor")}
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
               style={{
@@ -627,6 +667,59 @@ export default function Home() {
           </div>
         )}
 
+        {/* Saved tab */}
+        {activeTab === "saved" && (
+          <div className="flex-1 overflow-y-auto p-5">
+            {savedAds.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-64 gap-4">
+                <div className="rounded-full p-4" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.15)" }}>
+                  <Star size={28} style={{ color: "#F59E0B" }} />
+                </div>
+                <div className="text-center">
+                  <p className="text-sm font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#E5E3DF" }}>No saved creatives yet</p>
+                  <p className="text-xs font-mono mt-1" style={{ color: "#6B7280" }}>Star any creative to save it here for quick access</p>
+                </div>
+                <button
+                  onClick={() => setActiveTab("swipe")}
+                  className="text-xs font-mono rounded-md px-3 py-1.5 transition-all hover:opacity-80"
+                  style={{ color: "#F59E0B", border: "1px solid rgba(245,158,11,0.3)", background: "rgba(245,158,11,0.08)" }}
+                >
+                  Browse Swipe File →
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Star size={14} fill="#F59E0B" style={{ color: "#F59E0B" }} />
+                    <span className="text-sm font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>Saved Creatives</span>
+                    <span className="text-[11px] font-mono" style={{ color: "#6B7280" }}>{savedAds.length} saved</span>
+                  </div>
+                  <button
+                    onClick={clearSaved}
+                    className="text-xs font-mono rounded-md px-2.5 py-1 transition-colors hover:bg-white/8"
+                    style={{ color: "#EF4444", border: "1px solid rgba(239,68,68,0.25)" }}
+                  >
+                    Clear all
+                  </button>
+                </div>
+                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))" }}>
+                  {savedAds.map((ad, i) => (
+                    <AdCard
+                      key={ad.id}
+                      ad={ad}
+                      index={i}
+                      onClick={() => setSelectedAd(ad)}
+                      isSaved={true}
+                      onToggleSave={() => toggleSave(ad.id)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Main grid — Swipe File tab */}
         <main ref={mainScrollRef} className="flex-1 overflow-y-auto p-5 flex flex-col gap-8" style={{ display: activeTab === "swipe" ? "flex" : "none" }}>
 
@@ -649,8 +742,8 @@ export default function Home() {
                         <motion.div
                           key={ad.id}
                           className="relative rounded-lg overflow-hidden cursor-pointer group"
-                          style={{ background: "#161618", border: "1px solid rgba(255,255,255,0.07)" }}
-                          whileHover={{ scale: 1.015, borderColor: "rgba(255,255,255,0.15)" }}
+                          style={{ background: "#161618", border: isSaved(ad.id) ? "1px solid rgba(245,158,11,0.35)" : "1px solid rgba(255,255,255,0.07)" }}
+                          whileHover={{ scale: 1.015, borderColor: isSaved(ad.id) ? "rgba(245,158,11,0.55)" : "rgba(255,255,255,0.15)" }}
                           onClick={() => setSelectedAd(ad)}
                         >
                           <div className="relative overflow-hidden" style={{ background: "#0D0D0F" }}>
@@ -664,6 +757,19 @@ export default function Home() {
                             <div className="absolute top-1.5 left-1.5">
                               <AngleBadge angle={ad.angle} small />
                             </div>
+                            <button
+                              className="absolute top-1.5 right-1.5 rounded-md p-0.5 transition-all"
+                              style={{
+                                background: isSaved(ad.id) ? "rgba(245,158,11,0.18)" : "rgba(0,0,0,0.45)",
+                                color: isSaved(ad.id) ? "#F59E0B" : "#9CA3AF",
+                                border: isSaved(ad.id) ? "1px solid rgba(245,158,11,0.35)" : "1px solid rgba(255,255,255,0.1)",
+                                backdropFilter: "blur(4px)",
+                              }}
+                              onClick={(e) => { e.stopPropagation(); toggleSave(ad.id); }}
+                              title={isSaved(ad.id) ? "Remove from saved" : "Save creative"}
+                            >
+                              <Star size={10} fill={isSaved(ad.id) ? "#F59E0B" : "none"} />
+                            </button>
                           </div>
                           <div className="px-2.5 py-2">
                             <p className="text-xs font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#E5E3DF" }}>
@@ -701,6 +807,8 @@ export default function Home() {
                     ad={ad}
                     index={i}
                     onClick={() => setSelectedAd(ad)}
+                    isSaved={isSaved(ad.id)}
+                    onToggleSave={() => toggleSave(ad.id)}
                   />
                 ))}
               </div>
@@ -746,7 +854,12 @@ export default function Home() {
 
       {/* Detail Drawer */}
       {selectedAd && (
-        <AdDetailDrawer ad={selectedAd} onClose={() => setSelectedAd(null)} />
+        <AdDetailDrawer
+          ad={selectedAd}
+          onClose={() => setSelectedAd(null)}
+          isSaved={isSaved(selectedAd.id)}
+          onToggleSave={() => toggleSave(selectedAd.id)}
+        />
       )}
 
       {/* Generate Ad Panel */}

@@ -37,3 +37,10 @@
 
 ## Matrix Niche Navigation
 - [x] Add niche anchor scroll in matrix view (sidebar niche click scrolls to section)
+
+## Saved Creatives
+- [x] Add useSavedAds hook (localStorage, toggle, clear)
+- [x] Add star button to AdCard (grid + matrix view)
+- [x] Add Saved tab to header tab switcher
+- [x] Build Saved tab content (grid of saved ads, empty state, clear-all)
+- [x] Star state visible in detail drawer too
