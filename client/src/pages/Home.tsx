@@ -21,7 +21,8 @@ import {
   type Format,
   type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2 } from "lucide-react";
+import { GenerateAdPanel } from "@/components/GenerateAdPanel";
 
 // ─── Angle Badge ─────────────────────────────────────────────
 function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
@@ -350,6 +351,7 @@ export default function Home() {
   const [activeNiches, setActiveNiches] = useState<Set<Niche>>(new Set());
   const [activeFormats, setActiveFormats] = useState<Set<Format>>(new Set());
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [generateOpen, setGenerateOpen] = useState(false);
 
   const toggleAngle = (a: Angle) => {
     setActiveAngles((prev) => {
@@ -473,6 +475,19 @@ export default function Home() {
               Clear filters
             </button>
           )}
+          <button
+            onClick={() => setGenerateOpen(true)}
+            className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-bold transition-all hover:opacity-90 active:scale-[0.98]"
+            style={{
+              background: "linear-gradient(135deg, #6366F1, #8B5CF6)",
+              color: "#FFFFFF",
+              fontFamily: "'Space Grotesk', sans-serif",
+              boxShadow: "0 2px 12px rgba(99,102,241,0.4)",
+            }}
+          >
+            <Wand2 size={14} />
+            Generate
+          </button>
         </div>
       </header>
 
@@ -602,6 +617,13 @@ export default function Home() {
       {selectedAd && (
         <AdDetailDrawer ad={selectedAd} onClose={() => setSelectedAd(null)} />
       )}
+
+      {/* Generate Ad Panel */}
+      <AnimatePresence>
+        {generateOpen && (
+          <GenerateAdPanel onClose={() => setGenerateOpen(false)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
