@@ -21,7 +21,7 @@ import {
   type Format,
   type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2 } from "lucide-react";
 import { GenerateAdPanel } from "@/components/GenerateAdPanel";
 import CompetitorIntel from "@/pages/CompetitorIntel";
 
@@ -354,6 +354,7 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [generateOpen, setGenerateOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"swipe" | "competitor">("swipe");
+  const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
 
   const toggleAngle = (a: Angle) => {
     setActiveAngles((prev) => {
@@ -466,9 +467,30 @@ export default function Home() {
 
         <div className="flex items-center gap-3 flex-shrink-0">
           <span className="text-xs font-mono" style={{ color: "#6B7280" }}>
-            {filtered.length} / {AD_EXAMPLES.length} examples
+            {viewMode === "grid" ? `${filtered.length} / ${AD_EXAMPLES.length}` : "110 / 110"} examples
           </span>
-          {hasFilters && (
+          {/* View mode toggle */}
+          {activeTab === "swipe" && (
+            <div className="flex items-center rounded-md p-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <button
+                onClick={() => setViewMode("grid")}
+                className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono transition-all"
+                style={{ background: viewMode === "grid" ? "rgba(255,255,255,0.1)" : "transparent", color: viewMode === "grid" ? "#F0EEE9" : "#6B7280" }}
+                title="Card Grid"
+              >
+                <LayoutGrid size={12} />
+              </button>
+              <button
+                onClick={() => setViewMode("matrix")}
+                className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono transition-all"
+                style={{ background: viewMode === "matrix" ? "rgba(255,255,255,0.1)" : "transparent", color: viewMode === "matrix" ? "#F0EEE9" : "#6B7280" }}
+                title="Matrix View"
+              >
+                <Table2 size={12} />
+              </button>
+            </div>
+          )}
+          {hasFilters && viewMode === "grid" && (
             <button
               onClick={clearAll}
               className="text-xs font-mono rounded-md px-2.5 py-1 transition-colors hover:bg-white/8"
@@ -588,6 +610,58 @@ export default function Home() {
 
         {/* Main grid — Swipe File tab */}
         <main className="flex-1 overflow-y-auto p-5 flex flex-col gap-8" style={{ display: activeTab === "swipe" ? "flex" : "none" }}>
+
+          {/* Matrix View — niche × angle grid */}
+          {viewMode === "matrix" && (
+            <div className="flex flex-col gap-10">
+              {ALL_NICHES.map((niche) => (
+                <div key={niche}>
+                  {/* Niche header */}
+                  <div className="flex items-center gap-3 mb-4 pb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                    <span className="text-sm font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>{niche}</span>
+                    <span className="text-[11px] font-mono" style={{ color: "#4B5563" }}>11 angles</span>
+                  </div>
+                  {/* Angle row grid */}
+                  <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+                    {ALL_ANGLES.map((angle) => {
+                      const ad = AD_EXAMPLES.find((a) => a.niche === niche && a.angle === angle);
+                      if (!ad) return null;
+                      return (
+                        <motion.div
+                          key={ad.id}
+                          className="relative rounded-lg overflow-hidden cursor-pointer group"
+                          style={{ background: "#161618", border: "1px solid rgba(255,255,255,0.07)" }}
+                          whileHover={{ scale: 1.015, borderColor: "rgba(255,255,255,0.15)" }}
+                          onClick={() => setSelectedAd(ad)}
+                        >
+                          <div className="relative overflow-hidden" style={{ background: "#0D0D0F" }}>
+                            <img
+                              src={ad.imageUrl}
+                              alt={ad.title}
+                              className="w-full object-cover"
+                              style={{ height: "140px", objectPosition: "top" }}
+                              loading="lazy"
+                            />
+                            <div className="absolute top-1.5 left-1.5">
+                              <AngleBadge angle={ad.angle} small />
+                            </div>
+                          </div>
+                          <div className="px-2.5 py-2">
+                            <p className="text-xs font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#E5E3DF" }}>
+                              {ad.hook}
+                            </p>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Card Grid View */}
+          {viewMode === "grid" && (
           <div>
             {filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-64 gap-3">
@@ -613,6 +687,7 @@ export default function Home() {
               </div>
             )}
           </div>
+          )}
 
           {/* Ad Intelligence Sources */}
           <div className="rounded-xl p-6" style={{ background: "#111113", border: "1px solid rgba(255,255,255,0.07)" }}>

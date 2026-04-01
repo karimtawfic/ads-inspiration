@@ -29,8 +29,8 @@
 - [x] Save checkpoint
 
 ## Full Matrix: Every Niche × Every Angle (110 creatives)
-- [ ] Generate all 110 ad creative images (10 niches × 11 angles) in parallel
-- [ ] Upload all 110 images to CDN
-- [ ] Rebuild adData.ts with all 110 entries (full matrix)
-- [ ] Update canvas UI to support matrix view / niche grouping
-- [ ] Save checkpoint
+- [x] Generate all 110 ad creative images (10 niches × 11 angles) in parallel
+- [x] Upload all 110 images to CDN
+- [x] Rebuild adData.ts with all 110 entries (full matrix)
+- [x] Update canvas UI to support matrix view / niche grouping
+- [x] Save checkpoint
