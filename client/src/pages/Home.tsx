@@ -5,7 +5,7 @@
 // Color-coded angle taxonomy, masonry grid, lightbox drawer
 // ============================================================
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AD_EXAMPLES,
@@ -310,21 +310,23 @@ function FilterPill({
   color,
   onClick,
   count,
+  isScrollTarget,
 }: {
   label: string;
   active: boolean;
   color?: string;
   onClick: () => void;
   count?: number;
+  isScrollTarget?: boolean;
 }) {
   return (
     <button
       onClick={onClick}
       className="flex items-center justify-between rounded-md px-3 py-1.5 text-sm transition-all text-left"
       style={{
-        background: active ? (color ? `${color}18` : "rgba(255,255,255,0.08)") : "transparent",
-        color: active ? (color || "#F0EEE9") : "#9CA3AF",
-        border: active ? `1px solid ${color ? `${color}40` : "rgba(255,255,255,0.15)"}` : "1px solid transparent",
+        background: active ? (color ? `${color}18` : "rgba(255,255,255,0.08)") : isScrollTarget ? "rgba(255,255,255,0.03)" : "transparent",
+        color: active ? (color || "#F0EEE9") : isScrollTarget ? "#C4C2BE" : "#9CA3AF",
+        border: active ? `1px solid ${color ? `${color}40` : "rgba(255,255,255,0.15)"}` : isScrollTarget ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
         fontFamily: active ? "'Space Grotesk', sans-serif" : "inherit",
         fontWeight: active ? 600 : 400,
       }}
@@ -355,6 +357,16 @@ export default function Home() {
   const [generateOpen, setGenerateOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"swipe" | "competitor">("swipe");
   const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
+  const mainScrollRef = useRef<HTMLElement>(null);
+  const nicheSectionRefs = useRef<Partial<Record<Niche, HTMLDivElement | null>>>({});
+
+  const scrollToNiche = useCallback((niche: Niche) => {
+    const el = nicheSectionRefs.current[niche];
+    const container = mainScrollRef.current;
+    if (!el || !container) return;
+    const offset = el.offsetTop - 16;
+    container.scrollTo({ top: offset, behavior: "smooth" });
+  }, []);
 
   const toggleAngle = (a: Angle) => {
     setActiveAngles((prev) => {
@@ -579,9 +591,16 @@ export default function Home() {
                   <FilterPill
                     key={n}
                     label={n}
-                    active={activeNiches.has(n)}
-                    onClick={() => toggleNiche(n)}
+                    active={viewMode === "matrix" ? false : activeNiches.has(n)}
+                    onClick={() => {
+                      if (viewMode === "matrix") {
+                        scrollToNiche(n);
+                      } else {
+                        toggleNiche(n);
+                      }
+                    }}
                     count={nicheCounts[n] || 0}
+                    isScrollTarget={viewMode === "matrix"}
                   />
                 ))}
               </SidebarSection>
@@ -609,13 +628,13 @@ export default function Home() {
         )}
 
         {/* Main grid — Swipe File tab */}
-        <main className="flex-1 overflow-y-auto p-5 flex flex-col gap-8" style={{ display: activeTab === "swipe" ? "flex" : "none" }}>
+        <main ref={mainScrollRef} className="flex-1 overflow-y-auto p-5 flex flex-col gap-8" style={{ display: activeTab === "swipe" ? "flex" : "none" }}>
 
           {/* Matrix View — niche × angle grid */}
           {viewMode === "matrix" && (
             <div className="flex flex-col gap-10">
               {ALL_NICHES.map((niche) => (
-                <div key={niche}>
+                <div key={niche} ref={(el) => { nicheSectionRefs.current[niche] = el; }}>
                   {/* Niche header */}
                   <div className="flex items-center gap-3 mb-4 pb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
                     <span className="text-sm font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>{niche}</span>

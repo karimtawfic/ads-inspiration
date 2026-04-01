@@ -34,3 +34,6 @@
 - [x] Rebuild adData.ts with all 110 entries (full matrix)
 - [x] Update canvas UI to support matrix view / niche grouping
 - [x] Save checkpoint
+
+## Matrix Niche Navigation
+- [x] Add niche anchor scroll in matrix view (sidebar niche click scrolls to section)
