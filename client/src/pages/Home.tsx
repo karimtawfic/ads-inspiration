@@ -512,9 +512,9 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
     <motion.div
       className="relative rounded-lg overflow-hidden cursor-pointer group"
       style={{ background: isDark ? "#161618" : "#FFFFFF", border: isSaved ? "1px solid rgba(245,158,11,0.35)" : isDark ? "1px solid rgba(255,255,255,0.07)" : "1px solid rgba(0,0,0,0.07)", boxShadow: isDark ? "none" : "0 1px 4px rgba(0,0,0,0.06)" }}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.04, duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
       whileHover={{ scale: 1.015, borderColor: isSaved ? "rgba(245,158,11,0.55)" : "rgba(255,255,255,0.15)" }}
       onClick={onClick}
       onHoverStart={() => setHovered(true)}
@@ -902,6 +902,35 @@ export default function Home() {
   }, []);
 
   const hasFilters = activeAngles.size > 0 || activeNiches.size > 0 || activeFormats.size > 0 || searchQuery;
+
+  // ── Pagination: render 30 cards at a time, load more on scroll ──
+  const PAGE_SIZE = 30;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // Reset visible count when filters/sort change
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+    mainScrollRef.current?.scrollTo({ top: 0 });
+  }, [activeAngles, activeNiches, activeFormats, searchQuery, sortBy]);
+
+  // IntersectionObserver: load next page when sentinel enters view
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, filtered.length));
+        }
+      },
+      { root: mainScrollRef.current, rootMargin: "200px" }
+    );
+    obs.observe(sentinel);
+    return () => obs.disconnect();
+  }, [filtered.length]);
+
+  const visibleAds = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
 
   return (
     <div className="h-screen flex flex-col overflow-hidden" style={{ background: S.bg }}>
@@ -1455,17 +1484,18 @@ export default function Home() {
                 <button onClick={clearAll} className="text-xs font-mono underline" style={{ color: "#6366F1" }}>Clear all filters</button>
               </div>
             ) : (
+              <>
               <div
                 className="grid gap-4"
                 style={{
                   gridTemplateColumns: `repeat(${rowDensity}, 1fr)`,
                 }}
               >
-                {filtered.map((ad, i) => (
+                {visibleAds.map((ad, i) => (
                   <AdCard
                     key={ad.id}
                     ad={ad}
-                    index={i}
+                    index={i % PAGE_SIZE}
                     onClick={() => setSelectedAd(ad)}
                     isSaved={isSaved(ad.id)}
                     onToggleSave={() => toggleSave(ad.id)}
@@ -1477,6 +1507,18 @@ export default function Home() {
                   />
                 ))}
               </div>
+              {/* Scroll sentinel — triggers next page load */}
+              {visibleCount < filtered.length && (
+                <div ref={sentinelRef} className="flex items-center justify-center py-6">
+                  <span className="text-xs font-mono" style={{ color: S.textFaint }}>Loading more…</span>
+                </div>
+              )}
+              {visibleCount >= filtered.length && filtered.length > PAGE_SIZE && (
+                <div className="flex items-center justify-center py-4">
+                  <span className="text-xs font-mono" style={{ color: S.textFaint }}>All {filtered.length} creatives loaded</span>
+                </div>
+              )}
+              </>
             )}
           </div>
           )}
