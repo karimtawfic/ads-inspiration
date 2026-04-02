@@ -21,7 +21,8 @@ import {
   type Format,
   type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star, Building2, Columns } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star, Building2, Columns, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 import { GenerateAdPanel } from "@/components/GenerateAdPanel";
 import CompetitorIntel from "@/pages/CompetitorIntel";
 import { useSavedAds } from "@/hooks/useSavedAds";
@@ -493,14 +494,14 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
 }
 
 // ─── Ad Card ──────────────────────────────────────────────────
-function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight }: { ad: AdExample; index: number; onClick: () => void; isSaved: boolean; onToggleSave: () => void; cardHeight?: number }) {
+function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark = true }: { ad: AdExample; index: number; onClick: () => void; isSaved: boolean; onToggleSave: () => void; cardHeight?: number; isDark?: boolean }) {
   const [hovered, setHovered] = useState(false);
   const imgHeight = cardHeight ?? 220;
 
   return (
     <motion.div
       className="relative rounded-lg overflow-hidden cursor-pointer group"
-      style={{ background: "#161618", border: isSaved ? "1px solid rgba(245,158,11,0.35)" : "1px solid rgba(255,255,255,0.07)" }}
+      style={{ background: isDark ? "#161618" : "#FFFFFF", border: isSaved ? "1px solid rgba(245,158,11,0.35)" : isDark ? "1px solid rgba(255,255,255,0.07)" : "1px solid rgba(0,0,0,0.07)", boxShadow: isDark ? "none" : "0 1px 4px rgba(0,0,0,0.06)" }}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.04, duration: 0.4, ease: "easeOut" }}
@@ -510,7 +511,7 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight }: { ad:
       onHoverEnd={() => setHovered(false)}
     >
       {/* Image */}
-      <div className="relative overflow-hidden" style={{ background: "#0D0D0F" }}>
+      <div className="relative overflow-hidden" style={{ background: isDark ? "#0D0D0F" : "#F0F0F2" }}>
         <img
           src={ad.imageUrl}
           alt={ad.title}
@@ -556,7 +557,7 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight }: { ad:
 
       {/* Bottom strip */}
       <div className="px-3 py-3 flex flex-col gap-1.5">
-        <p className="text-sm font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#E5E3DF" }}>
+        <p className="text-sm font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: isDark ? "#E5E3DF" : "#111113" }}>
           {ad.title}
         </p>
         <div className="flex items-center justify-between">
@@ -569,12 +570,12 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight }: { ad:
 }
 
 // ─── Sidebar Filter ───────────────────────────────────────────
-function SidebarSection({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
+function SidebarSection({ title, icon, children, textMuted = "#6B7280" }: { title: string; icon: React.ReactNode; children: React.ReactNode; textMuted?: string }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2 px-1">
-        <span style={{ color: "#6B7280" }}>{icon}</span>
-        <span className="text-[11px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B7280" }}>{title}</span>
+        <span style={{ color: textMuted }}>{icon}</span>
+        <span className="text-[11px] font-mono uppercase tracking-widest font-semibold" style={{ color: textMuted }}>{title}</span>
       </div>
       <div className="flex flex-col gap-1">{children}</div>
     </div>
@@ -588,6 +589,7 @@ function FilterPill({
   onClick,
   count,
   isScrollTarget,
+  isDark = true,
 }: {
   label: string;
   active: boolean;
@@ -595,20 +597,29 @@ function FilterPill({
   onClick: () => void;
   count?: number;
   isScrollTarget?: boolean;
+  isDark?: boolean;
 }) {
+  const activeBg = color ? `${color}18` : isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)";
+  const activeColor = color || (isDark ? "#F0EEE9" : "#111113");
+  const activeBorder = color ? `1px solid ${color}40` : isDark ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(0,0,0,0.12)";
+  const inactiveBg = isScrollTarget ? (isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)") : "transparent";
+  const inactiveColor = isScrollTarget ? (isDark ? "#C4C2BE" : "#6B7280") : (isDark ? "#9CA3AF" : "#6B7280");
+  const inactiveBorder = isScrollTarget ? (isDark ? "1px solid rgba(255,255,255,0.06)" : "1px solid rgba(0,0,0,0.06)") : "1px solid transparent";
+  const dotInactive = isDark ? "#374151" : "#D1D5DB";
+  const countActive = color || (isDark ? "#9CA3AF" : "#6B7280");
+  const countInactive = isDark ? "#4B5563" : "#9CA3AF";
   return (
     <button
       onClick={onClick}
       className="relative flex items-center justify-between rounded-md px-3 py-1.5 text-sm transition-all text-left overflow-hidden"
       style={{
-        background: active ? (color ? `${color}18` : "rgba(255,255,255,0.08)") : isScrollTarget ? "rgba(255,255,255,0.03)" : "transparent",
-        color: active ? (color || "#F0EEE9") : isScrollTarget ? "#C4C2BE" : "#9CA3AF",
-        border: active ? `1px solid ${color ? `${color}40` : "rgba(255,255,255,0.15)"}` : isScrollTarget ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
+        background: active ? activeBg : inactiveBg,
+        color: active ? activeColor : inactiveColor,
+        border: active ? activeBorder : inactiveBorder,
         fontFamily: active ? "'Space Grotesk', sans-serif" : "inherit",
         fontWeight: active ? 600 : 400,
       }}
     >
-      {/* Active indicator bar — only shown when active and no color (i.e. niche pills in matrix mode) */}
       {active && !color && (
         <span
           className="absolute left-0 top-1 bottom-1 rounded-full"
@@ -617,12 +628,12 @@ function FilterPill({
       )}
       <span className="flex items-center gap-2" style={{ paddingLeft: active && !color ? 6 : 0 }}>
         {color && (
-          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : "#374151" }} />
+          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : dotInactive }} />
         )}
         {label}
       </span>
       {count !== undefined && (
-        <span className="text-[11px] font-mono" style={{ color: active ? (color || "#9CA3AF") : "#4B5563" }}>
+        <span className="text-[11px] font-mono" style={{ color: active ? countActive : countInactive }}>
           {count}
         </span>
       )}
@@ -641,6 +652,25 @@ export default function Home() {
   const [generateOpen, setGenerateOpen] = useState(false);
   const [brandParamsOpen, setBrandParamsOpen] = useState(false);
   const { hasParams: hasBrandParams } = useBrandParams();
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
+  // Surface tokens derived from theme
+  const S = {
+    bg: isDark ? "#0D0D0F" : "#F8F8FA",
+    card: isDark ? "#161618" : "#FFFFFF",
+    panel: isDark ? "#111113" : "#FFFFFF",
+    sidebar: isDark ? "#0F0F11" : "#F2F2F5",
+    header: isDark ? "rgba(13,13,15,0.95)" : "rgba(248,248,250,0.97)",
+    border: isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)",
+    borderStrong: isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+    hover: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+    active: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)",
+    input: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+    textPrimary: isDark ? "#F0EEE9" : "#111113",
+    textSecondary: isDark ? "#9CA3AF" : "#4B5563",
+    textMuted: isDark ? "#6B7280" : "#6B7280",
+    textFaint: isDark ? "#4B5563" : "#9CA3AF",
+  };
   const [activeTab, setActiveTab] = useState<"swipe" | "competitor" | "saved">("swipe");
   const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
   const [rowDensity, setRowDensity] = useState<number>(3);
@@ -775,66 +805,94 @@ export default function Home() {
   const hasFilters = activeAngles.size > 0 || activeNiches.size > 0 || activeFormats.size > 0 || searchQuery;
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "#0D0D0F" }}>
+    <div className="min-h-screen flex flex-col" style={{ background: S.bg }}>
       {/* Top Bar */}
       <header
-        className="sticky top-0 z-40 flex items-center justify-between px-5 py-3 gap-4"
-        style={{ background: "rgba(13,13,15,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+        className="sticky top-0 z-40 flex items-center justify-between px-6 py-0 gap-4"
+        style={{
+          background: S.header,
+          backdropFilter: "blur(20px)",
+          borderBottom: `1px solid ${S.border}`,
+          height: 56,
+          boxShadow: isDark ? "0 1px 0 rgba(255,255,255,0.04)" : "0 1px 0 rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)",
+        }}
       >
+        {/* Left: logo + sidebar toggle */}
         <div className="flex items-center gap-3 flex-shrink-0">
           <button
             onClick={() => setSidebarOpen((v) => !v)}
-            className="rounded-md p-1.5 transition-colors hover:bg-white/8"
-            style={{ color: "#6B7280" }}
+            className="rounded-lg p-1.5 transition-all"
+            style={{ color: S.textMuted, background: sidebarOpen ? S.active : "transparent" }}
+            title="Toggle sidebar"
           >
-            <Layers size={16} />
+            <Layers size={15} />
           </button>
-          <div>
-            <h1 className="text-base font-bold leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>
-              Meta Ad Creative Canvas
-            </h1>
-            <p className="text-[11px] font-mono mt-0.5" style={{ color: "#6B7280" }}>
-              Service Business Lead Gen — North America
-            </p>
+          <div className="flex items-center gap-2">
+            <div
+              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{ background: "linear-gradient(135deg, #6366F1, #8B5CF6)", boxShadow: "0 2px 8px rgba(99,102,241,0.35)" }}
+            >
+              <Wand2 size={13} color="white" />
+            </div>
+            <div>
+              <h1 className="text-[13px] font-bold leading-none tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif", color: S.textPrimary }}>
+                Ad Creative Canvas
+              </h1>
+              <p className="text-[10px] font-mono mt-0.5 leading-none" style={{ color: S.textMuted }}>
+                110 creatives · 10 niches · 11 angles
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Search */}
-        <div className="flex-1 max-w-md relative">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: "#6B7280" }} />
+        {/* Center: search */}
+        <div className="flex-1 max-w-sm relative">
+          <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: S.textMuted }} />
           <input
             type="text"
-            placeholder="Search by niche, angle, hook, formula…"
+            placeholder="Search niche, angle, hook…"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-md pl-9 pr-4 py-2 text-sm outline-none transition-all"
+            className="w-full rounded-lg pl-9 pr-4 py-2 text-sm outline-none transition-all"
             style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              color: "#E5E3DF",
+              background: S.input,
+              border: `1px solid ${S.border}`,
+              color: S.textPrimary,
               fontFamily: "'Inter', sans-serif",
+              fontSize: 13,
             }}
           />
         </div>
 
-        <div className="flex items-center gap-3 flex-shrink-0">
-          <span className="text-xs font-mono" style={{ color: "#6B7280" }}>
-            {viewMode === "grid" ? `${filtered.length} / ${AD_EXAMPLES.length}` : "110 / 110"} examples
-          </span>
-          {/* View mode toggle */}
+        {/* Right: controls */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {/* Count badge */}
           {activeTab === "swipe" && (
-            <div className="flex items-center gap-2">
-              {/* Row density control */}
-              <div className="flex items-center gap-1.5 rounded-md px-2.5 py-1" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <Columns size={11} style={{ color: "#6B7280" }} />
+            <span
+              className="text-[11px] font-mono px-2 py-0.5 rounded-full"
+              style={{ color: S.textMuted, background: S.hover, border: `1px solid ${S.border}` }}
+            >
+              {viewMode === "grid" ? `${filtered.length}` : "110"} / {AD_EXAMPLES.length}
+            </span>
+          )}
+
+          {/* View controls — only on swipe tab */}
+          {activeTab === "swipe" && (
+            <div className="flex items-center gap-1.5">
+              {/* Row density */}
+              <div
+                className="flex items-center gap-0.5 rounded-lg px-2 py-1"
+                style={{ background: S.hover, border: `1px solid ${S.border}` }}
+              >
+                <Columns size={10} style={{ color: S.textMuted, marginRight: 3 }} />
                 {[2, 3, 4, 5, 6].map((n) => (
                   <button
                     key={n}
                     onClick={() => setRowDensity(n)}
                     className="rounded px-1.5 py-0.5 text-[11px] font-mono transition-all"
                     style={{
-                      background: rowDensity === n ? "rgba(99,102,241,0.25)" : "transparent",
-                      color: rowDensity === n ? "#A5B4FC" : "#6B7280",
+                      background: rowDensity === n ? "rgba(99,102,241,0.2)" : "transparent",
+                      color: rowDensity === n ? "#818CF8" : S.textMuted,
                       fontWeight: rowDensity === n ? 700 : 400,
                     }}
                     title={`${n} per row`}
@@ -843,38 +901,23 @@ export default function Home() {
                   </button>
                 ))}
               </div>
-              {/* Format mode selector */}
-              <div className="flex items-center rounded-md p-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                {(["1:1", "4:5", "9:16"] as const).map((fmt) => (
-                  <button
-                    key={fmt}
-                    onClick={() => setFormatMode(fmt)}
-                    className="rounded px-2 py-1 text-[11px] font-mono transition-all"
-                    style={{
-                      background: formatMode === fmt ? "rgba(255,255,255,0.1)" : "transparent",
-                      color: formatMode === fmt ? "#F0EEE9" : "#6B7280",
-                      fontWeight: formatMode === fmt ? 600 : 400,
-                    }}
-                    title={`${fmt} format`}
-                  >
-                    {fmt}
-                  </button>
-                ))}
-              </div>
-              {/* View mode toggle */}
-              <div className="flex items-center rounded-md p-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+              {/* Grid / Matrix toggle */}
+              <div
+                className="flex items-center rounded-lg p-0.5"
+                style={{ background: S.hover, border: `1px solid ${S.border}` }}
+              >
                 <button
                   onClick={() => setViewMode("grid")}
-                  className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono transition-all"
-                  style={{ background: viewMode === "grid" ? "rgba(255,255,255,0.1)" : "transparent", color: viewMode === "grid" ? "#F0EEE9" : "#6B7280" }}
+                  className="flex items-center gap-1 rounded-md px-2 py-1 transition-all"
+                  style={{ background: viewMode === "grid" ? S.active : "transparent", color: viewMode === "grid" ? S.textPrimary : S.textMuted }}
                   title="Card Grid"
                 >
                   <LayoutGrid size={12} />
                 </button>
                 <button
                   onClick={() => setViewMode("matrix")}
-                  className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono transition-all"
-                  style={{ background: viewMode === "matrix" ? "rgba(255,255,255,0.1)" : "transparent", color: viewMode === "matrix" ? "#F0EEE9" : "#6B7280" }}
+                  className="flex items-center gap-1 rounded-md px-2 py-1 transition-all"
+                  style={{ background: viewMode === "matrix" ? S.active : "transparent", color: viewMode === "matrix" ? S.textPrimary : S.textMuted }}
                   title="Matrix View"
                 >
                   <Table2 size={12} />
@@ -882,42 +925,56 @@ export default function Home() {
               </div>
             </div>
           )}
-          {hasFilters && viewMode === "grid" && (
+
+          {/* Clear filters */}
+          {hasFilters && viewMode === "grid" && activeTab === "swipe" && (
             <button
               onClick={clearAll}
-              className="text-xs font-mono rounded-md px-2.5 py-1 transition-colors hover:bg-white/8"
-              style={{ color: "#EF4444", border: "1px solid rgba(239,68,68,0.25)" }}
+              className="text-[11px] font-mono rounded-lg px-2.5 py-1 transition-all"
+              style={{ color: "#EF4444", border: "1px solid rgba(239,68,68,0.2)", background: "rgba(239,68,68,0.06)" }}
             >
-              Clear filters
+              Clear
             </button>
           )}
+
+          {/* Divider */}
+          <div style={{ width: 1, height: 20, background: S.border }} />
+
           {/* Tab switcher */}
-          <div className="flex items-center rounded-lg p-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <div
+            className="flex items-center rounded-lg p-0.5"
+            style={{ background: S.hover, border: `1px solid ${S.border}` }}
+          >
             <button
               onClick={() => setActiveTab("swipe")}
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
               style={{
-                background: activeTab === "swipe" ? "rgba(255,255,255,0.1)" : "transparent",
-                color: activeTab === "swipe" ? "#F0EEE9" : "#6B7280",
+                background: activeTab === "swipe" ? S.active : "transparent",
+                color: activeTab === "swipe" ? S.textPrimary : S.textMuted,
                 fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 12,
               }}
             >
-              <Database size={12} />
+              <Database size={11} />
               Swipe File
             </button>
             <button
               onClick={() => setActiveTab("saved")}
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
               style={{
-                background: activeTab === "saved" ? "rgba(245,158,11,0.15)" : "transparent",
-                color: activeTab === "saved" ? "#F59E0B" : "#6B7280",
+                background: activeTab === "saved" ? "rgba(245,158,11,0.12)" : "transparent",
+                color: activeTab === "saved" ? "#F59E0B" : S.textMuted,
                 fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 12,
               }}
             >
-              <Star size={12} fill={activeTab === "saved" ? "#F59E0B" : "none"} />
+              <Star size={11} fill={activeTab === "saved" ? "#F59E0B" : "none"} />
               Saved
               {savedIds.size > 0 && (
-                <span className="ml-0.5 rounded-full px-1.5 py-0.5 text-[10px] font-bold leading-none" style={{ background: "rgba(245,158,11,0.25)", color: "#F59E0B" }}>
+                <span
+                  className="ml-0.5 rounded-full px-1.5 py-0.5 text-[10px] font-bold leading-none"
+                  style={{ background: "rgba(245,158,11,0.2)", color: "#F59E0B" }}
+                >
                   {savedIds.size}
                 </span>
               )}
@@ -926,45 +983,68 @@ export default function Home() {
               onClick={() => setActiveTab("competitor")}
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
               style={{
-                background: activeTab === "competitor" ? "rgba(255,255,255,0.1)" : "transparent",
-                color: activeTab === "competitor" ? "#F0EEE9" : "#6B7280",
+                background: activeTab === "competitor" ? S.active : "transparent",
+                color: activeTab === "competitor" ? S.textPrimary : S.textMuted,
                 fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 12,
               }}
             >
-              <Target size={12} />
-              Competitor Intel
+              <Target size={11} />
+              Intel
             </button>
           </div>
 
+          {/* Divider */}
+          <div style={{ width: 1, height: 20, background: S.border }} />
+
+          {/* Brand button */}
           <button
             onClick={() => setBrandParamsOpen(true)}
-            className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-all hover:opacity-90"
+            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all hover:opacity-90"
             style={{
-              background: hasBrandParams ? "rgba(99,102,241,0.15)" : "rgba(255,255,255,0.06)",
-              color: hasBrandParams ? "#818CF8" : "#9CA3AF",
-              border: hasBrandParams ? "1px solid rgba(99,102,241,0.3)" : "1px solid rgba(255,255,255,0.1)",
+              background: hasBrandParams ? "rgba(99,102,241,0.1)" : S.hover,
+              color: hasBrandParams ? "#818CF8" : S.textSecondary,
+              border: hasBrandParams ? "1px solid rgba(99,102,241,0.25)" : `1px solid ${S.border}`,
               fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: 12,
             }}
             title="Set brand parameters"
           >
-            <Building2 size={13} />
+            <Building2 size={12} />
             Brand
             {hasBrandParams && (
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#10B981" }} />
             )}
           </button>
 
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            className="rounded-lg p-2 transition-all"
+            style={{
+              background: S.hover,
+              color: S.textSecondary,
+              border: `1px solid ${S.border}`,
+            }}
+            title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDark ? <Sun size={13} /> : <Moon size={13} />}
+          </button>
+
+          {/* Generate CTA */}
           <button
             onClick={() => setGenerateOpen(true)}
-            className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-bold transition-all hover:opacity-90 active:scale-[0.98]"
+            className="flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-bold transition-all hover:opacity-90 active:scale-[0.98]"
             style={{
-              background: "linear-gradient(135deg, #6366F1, #8B5CF6)",
+              background: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
               color: "#FFFFFF",
               fontFamily: "'Space Grotesk', sans-serif",
-              boxShadow: "0 2px 12px rgba(99,102,241,0.4)",
+              fontSize: 12,
+              boxShadow: "0 2px 10px rgba(99,102,241,0.35)",
+              letterSpacing: "0.01em",
             }}
           >
-            <Wand2 size={14} />
+            <Wand2 size={12} />
             Generate
           </button>
         </div>
@@ -978,8 +1058,8 @@ export default function Home() {
               className="flex-shrink-0 overflow-y-auto flex flex-col gap-6 py-5 px-3"
               style={{
                 width: 220,
-                background: "#0F0F11",
-                borderRight: "1px solid rgba(255,255,255,0.07)",
+                background: S.sidebar,
+                borderRight: `1px solid ${S.border}`,
               }}
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: 220, opacity: 1 }}
@@ -987,7 +1067,7 @@ export default function Home() {
               transition={{ duration: 0.22, ease: "easeInOut" }}
             >
               {/* Angles */}
-              <SidebarSection title="Angle" icon={<Tag size={12} />}>
+              <SidebarSection title="Angle" icon={<Tag size={12} />} textMuted={S.textMuted}>
                 {ALL_ANGLES.map((a) => (
                   <FilterPill
                     key={a}
@@ -996,12 +1076,13 @@ export default function Home() {
                     color={ANGLE_COLORS[a]}
                     onClick={() => toggleAngle(a)}
                     count={angleCounts[a] || 0}
+                    isDark={isDark}
                   />
                 ))}
               </SidebarSection>
 
               {/* Niches */}
-              <SidebarSection title="Niche" icon={<Layers size={12} />}>
+              <SidebarSection title="Niche" icon={<Layers size={12} />} textMuted={S.textMuted}>
                 {ALL_NICHES.map((n) => (
                   <FilterPill
                     key={n}
@@ -1016,18 +1097,20 @@ export default function Home() {
                     }}
                     count={nicheCounts[n] || 0}
                     isScrollTarget={viewMode === "matrix" && n !== activeMatrixNiche}
+                    isDark={isDark}
                   />
                 ))}
               </SidebarSection>
 
               {/* Formats */}
-              <SidebarSection title="Format" icon={<Zap size={12} />}>
+              <SidebarSection title="Format" icon={<Zap size={12} />} textMuted={S.textMuted}>
                 {ALL_FORMATS.map((f) => (
                   <FilterPill
                     key={f}
                     label={f}
                     active={activeFormats.has(f)}
                     onClick={() => toggleFormat(f)}
+                    isDark={isDark}
                   />
                 ))}
               </SidebarSection>
@@ -1111,6 +1194,7 @@ export default function Home() {
                             onClick={() => setSelectedAd(ad)}
                             isSaved={true}
                             onToggleSave={() => toggleSave(ad.id)}
+                            isDark={isDark}
                           />
                         ))}
                       </div>
@@ -1144,7 +1228,7 @@ export default function Home() {
                         <motion.div
                           key={ad.id}
                           className="relative rounded-lg overflow-hidden cursor-pointer group"
-                          style={{ background: "#161618", border: isSaved(ad.id) ? "1px solid rgba(245,158,11,0.35)" : "1px solid rgba(255,255,255,0.07)" }}
+                          style={{ background: S.card, border: isSaved(ad.id) ? "1px solid rgba(245,158,11,0.35)" : `1px solid ${S.border}`, boxShadow: isDark ? "none" : "0 1px 4px rgba(0,0,0,0.06)" }}
                           whileHover={{ scale: 1.015, borderColor: isSaved(ad.id) ? "rgba(245,158,11,0.55)" : "rgba(255,255,255,0.15)" }}
                           onClick={() => setSelectedAd(ad)}
                         >
@@ -1174,7 +1258,7 @@ export default function Home() {
                             </button>
                           </div>
                           <div className="px-2.5 py-2">
-                            <p className="text-xs font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#E5E3DF" }}>
+                            <p className="text-xs font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: S.textPrimary }}>
                               {ad.hook}
                             </p>
                           </div>
@@ -1192,9 +1276,9 @@ export default function Home() {
           <div>
             {filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-64 gap-3">
-                <Search size={32} style={{ color: "#374151" }} />
-                <p className="text-sm font-mono" style={{ color: "#6B7280" }}>No examples match your filters.</p>
-                <button onClick={clearAll} className="text-xs font-mono underline" style={{ color: "#3B82F6" }}>Clear all filters</button>
+                <Search size={32} style={{ color: S.textFaint }} />
+                <p className="text-sm font-mono" style={{ color: S.textMuted }}>No examples match your filters.</p>
+                <button onClick={clearAll} className="text-xs font-mono underline" style={{ color: "#6366F1" }}>Clear all filters</button>
               </div>
             ) : (
               <div
@@ -1212,6 +1296,7 @@ export default function Home() {
                     isSaved={isSaved(ad.id)}
                     onToggleSave={() => toggleSave(ad.id)}
                     cardHeight={CARD_HEIGHTS[formatMode]}
+                    isDark={isDark}
                   />
                 ))}
               </div>
@@ -1220,7 +1305,7 @@ export default function Home() {
           )}
 
           {/* Ad Intelligence Sources */}
-          <div className="rounded-xl p-6" style={{ background: "#111113", border: "1px solid rgba(255,255,255,0.07)" }}>
+          <div className="rounded-xl p-6" style={{ background: S.panel, border: `1px solid ${S.border}` }}>
             <div className="flex items-center gap-2 mb-5">
               <Database size={14} style={{ color: "#6B7280" }} />
               <span className="text-xs font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B7280" }}>Ad Intelligence Sources</span>

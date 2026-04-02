@@ -87,3 +87,11 @@
 - [x] Add profile switcher UI to BrandParamsPanel header (dropdown/list, add, rename, delete, active indicator)
 - [x] Wire active profile into useBrandParams so switching profiles updates all brand params instantly
 - [x] Auto-save current params to active profile on every field change
+
+## Light Mode + Premium UI Overhaul
+- [x] Add light/dark CSS variables to index.css
+- [x] Make ThemeProvider switchable in App.tsx
+- [x] Add light/dark toggle button to header
+- [x] Remove format switcher (1:1/4:5/9:16) from header toolbar
+- [x] Add format switcher inside detail drawer (above image preview)
+- [x] Premium UI overhaul: header, sidebar, cards, drawer, typography, spacing
