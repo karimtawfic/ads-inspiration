@@ -70,3 +70,7 @@
 
 ## BrandParamsPanel Layout Fix v2
 - [x] Rewrite BrandParamsPanel with pure inline styles (no Tailwind flex/gap) to fix field overlap
+
+## Brand Token Injection into Prompts
+- [x] Seed all 110 replication prompts in adData.ts with {BRAND}, {LOCATION}, {SEASON}, {LANGUAGE}, {PHONE}, {WEBSITE} tokens
+- [x] Verify detail drawer injection logic replaces tokens with live brand param values

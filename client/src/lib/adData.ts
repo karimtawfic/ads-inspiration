@@ -130,7 +130,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + '10-Year Warranty' trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The split image creates instant visual contrast that stops the scroll. Homeowners with aging systems self-identify immediately. The age trigger ('older than 10 years') is hyper-specific. The outcome (cool home, lower bills) is implied by the visual.",
-    replicationPrompt: "Split image: left = dirty old rusty HVAC outdoor unit; right = brand new Carrier/Trane unit on clean pad. Bold white: 'IS YOUR AC OLDER THAN 10 YEARS?' Sub: 'New system installed in 1 day. 10-year warranty. Financing from $89/mo.' Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Split image: left = dirty old rusty HVAC outdoor unit; right = brand new Carrier/Trane unit on clean pad. Bold white: 'IS YOUR AC OLDER THAN 10 YEARS?' Sub: 'New system installed in 1 day. 10-year warranty. Financing from $89/mo.' Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Swap headline to 'YOUR AC IS COSTING YOU $200/MONTH EXTRA.' — targets cost-conscious homeowners",
       "Use interior shot: left = sweating family, right = family relaxed in cool home — more emotional",
@@ -152,7 +152,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + Same-Day Install trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "A clean, professional hero shot of a new system signals quality and competence. The same-day install removes the biggest objection (disruption). The 10-year warranty removes risk.",
-    replicationPrompt: "Hero shot of a brand-new Carrier or Trane HVAC outdoor unit installed on a clean concrete pad next to a well-maintained home. Golden hour lighting. Bold white: 'SAME-DAY AC INSTALL. 10-YEAR WARRANTY.' Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Hero shot of a brand-new Carrier or Trane HVAC outdoor unit installed on a clean concrete pad next to a well-maintained home. Golden hour lighting. Bold white: 'SAME-DAY AC INSTALL. 10-YEAR WARRANTY.' Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show technician installing unit — adds human element and competence signal",
       "Use interior mini-split hero shot — targets apartment/condo market",
@@ -174,7 +174,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + Certified Technicians trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The feature stack format works because it answers the 'what do you do?' question visually and fast. Each checkmark reduces a specific objection. The comprehensiveness claim positions the company as a one-stop shop.",
-    replicationPrompt: "Dark background, 4 benefit rows with blue checkmarks: AC Install & Repair, Furnace & Heat Pump, Duct Cleaning, Emergency Service. Bold white: 'ONE HVAC COMPANY. EVERY SERVICE.' Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Dark background, 4 benefit rows with blue checkmarks: AC Install & Repair, Furnace & Heat Pump, Duct Cleaning, Emergency Service. Bold white: 'ONE HVAC COMPANY. EVERY SERVICE.' Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight one specific service with a callout badge — focuses on highest-margin service",
       "Add a price anchor: 'Tune-ups from $89' — makes it feel accessible",
@@ -196,7 +196,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 1,200+ Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "Specific details ('fixed in 2 hours', 'explained everything') signal authenticity. The homeowner photo in front of their home is the most trusted creative format — it looks like a real person, not an ad.",
-    replicationPrompt: "Happy homeowner couple in front of their home, casual clothes, authentic feel. Speech bubble: '\"Fixed in 2 hours. Technician was on time, professional, and explained everything.\" — Jennifer M.' 5 gold stars. Bold: '1,200+ SATISFIED HOMEOWNERS.' Blue CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy homeowner couple in front of their home, casual clothes, authentic feel. Speech bubble: '\"Fixed in 2 hours. Technician was on time, professional, and explained everything.\" — Jennifer M.' 5 gold stars. Bold: '1,200+ SATISFIED HOMEOWNERS.' Blue CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial format — homeowner talking to camera",
       "Show a Google review screenshot overlay — more authentic digital proof",
@@ -218,7 +218,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + No Hidden Fees trust pill",
     ctaType: "Book Same-Day Service →",
     whyItWorks: "The process angle builds trust by showing transparency — homeowners fear being ripped off. The numbered steps make the service feel predictable and safe. 'No hidden fees' is the most common objection in HVAC.",
-    replicationPrompt: "HVAC technician in uniform doing diagnostic check. 3-step process icons: 1. Free Diagnosis, 2. Flat-Rate Quote, 3. Fixed in Hours. Bold: 'HOW WE FIX YOUR AC IN 3 STEPS.' Blue CTA: 'BOOK SAME-DAY SERVICE →'",
+    replicationPrompt: "HVAC technician in uniform doing diagnostic check. 3-step process icons: 1. Free Diagnosis, 2. Flat-Rate Quote, 3. Fixed in Hours. Bold: 'HOW WE FIX YOUR AC IN 3 STEPS.' Blue CTA: 'BOOK SAME-DAY SERVICE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel format — one step per slide, swipeable",
       "Show the technician at the door greeting the homeowner",
@@ -240,7 +240,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + This Month Only trust pill",
     ctaType: "Claim My $500 Off →",
     whyItWorks: "Seasonal urgency is most effective when run in late spring/early summer. The specific dollar amount ($500) is more compelling than a percentage. The deadline creates real scarcity.",
-    replicationPrompt: "Suburban home on a hot summer day, heat shimmer visible, new AC unit on side of house. Bold: 'SUMMER AC SPECIAL: $500 OFF NEW INSTALLS.' Sub: 'This month only. Financing from $89/mo.' Yellow urgency badge: 'This Month Only'. Blue CTA: 'CLAIM MY $500 OFF →'",
+    replicationPrompt: "Suburban home on a hot summer day, heat shimmer visible, new AC unit on side of house. Bold: 'SUMMER AC SPECIAL: $500 OFF NEW INSTALLS.' Sub: 'This month only. Financing from $89/mo.' Yellow urgency badge: 'This Month Only'. Blue CTA: 'CLAIM MY $500 OFF →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run in fall: 'Furnace tune-up special before winter' — seasonal pivot",
       "Add a countdown: 'Offer expires [date]' — hard deadline urgency",
@@ -262,7 +262,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Financing badge + OAC · 0% APR Available trust pill",
     ctaType: "Check Financing →",
     whyItWorks: "Showing the monthly payment ($89/mo) instead of the total system cost ($8,000+) dramatically reduces sticker shock. '$0 down' removes the biggest barrier. 'Financing for all credit types' expands the addressable audience.",
-    replicationPrompt: "Happy family relaxing in cool modern living room, mini-split AC visible on wall. Bold: 'NEW AC SYSTEM. $0 DOWN. $89/MO.' Sub: 'Carrier-certified install. 10-year warranty. Financing for all credit types.' Blue CTA: 'CHECK FINANCING →'",
+    replicationPrompt: "Happy family relaxing in cool modern living room, mini-split AC visible on wall. Bold: 'NEW AC SYSTEM. $0 DOWN. $89/MO.' Sub: 'Carrier-certified install. 10-year warranty. Financing for all credit types.' Blue CTA: 'CHECK FINANCING →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Change to heat pump: 'Heat + Cool. $0 down. $99/mo.' — dual-season markets",
       "Use a worried homeowner looking at a broken unit — leads with pain",
@@ -284,7 +284,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + 100% Satisfaction trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "The guarantee angle directly removes the #1 objection: 'what if they don't do a good job?' By making the risk disappear, conversion rates increase significantly. Specific terms ('no questions asked') make it feel real.",
-    replicationPrompt: "Clean modern home interior, new HVAC system visible. Large shield badge: '100% SATISFACTION GUARANTEE'. Bold: 'NOT SATISFIED? WE COME BACK FREE.' Sub: '10-year parts & labor warranty. No questions asked.' Blue CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Clean modern home interior, new HVAC system visible. Large shield badge: '100% SATISFACTION GUARANTEE'. Bold: 'NOT SATISFIED? WE COME BACK FREE.' Sub: '10-year parts & labor warranty. No questions asked.' Blue CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a specific dollar guarantee: 'We'll refund your service call fee'",
       "Show the technician with a satisfaction guarantee badge on uniform",
@@ -306,7 +306,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + 24/7 Emergency trust pill",
     ctaType: "Call Now →",
     whyItWorks: "The broken AC in a heat wave is the most visceral HVAC pain point. The 2-hour response time is specific and credible. 'No overtime charges' removes the fear of being price-gouged in a crisis.",
-    replicationPrompt: "Family sweating in a hot house, fan blowing, windows open, thermometer showing 95°F. Bold red: 'AC BROKE IN A HEAT WAVE? WE'RE THERE IN 2 HOURS.' Sub: '24/7 emergency service. Flat-rate pricing. No overtime charges.' Red CTA: 'CALL NOW →'",
+    replicationPrompt: "Family sweating in a hot house, fan blowing, windows open, thermometer showing 95°F. Bold red: 'AC BROKE IN A HEAT WAVE? WE'RE THERE IN 2 HOURS.' Sub: '24/7 emergency service. Flat-rate pricing. No overtime charges.' Red CTA: 'CALL NOW →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a close-up of a broken AC unit with error codes — more technical trigger",
       "Use a nighttime shot — broken AC at 2am is the worst scenario",
@@ -328,7 +328,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Most Popular in [City] trust pill",
     ctaType: "Get My Free Quote →",
     whyItWorks: "The specific number ('23 homes') feels hyper-local and real. The neighborhood visual makes every homeowner think 'that could be my street.' Combining social proof with FOMO is the most powerful trigger combination.",
-    replicationPrompt: "Aerial view of a suburban neighborhood with branded HVAC truck parked in front of a home. Bold: '23 HOMES IN YOUR NEIGHBORHOOD UPGRADED THIS SUMMER.' Sub: 'Average savings: $600/year on energy bills. Free quote this week.' Pink badge: 'NEIGHBOR FOMO'. Blue CTA: 'GET MY FREE QUOTE →'",
+    replicationPrompt: "Aerial view of a suburban neighborhood with branded HVAC truck parked in front of a home. Bold: '23 HOMES IN YOUR NEIGHBORHOOD UPGRADED THIS SUMMER.' Sub: 'Average savings: $600/year on energy bills. Free quote this week.' Pink badge: 'NEIGHBOR FOMO'. Blue CTA: 'GET MY FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Change to '47 homeowners on your street saved $600 this year' — adds financial proof",
       "Use a split: old inefficient unit vs new efficient unit with energy bill comparison",
@@ -350,7 +350,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + Carrier Factory Authorized trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "Brand credentials (Carrier Factory Authorized) are the most powerful trust signal in HVAC — they signal that the manufacturer trusts this company. Volume (5,000+ systems) provides social proof at scale. Years in business removes the 'will they be around?' objection.",
-    replicationPrompt: "Master HVAC technician in branded uniform standing in front of a fleet of trucks. Carrier, Trane, Lennox certification badges visible. Bold: '20 YEARS. 5,000+ SYSTEMS INSTALLED.' Sub: 'Carrier Factory Authorized Dealer. Licensed, bonded & insured.' 3 trust badges. Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Master HVAC technician in branded uniform standing in front of a fleet of trucks. Carrier, Trane, Lennox certification badges visible. Bold: '20 YEARS. 5,000+ SYSTEMS INSTALLED.' Sub: 'Carrier Factory Authorized Dealer. Licensed, bonded & insured.' 3 trust badges. Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the certification plaques on the office wall — physical proof of credentials",
       "Use a fleet shot — multiple branded trucks signals scale and stability",
@@ -374,7 +374,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + 1-Day Install trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The same-house before/after is the most compelling format for roofing — homeowners can see exactly what their home could look like. The '1 day' timeline removes the biggest objection (disruption). The warranty removes risk.",
-    replicationPrompt: "Split image: left = same house with old, worn, mossy shingles; right = same house with beautiful new dark architectural shingles, clean gutters, curb appeal dramatically improved. Bold: 'SAME HOUSE. NEW ROOF. DONE IN 1 DAY.' Sub: 'Roofs from $8,500. 50-year warranty. Free estimate.' Red CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Split image: left = same house with old, worn, mossy shingles; right = same house with beautiful new dark architectural shingles, clean gutters, curb appeal dramatically improved. Bold: 'SAME HOUSE. NEW ROOF. DONE IN 1 DAY.' Sub: 'Roofs from $8,500. 50-year warranty. Free estimate.' Red CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a close-up split of old vs new shingles — more detailed material comparison",
       "Show the crew working efficiently — signals speed and professionalism",
@@ -396,7 +396,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + 50-Year Warranty trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The aerial drone shot creates a neighborhood-level visual that makes every homeowner think 'that could be my house.' The protection framing ('protects your family') is more emotional than a product feature.",
-    replicationPrompt: "Aerial drone shot of a beautiful suburban home with brand-new dark architectural shingles, perfect installation, blue sky, warm lighting. Bold: 'A ROOF THAT PROTECTS YOUR FAMILY FOR 50 YEARS.' Sub: 'Free inspection. 50-year warranty. Financing available.' Red CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Aerial drone shot of a beautiful suburban home with brand-new dark architectural shingles, perfect installation, blue sky, warm lighting. Bold: 'A ROOF THAT PROTECTS YOUR FAMILY FOR 50 YEARS.' Sub: 'Free inspection. 50-year warranty. Financing available.' Red CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a neighborhood aerial — shows the company's work at scale",
       "Show a close-up of the shingle quality — material-focused buyers",
@@ -418,7 +418,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + Licensed & Insured trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The feature stack answers the 'what do you do?' question fast. Each service row reduces a specific objection. The comprehensiveness claim positions the company as a one-stop shop.",
-    replicationPrompt: "Dark background, 4 service rows with red checkmarks: Full Roof Replacement, Leak Repair & Patching, Storm Damage Restoration, Gutter Installation. Bold: 'ONE ROOFER. EVERY JOB. DONE RIGHT.' Red CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Dark background, 4 service rows with red checkmarks: Full Roof Replacement, Leak Repair & Patching, Storm Damage Restoration, Gutter Installation. Bold: 'ONE ROOFER. EVERY JOB. DONE RIGHT.' Red CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight storm damage restoration — most urgent service",
       "Add material options: 'Asphalt, Metal, Tile, Flat'",
@@ -440,7 +440,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 847 Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The authentic couple photo in front of their newly roofed home is the most trusted creative format. The quote is specific ('done in 1 day', 'cleaned up perfectly') which makes it credible. The review count (847) provides social proof at scale.",
-    replicationPrompt: "Happy middle-aged couple standing in front of their newly re-roofed home, smiling naturally, casual clothes. Speech bubble: '\"Done in 1 day. Cleaned up perfectly. Best contractor we've ever hired.\" — Mike & Sarah T.' 5 gold stars. Red CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy middle-aged couple standing in front of their newly re-roofed home, smiling naturally, casual clothes. Speech bubble: '\"Done in 1 day. Cleaned up perfectly. Best contractor we've ever hired.\" — Mike & Sarah T.' 5 gold stars. Red CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial format — homeowner talking to camera",
       "Show the before (damaged roof) in the background",
@@ -462,7 +462,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + No-Mess Guarantee trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The process angle builds trust by showing transparency. The numbered steps make the project feel manageable. 'No mess' addresses the biggest homeowner fear about roofing projects.",
-    replicationPrompt: "3-step process icons: 1. Free Inspection & Quote, 2. Full Roof Replacement (1 Day), 3. Final Walkthrough & Cleanup. Bold: 'HOW WE REPLACE YOUR ROOF IN 3 STEPS.' Sub: 'Done in 1 day. No mess. 50-year warranty.' Red CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "3-step process icons: 1. Free Inspection & Quote, 2. Full Roof Replacement (1 Day), 3. Final Walkthrough & Cleanup. Bold: 'HOW WE REPLACE YOUR ROOF IN 3 STEPS.' Sub: 'Done in 1 day. No mess. 50-year warranty.' Red CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the crew at each step — visual proof of process",
@@ -484,7 +484,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + Limited Spots trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "Storm season creates natural urgency. The free inspection offer is a low-commitment entry point. The insurance angle ('your policy may cover this') removes the cost objection.",
-    replicationPrompt: "Dark storm clouds over a suburban neighborhood, dramatic lighting. Bold: 'STORM SEASON IS HERE. GET YOUR FREE ROOF INSPECTION.' Sub: 'Most insurance policies cover storm damage. Free 27-point inspection.' Green urgency badge: 'Limited Spots'. Red CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Dark storm clouds over a suburban neighborhood, dramatic lighting. Bold: 'STORM SEASON IS HERE. GET YOUR FREE ROOF INSPECTION.' Sub: 'Most insurance policies cover storm damage. Free 27-point inspection.' Green urgency badge: 'Limited Spots'. Red CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run immediately after a named storm — hyper-timely",
       "Add a specific insurance company: 'We work with State Farm, Allstate, USAA'",
@@ -506,7 +506,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Financing badge + 0% APR Available trust pill",
     ctaType: "Check Financing →",
     whyItWorks: "Monthly payment framing ($199/mo) makes a $12,000 roof feel accessible. '$0 down' removes the biggest barrier. 'Financing for all credit types' expands the addressable audience.",
-    replicationPrompt: "Beautiful new roof on a suburban home, sunny day. Bold: 'NEW ROOF. $0 DOWN. $199/MO.' Sub: 'Full replacement from $8,500. 50-year warranty. Financing for all credit types.' Yellow financing badge: '0% For 18 Months'. Red CTA: 'CHECK FINANCING →'",
+    replicationPrompt: "Beautiful new roof on a suburban home, sunny day. Bold: 'NEW ROOF. $0 DOWN. $199/MO.' Sub: 'Full replacement from $8,500. 50-year warranty. Financing for all credit types.' Yellow financing badge: '0% For 18 Months'. Red CTA: 'CHECK FINANCING →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the monthly payment in the headline — makes it feel like a subscription",
       "Add a comparison: 'vs. $15,000 emergency repair after a leak'",
@@ -528,7 +528,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + 50-Year Warranty trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "A 50-year warranty is a powerful differentiator — most homeowners will never need to replace their roof again. The 'fix any leak free forever' claim removes all risk from the purchase decision.",
-    replicationPrompt: "Beautiful new roof on a home, large shield badge: '50-YEAR WARRANTY'. Bold: '50-YEAR WARRANTY. WE'LL FIX ANY LEAK. FREE. FOREVER.' Sub: 'Transferable warranty. Covers materials & labor.' Red CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Beautiful new roof on a home, large shield badge: '50-YEAR WARRANTY'. Bold: '50-YEAR WARRANTY. WE'LL FIX ANY LEAK. FREE. FOREVER.' Sub: 'Transferable warranty. Covers materials & labor.' Red CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a comparison: 'vs. industry standard 10-year warranty'",
       "Show the warranty certificate — physical proof of the guarantee",
@@ -550,7 +550,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + Insurance Claim Help trust pill",
     ctaType: "Get Free Inspection →",
     whyItWorks: "The storm damage visual creates immediate relevance after any weather event. 'Your insurance covers this' removes the #1 objection (cost). 'We handle the insurance claim' removes the #2 objection (complexity).",
-    replicationPrompt: "Suburban home with visible storm damage on the roof — missing shingles, broken sections — dark storm clouds in background. Bold: 'STORM DAMAGE? YOUR INSURANCE COVERS THIS.' Sub: 'Free storm inspection. We handle the insurance claim. No out-of-pocket cost.' Red CTA: 'GET FREE INSPECTION →'",
+    replicationPrompt: "Suburban home with visible storm damage on the roof — missing shingles, broken sections — dark storm clouds in background. Bold: 'STORM DAMAGE? YOUR INSURANCE COVERS THIS.' Sub: 'Free storm inspection. We handle the insurance claim. No out-of-pocket cost.' Red CTA: 'GET FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run immediately after a named storm event — hyper-timely",
       "Add specific insurance companies: 'We work with State Farm, Allstate, USAA'",
@@ -572,7 +572,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Most Popular in [City] trust pill",
     ctaType: "Get My Free Estimate →",
     whyItWorks: "The specific number ('18 homes') feels hyper-local and real. The home value angle ('your home may be the only one with an old roof') creates social pressure without being aggressive.",
-    replicationPrompt: "Aerial view of a neighborhood with several homes showing new dark roofs, one older home visible. Bold: '18 HOMES ON YOUR STREET GOT NEW ROOFS THIS YEAR.' Sub: 'Don't let your home be the only one with an aging roof. Free estimate this week.' Pink badge: 'NEIGHBOR FOMO'. Red CTA: 'GET MY FREE ESTIMATE →'",
+    replicationPrompt: "Aerial view of a neighborhood with several homes showing new dark roofs, one older home visible. Bold: '18 HOMES ON YOUR STREET GOT NEW ROOFS THIS YEAR.' Sub: 'Don't let your home be the only one with an aging roof. Free estimate this week.' Pink badge: 'NEIGHBOR FOMO'. Red CTA: 'GET MY FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a home value angle: 'New roof adds $10,000-$20,000 to your home value'",
       "Use a before/after of a neighbor's house — makes it concrete",
@@ -594,7 +594,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + GAF Master Elite trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "GAF Master Elite is the highest roofing certification — only 3% of contractors qualify. This credential is a powerful differentiator that justifies premium pricing and builds immediate trust.",
-    replicationPrompt: "Master roofer in branded uniform standing in front of a fleet of trucks, GAF Master Elite badge prominently displayed. Bold: '25 YEARS. 3,000+ ROOFS. GAF MASTER ELITE CERTIFIED.' Sub: 'Only 3% of contractors qualify. Licensed, bonded & insured.' 3 trust badges. Red CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Master roofer in branded uniform standing in front of a fleet of trucks, GAF Master Elite badge prominently displayed. Bold: '25 YEARS. 3,000+ ROOFS. GAF MASTER ELITE CERTIFIED.' Sub: 'Only 3% of contractors qualify. Licensed, bonded & insured.' 3 trust badges. Red CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the GAF Master Elite plaque — physical proof of certification",
       "Use a fleet shot — multiple branded trucks signals scale",
@@ -618,7 +618,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + 1-Day Repipe trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The visual contrast between corroded old pipes and shiny new copper is dramatic and immediately communicates the value of the service. The 1-day timeline removes the biggest objection.",
-    replicationPrompt: "Split image: left = corroded, rusty old galvanized pipes; right = shiny new copper pipes, clean installation. Bold: 'OLD CORRODED PIPES TO NEW COPPER. DONE IN 1 DAY.' Sub: 'Full repipe from $3,500. 10-year warranty. Fully licensed.' Blue CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Split image: left = corroded, rusty old galvanized pipes; right = shiny new copper pipes, clean installation. Bold: 'OLD CORRODED PIPES TO NEW COPPER. DONE IN 1 DAY.' Sub: 'Full repipe from $3,500. 10-year warranty. Fully licensed.' Blue CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a water quality before/after — brown water vs clear water",
       "Use a bathroom fixture transformation — more relatable for homeowners",
@@ -640,7 +640,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + Same-Day Service trust pill",
     ctaType: "Book Now →",
     whyItWorks: "The professional plumber hero shot signals competence and trustworthiness. Flat-rate pricing removes the biggest fear in plumbing — being overcharged. Same-day availability removes urgency friction.",
-    replicationPrompt: "Professional plumber in clean uniform, tools visible, confident expression, modern bathroom background. Bold: 'SAME-DAY PLUMBING. ANY JOB. FLAT-RATE PRICING.' Sub: 'Licensed master plumber. No hidden fees. 100% satisfaction guaranteed.' Blue CTA: 'BOOK NOW →'",
+    replicationPrompt: "Professional plumber in clean uniform, tools visible, confident expression, modern bathroom background. Bold: 'SAME-DAY PLUMBING. ANY JOB. FLAT-RATE PRICING.' Sub: 'Licensed master plumber. No hidden fees. 100% satisfaction guaranteed.' Blue CTA: 'BOOK NOW →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the plumber at the door — first impression signal",
       "Use a clean, modern bathroom as background — aspirational outcome",
@@ -662,7 +662,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + Flat-Rate Pricing trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The feature stack answers the 'what do you do?' question fast. Flat-rate pricing is the most powerful differentiator in plumbing — it removes the fear of being overcharged.",
-    replicationPrompt: "Dark background, 4 service rows with blue checkmarks: Emergency Repairs, Drain Cleaning, Water Heater Install, Full Repipe. Bold: 'ONE PLUMBER. EVERY JOB. FLAT-RATE PRICING.' Blue CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Dark background, 4 service rows with blue checkmarks: Emergency Repairs, Drain Cleaning, Water Heater Install, Full Repipe. Bold: 'ONE PLUMBER. EVERY JOB. FLAT-RATE PRICING.' Blue CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight emergency service — most urgent need",
       "Add a price anchor: 'Drain cleaning from $99'",
@@ -684,7 +684,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 600+ Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The specific details ('45 minutes', 'no damage', 'no mess') make the testimonial credible. The homeowner photo in front of their home is the most trusted creative format.",
-    replicationPrompt: "Happy homeowner couple in front of their home. Speech bubble: '\"Fixed our burst pipe in 45 minutes. No damage. No mess. Incredible.\" — David & Lisa K.' 5 gold stars. Bold: '600+ SATISFIED HOMEOWNERS.' Blue CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy homeowner couple in front of their home. Speech bubble: '\"Fixed our burst pipe in 45 minutes. No damage. No mess. Incredible.\" — David & Lisa K.' 5 gold stars. Bold: '600+ SATISFIED HOMEOWNERS.' Blue CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial — homeowner talking to camera",
       "Show a Google review screenshot overlay",
@@ -706,7 +706,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + Flat-Rate Pricing trust pill",
     ctaType: "Book Same-Day Service →",
     whyItWorks: "The process angle builds trust by showing transparency. The numbered steps make the service feel predictable. Flat-rate pricing at step 2 removes the fear of being overcharged.",
-    replicationPrompt: "3-step process icons: 1. Same-Day Arrival, 2. Flat-Rate Quote (No Surprises), 3. Fixed & Guaranteed. Bold: 'HOW WE FIX YOUR PLUMBING IN 3 STEPS.' Sub: 'No hidden fees. 100% satisfaction guaranteed.' Blue CTA: 'BOOK SAME-DAY SERVICE →'",
+    replicationPrompt: "3-step process icons: 1. Same-Day Arrival, 2. Flat-Rate Quote (No Surprises), 3. Fixed & Guaranteed. Bold: 'HOW WE FIX YOUR PLUMBING IN 3 STEPS.' Sub: 'No hidden fees. 100% satisfaction guaranteed.' Blue CTA: 'BOOK SAME-DAY SERVICE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the plumber at each step — visual proof",
@@ -728,7 +728,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + Emergency Available trust pill",
     ctaType: "Book Now →",
     whyItWorks: "Freeze warnings create immediate, real urgency. The prevention framing ('protect your pipes') is more compelling than a reactive service. Running this ad during cold snaps maximizes relevance.",
-    replicationPrompt: "Frozen pipes bursting in a basement, dramatic lighting, sense of emergency. Bold: 'FREEZE WARNING TONIGHT. PROTECT YOUR PIPES.' Sub: 'Pipe insulation & winterization. Same-day service. $149 flat rate.' Blue urgency badge: 'Freeze Warning'. Blue CTA: 'BOOK NOW →'",
+    replicationPrompt: "Frozen pipes bursting in a basement, dramatic lighting, sense of emergency. Bold: 'FREEZE WARNING TONIGHT. PROTECT YOUR PIPES.' Sub: 'Pipe insulation & winterization. Same-day service. $149 flat rate.' Blue urgency badge: 'Freeze Warning'. Blue CTA: 'BOOK NOW →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run during actual freeze warnings — hyper-timely",
       "Show a burst pipe — visceral fear trigger",
@@ -750,7 +750,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Financing badge + 0% For 12 Months trust pill",
     ctaType: "Check Financing →",
     whyItWorks: "Monthly payment framing ($39/mo) makes a $1,500 water heater feel accessible. Same-day install removes the 'I'll deal with it later' objection.",
-    replicationPrompt: "Modern tankless water heater installed in a clean utility room. Bold: 'NEW WATER HEATER. $0 DOWN. $39/MO.' Sub: 'Tankless & traditional. Same-day install. 0% financing for 12 months.' Yellow financing badge: '0% For 12 Months'. Blue CTA: 'CHECK FINANCING →'",
+    replicationPrompt: "Modern tankless water heater installed in a clean utility room. Bold: 'NEW WATER HEATER. $0 DOWN. $39/MO.' Sub: 'Tankless & traditional. Same-day install. 0% financing for 12 months.' Yellow financing badge: '0% For 12 Months'. Blue CTA: 'CHECK FINANCING →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the monthly payment in the headline",
       "Add a comparison: 'vs. cold showers for a week'",
@@ -772,7 +772,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + 100% Satisfaction trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "The guarantee removes the biggest objection in plumbing: 'what if they don't fix it properly?' By making the risk disappear, conversion rates increase significantly.",
-    replicationPrompt: "Professional plumber with large shield badge: '100% SATISFACTION GUARANTEE'. Bold: 'NOT FIXED RIGHT? WE COME BACK FREE.' Sub: '1-year labor warranty. No questions asked. Fully licensed & insured.' Blue CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Professional plumber with large shield badge: '100% SATISFACTION GUARANTEE'. Bold: 'NOT FIXED RIGHT? WE COME BACK FREE.' Sub: '1-year labor warranty. No questions asked. Fully licensed & insured.' Blue CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a specific dollar guarantee: 'We'll refund your service call fee'",
       "Show the plumber with a satisfaction guarantee badge on uniform",
@@ -794,7 +794,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + 24/7 Emergency trust pill",
     ctaType: "Call Now →",
     whyItWorks: "The flooded kitchen image is visceral and immediately activates fear. The 60-minute response time is specific and credible. 'No overtime charges' removes the fear of being price-gouged in a crisis.",
-    replicationPrompt: "Flooded kitchen floor, water pouring from under a sink cabinet, dramatic dark lighting, sense of panic. Bold red: 'BURST PIPE? WE'RE THERE IN 60 MIN.' Sub: 'Emergency plumbing, 24/7. Flat-rate pricing. No overtime charges.' Red CTA: 'CALL NOW →'",
+    replicationPrompt: "Flooded kitchen floor, water pouring from under a sink cabinet, dramatic dark lighting, sense of panic. Bold red: 'BURST PIPE? WE'RE THERE IN 60 MIN.' Sub: 'Emergency plumbing, 24/7. Flat-rate pricing. No overtime charges.' Red CTA: 'CALL NOW →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a clogged drain / sewage backup visual — different emergency",
       "Show a water heater failure — high-ticket emergency",
@@ -816,7 +816,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Free Inspection trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The specific number ('12 homes') feels hyper-local. The health angle ('old pipes leach lead') creates urgency beyond aesthetics. Combining social proof with health risk is highly effective.",
-    replicationPrompt: "Suburban neighborhood with branded plumbing truck parked in front of a home. Bold: '12 HOMES IN YOUR NEIGHBORHOOD JUST REPIPED.' Sub: 'Old galvanized pipes leach lead into your water. Free inspection this week.' Pink badge: 'NEIGHBOR FOMO'. Blue CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Suburban neighborhood with branded plumbing truck parked in front of a home. Bold: '12 HOMES IN YOUR NEIGHBORHOOD JUST REPIPED.' Sub: 'Old galvanized pipes leach lead into your water. Free inspection this week.' Pink badge: 'NEIGHBOR FOMO'. Blue CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a water quality test angle: 'Free water quality test included'",
       "Show a map with repiped homes in a radius",
@@ -838,7 +838,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + Master Plumber License trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "Master plumber license is the highest credential in the trade — it signals that this contractor has passed rigorous testing and experience requirements. Volume (2,000+ jobs) provides social proof at scale.",
-    replicationPrompt: "Master plumber in branded uniform standing in front of branded truck, license badge prominently displayed. Bold: '18 YEARS. 2,000+ JOBS. LICENSED MASTER PLUMBER.' Sub: 'Fully licensed, bonded & insured. BBB A+ rated.' 3 trust badges. Blue CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Master plumber in branded uniform standing in front of branded truck, license badge prominently displayed. Bold: '18 YEARS. 2,000+ JOBS. LICENSED MASTER PLUMBER.' Sub: 'Fully licensed, bonded & insured. BBB A+ rated.' 3 trust badges. Blue CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the license certificate — physical proof of credential",
       "Use a fleet shot — multiple branded trucks signals scale",
@@ -862,7 +862,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + Permitted & Inspected trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The visual contrast between an old, overcrowded panel and a clean new 200A panel is dramatic for homeowners who understand the safety risk. The permit inclusion removes a major objection.",
-    replicationPrompt: "Split image: left = old, overcrowded 100A electrical panel with rust and exposed wires; right = clean, modern 200A panel with organized wiring. Bold: 'OLD 100A PANEL TO NEW 200A. DONE IN 1 DAY.' Sub: 'Fully permitted & inspected. 2-year warranty.' Yellow CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Split image: left = old, overcrowded 100A electrical panel with rust and exposed wires; right = clean, modern 200A panel with organized wiring. Bold: 'OLD 100A PANEL TO NEW 200A. DONE IN 1 DAY.' Sub: 'Fully permitted & inspected. 2-year warranty.' Yellow CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a safety angle: 'Old panels are a fire hazard'",
       "Show an EV charger being added to the new panel",
@@ -884,7 +884,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + Licensed Master Electrician trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The professional electrician hero shot signals competence and trustworthiness. 'Permitted & inspected' is the most important credential in electrical work — it signals legal compliance and safety.",
-    replicationPrompt: "Professional electrician in clean uniform, tools visible, confident expression, modern electrical panel background. Bold: 'SAME-DAY ELECTRICAL. ANY JOB. PERMITTED & INSPECTED.' Sub: 'Licensed master electrician. No hidden fees. 100% satisfaction guaranteed.' Yellow CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Professional electrician in clean uniform, tools visible, confident expression, modern electrical panel background. Bold: 'SAME-DAY ELECTRICAL. ANY JOB. PERMITTED & INSPECTED.' Sub: 'Licensed master electrician. No hidden fees. 100% satisfaction guaranteed.' Yellow CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the electrician working on a panel — competence signal",
       "Use a modern smart home as background — aspirational outcome",
@@ -906,7 +906,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + Permits Handled trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The feature stack answers the 'what do you do?' question fast. 'Permits & Inspections Handled' is the most powerful differentiator in electrical — it removes the biggest homeowner headache.",
-    replicationPrompt: "Dark background, 4 service rows with yellow checkmarks: Panel Upgrades & Replacements, EV Charger Installation, Smart Home & Lighting, Permits & Inspections Handled. Bold: 'ONE ELECTRICIAN. EVERY JOB.' Yellow CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Dark background, 4 service rows with yellow checkmarks: Panel Upgrades & Replacements, EV Charger Installation, Smart Home & Lighting, Permits & Inspections Handled. Bold: 'ONE ELECTRICIAN. EVERY JOB.' Yellow CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight EV charger installation — fastest-growing service",
       "Add a price anchor: 'Panel upgrades from $1,200'",
@@ -928,7 +928,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + Google 4.9 Stars trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The specific details ('100A to 200A', '2 EV chargers', 'one day') make the testimonial credible. The homeowner photo in front of their home is the most trusted creative format.",
-    replicationPrompt: "Happy homeowner couple in front of their home with EV in driveway. Speech bubble: '\"They upgraded our 100A panel to 200A and installed 2 EV chargers in one day. Clean, professional, and no mess.\" — Mark T.' 5 gold stars. Bold: '300+ HOMES UPGRADED.' Yellow CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy homeowner couple in front of their home with EV in driveway. Speech bubble: '\"They upgraded our 100A panel to 200A and installed 2 EV chargers in one day. Clean, professional, and no mess.\" — Mark T.' 5 gold stars. Bold: '300+ HOMES UPGRADED.' Yellow CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial — homeowner talking to camera",
       "Show a Google review screenshot overlay",
@@ -950,7 +950,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + No Surprises trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "The process angle builds trust by showing transparency. 'We pull all permits' is a powerful differentiator — many unlicensed contractors skip permits, creating liability for homeowners.",
-    replicationPrompt: "3-step process icons: 1. Free In-Home Estimate, 2. We Pull All Permits, 3. Inspected & Guaranteed. Bold: 'DONE RIGHT. THE FIRST TIME.' Sub: 'No surprises. No shortcuts. Licensed work only.' Yellow CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "3-step process icons: 1. Free In-Home Estimate, 2. We Pull All Permits, 3. Inspected & Guaranteed. Bold: 'DONE RIGHT. THE FIRST TIME.' Sub: 'No surprises. No shortcuts. Licensed work only.' Yellow CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the electrician at each step — visual proof",
@@ -972,7 +972,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + This Month Only trust pill",
     ctaType: "Claim My $200 Off →",
     whyItWorks: "EV charger installation is the fastest-growing electrical service. The specific dollar discount ($200) is more compelling than a percentage. The deadline creates real scarcity.",
-    replicationPrompt: "Suburban home with Tesla in driveway and solar panels on roof, EV charger visible on garage wall. Bold: 'EV CHARGER INSTALL SPECIAL: $200 OFF THIS MONTH.' Sub: 'Level 2 home charger. Permitted & inspected. Book now.' Yellow urgency badge: 'This Month Only'. Yellow CTA: 'CLAIM MY $200 OFF →'",
+    replicationPrompt: "Suburban home with Tesla in driveway and solar panels on roof, EV charger visible on garage wall. Bold: 'EV CHARGER INSTALL SPECIAL: $200 OFF THIS MONTH.' Sub: 'Level 2 home charger. Permitted & inspected. Book now.' Yellow urgency badge: 'This Month Only'. Yellow CTA: 'CLAIM MY $200 OFF →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run during EV tax credit season — hyper-timely",
       "Add a cost savings angle: 'Charge at home for $0.03/mile vs $0.15 at public stations'",
@@ -994,7 +994,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Financing badge + 0% For 12 Months trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "Monthly payment framing makes a $1,500+ panel upgrade feel accessible. 0% financing removes the cost objection entirely for the first year.",
-    replicationPrompt: "Modern home with new electrical panel and smart lighting. Bold: '0% FINANCING FOR 12 MONTHS ON PANEL UPGRADES.' Sub: 'Panel upgrades from $1,200. Start your project today.' Yellow financing badge: '0% For 12 Months'. Yellow CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Modern home with new electrical panel and smart lighting. Bold: '0% FINANCING FOR 12 MONTHS ON PANEL UPGRADES.' Sub: 'Panel upgrades from $1,200. Start your project today.' Yellow financing badge: '0% For 12 Months'. Yellow CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the monthly payment: 'Panel upgrade for $99/mo'",
       "Add a comparison: 'vs. $10,000+ in fire damage'",
@@ -1016,7 +1016,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + 2-Year Warranty trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "The triple compliance claim (permitted, inspected, guaranteed) removes all three major objections in electrical work. The 2-year warranty is a strong differentiator.",
-    replicationPrompt: "Clean modern home with new electrical work. Bold: 'ALL WORK PERMITTED. ALL WORK INSPECTED. GUARANTEED.' Sub: '2-year labor warranty. We stand behind every job.' Large yellow shield badge: '2-Year Warranty'. Yellow CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Clean modern home with new electrical work. Bold: 'ALL WORK PERMITTED. ALL WORK INSPECTED. GUARANTEED.' Sub: '2-year labor warranty. We stand behind every job.' Large yellow shield badge: '2-Year Warranty'. Yellow CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a specific dollar guarantee: 'We'll refund your service call fee'",
       "Show the permit certificate — physical proof of compliance",
@@ -1038,7 +1038,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + Safety Risk trust pill",
     ctaType: "Book My Inspection →",
     whyItWorks: "The close-up of a dangerous old panel is visceral and immediately activates fear. The safety framing ('fire hazard') is more compelling than a product feature. The inspection offer is a low-commitment entry point.",
-    replicationPrompt: "Close-up of an old, overcrowded, dangerous electrical panel with rust and exposed wires. Bold: 'THAT PANEL IS A FIRE HAZARD.' Sub: 'Outdated panels cause house fires. Get yours inspected this week.' Red danger badge: 'Safety Risk'. Yellow CTA: 'BOOK MY INSPECTION →'",
+    replicationPrompt: "Close-up of an old, overcrowded, dangerous electrical panel with rust and exposed wires. Bold: 'THAT PANEL IS A FIRE HAZARD.' Sub: 'Outdated panels cause house fires. Get yours inspected this week.' Red danger badge: 'Safety Risk'. Yellow CTA: 'BOOK MY INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a statistic: 'Electrical fires cause $1.3B in property damage annually'",
       "Show a house fire — extreme visceral trigger",
@@ -1060,7 +1060,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Free Inspection trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The specific number ('16 homes') feels hyper-local. The EV angle ('ready for EV chargers') adds a modern, aspirational layer to a safety-focused service.",
-    replicationPrompt: "Suburban neighborhood with branded electrical truck parked in front of a home. Bold: '16 HOMES IN YOUR NEIGHBORHOOD JUST UPGRADED THEIR PANELS.' Sub: 'Ready for EV chargers. Safer. More capacity. Free inspection this week.' Pink badge: 'NEIGHBOR FOMO'. Yellow CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Suburban neighborhood with branded electrical truck parked in front of a home. Bold: '16 HOMES IN YOUR NEIGHBORHOOD JUST UPGRADED THEIR PANELS.' Sub: 'Ready for EV chargers. Safer. More capacity. Free inspection this week.' Pink badge: 'NEIGHBOR FOMO'. Yellow CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add an EV angle: 'Get ready for your EV charger'",
       "Show a map with upgraded homes in a radius",
@@ -1082,7 +1082,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + Master License trust pill",
     ctaType: "Get Free Estimate →",
     whyItWorks: "'Zero failed inspections' is the most powerful credential in electrical work — it signals perfect compliance and competence. The master electrician license is the highest credential in the trade.",
-    replicationPrompt: "Master electrician in uniform with licensed badge on chest, standing in front of branded truck. Bold: '15 YEARS. 1,000+ HOMES. ZERO FAILED INSPECTIONS.' Sub: 'Master electrician. Fully licensed, bonded & insured.' 3 trust badges: Master License, BBB A+, Licensed & Bonded. Yellow CTA: 'GET FREE ESTIMATE →'",
+    replicationPrompt: "Master electrician in uniform with licensed badge on chest, standing in front of branded truck. Bold: '15 YEARS. 1,000+ HOMES. ZERO FAILED INSPECTIONS.' Sub: 'Master electrician. Fully licensed, bonded & insured.' 3 trust badges: Master License, BBB A+, Licensed & Bonded. Yellow CTA: 'GET FREE ESTIMATE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the master license certificate — physical proof",
       "Use a fleet shot — multiple branded trucks signals scale",
@@ -1106,7 +1106,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + Guaranteed Elimination trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The visual contrast between termite damage and treated wood is dramatic. The structural risk framing ('your home's structure') creates urgency beyond aesthetics.",
-    replicationPrompt: "Split image: left = wood with active termite damage, tunnels visible; right = same wood after treatment, clean and protected. Bold: 'BEFORE TREATMENT VS. AFTER. THE DIFFERENCE IS YOUR HOME'S STRUCTURE.' Sub: 'Free termite inspection. Guaranteed elimination. 1-year protection plan.' Orange CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Split image: left = wood with active termite damage, tunnels visible; right = same wood after treatment, clean and protected. Bold: 'BEFORE TREATMENT VS. AFTER. THE DIFFERENCE IS YOUR HOME'S STRUCTURE.' Sub: 'Free termite inspection. Guaranteed elimination. 1-year protection plan.' Orange CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a whole-home before/after — more relatable",
       "Use a close-up macro shot of termites — visceral fear trigger",
@@ -1128,7 +1128,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + Pet & Family Safe trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The professional exterminator hero shot signals competence. 'Pet & family safe' is the most important credential for pest control — it removes the biggest objection for families with children and pets.",
-    replicationPrompt: "Professional exterminator in branded uniform with equipment, confident expression, suburban home background. Bold: 'SAME-DAY PEST CONTROL. ANY PEST. GUARANTEED.' Sub: 'Pet & family safe treatments. Licensed & insured. 100% satisfaction guaranteed.' Orange CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Professional exterminator in branded uniform with equipment, confident expression, suburban home background. Bold: 'SAME-DAY PEST CONTROL. ANY PEST. GUARANTEED.' Sub: 'Pet & family safe treatments. Licensed & insured. 100% satisfaction guaranteed.' Orange CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the exterminator at the door — first impression signal",
       "Use a clean, pest-free home as background — aspirational outcome",
@@ -1150,7 +1150,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + Pet & Family Safe trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The feature stack answers the 'what do you do?' question fast. 'Pet & family safe' is the most important differentiator in pest control.",
-    replicationPrompt: "Dark background, 4 pest rows with orange checkmarks: Termites & Wood-Destroying Insects, Rodents & Wildlife, Ants, Roaches & Spiders, Mosquitoes & Outdoor Pests. Bold: 'ONE COMPANY. EVERY PEST. GUARANTEED.' Orange CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Dark background, 4 pest rows with orange checkmarks: Termites & Wood-Destroying Insects, Rodents & Wildlife, Ants, Roaches & Spiders, Mosquitoes & Outdoor Pests. Bold: 'ONE COMPANY. EVERY PEST. GUARANTEED.' Orange CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight termite treatment — highest-ticket service",
       "Add a price anchor: 'Monthly plans from $49'",
@@ -1172,7 +1172,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 500+ Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The specific details ('severe termite problem', '2 visits', 'haven't seen one since') make the testimonial credible. The homeowner photo in front of their home is the most trusted creative format.",
-    replicationPrompt: "Happy homeowner couple in front of their home. Speech bubble: '\"We had a severe termite problem. They eliminated it in 2 visits and we haven't seen one since.\" — Robert & Amy S.' 5 gold stars. Bold: '500+ SATISFIED HOMEOWNERS.' Orange CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy homeowner couple in front of their home. Speech bubble: '\"We had a severe termite problem. They eliminated it in 2 visits and we haven't seen one since.\" — Robert & Amy S.' 5 gold stars. Bold: '500+ SATISFIED HOMEOWNERS.' Orange CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial — homeowner talking to camera",
       "Show a Google review screenshot overlay",
@@ -1194,7 +1194,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + Pet & Family Safe trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The process angle builds trust by showing transparency. 'Pet & family safe' at step 2 removes the biggest objection. The guarantee at step 3 removes risk.",
-    replicationPrompt: "3-step process icons: 1. Free Inspection & Identification, 2. Safe, Targeted Treatment, 3. Prevention & Protection Plan. Bold: 'HOW WE ELIMINATE PESTS IN 3 STEPS.' Sub: 'Pet & family safe. Guaranteed elimination.' Orange CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "3-step process icons: 1. Free Inspection & Identification, 2. Safe, Targeted Treatment, 3. Prevention & Protection Plan. Bold: 'HOW WE ELIMINATE PESTS IN 3 STEPS.' Sub: 'Pet & family safe. Guaranteed elimination.' Orange CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the exterminator at each step — visual proof",
@@ -1216,7 +1216,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + Limited Spots trust pill",
     ctaType: "Book Now →",
     whyItWorks: "Mosquito season creates natural urgency. The health angle (West Nile, Zika) creates urgency beyond comfort. Running this ad in spring/summer maximizes relevance.",
-    replicationPrompt: "Family enjoying a backyard barbecue, mosquitoes visible in the air, sense of discomfort. Bold: 'MOSQUITO SEASON IS HERE. PROTECT YOUR YARD.' Sub: 'Monthly mosquito treatment from $49. Pet & family safe. Book before slots fill.' Green urgency badge: 'Limited Spots'. Orange CTA: 'BOOK NOW →'",
+    replicationPrompt: "Family enjoying a backyard barbecue, mosquitoes visible in the air, sense of discomfort. Bold: 'MOSQUITO SEASON IS HERE. PROTECT YOUR YARD.' Sub: 'Monthly mosquito treatment from $49. Pet & family safe. Book before slots fill.' Green urgency badge: 'Limited Spots'. Orange CTA: 'BOOK NOW →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run during actual mosquito season — hyper-timely",
       "Add a health angle: 'Protect your family from West Nile & Zika'",
@@ -1238,7 +1238,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Financing badge + Unlimited Visits trust pill",
     ctaType: "Start My Plan →",
     whyItWorks: "Monthly subscription framing ($49/mo) makes pest control feel like a utility, not a one-time expense. 'Unlimited visits' removes the fear of being charged for every call.",
-    replicationPrompt: "Clean, pest-free suburban home, family relaxing in the yard. Bold: 'YEAR-ROUND PEST PROTECTION. $49/MONTH.' Sub: 'Unlimited visits. All pests covered. Cancel anytime.' Yellow financing badge: 'Monthly Plan'. Orange CTA: 'START MY PLAN →'",
+    replicationPrompt: "Clean, pest-free suburban home, family relaxing in the yard. Bold: 'YEAR-ROUND PEST PROTECTION. $49/MONTH.' Sub: 'Unlimited visits. All pests covered. Cancel anytime.' Yellow financing badge: 'Monthly Plan'. Orange CTA: 'START MY PLAN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the annual savings: 'Save $200 vs. per-visit pricing'",
       "Add a comparison: 'vs. $500+ for a single termite treatment'",
@@ -1260,7 +1260,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + 100% Pest-Free trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "The guarantee removes the biggest objection in pest control: 'what if it doesn't work?' By making the risk disappear, conversion rates increase significantly.",
-    replicationPrompt: "Professional exterminator with large shield badge: '100% PEST-FREE GUARANTEE'. Bold: 'STILL SEEING PESTS? WE COME BACK FREE.' Sub: 'Unlimited re-treatments. No questions asked. 100% satisfaction guaranteed.' Orange CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Professional exterminator with large shield badge: '100% PEST-FREE GUARANTEE'. Bold: 'STILL SEEING PESTS? WE COME BACK FREE.' Sub: 'Unlimited re-treatments. No questions asked. 100% satisfaction guaranteed.' Orange CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a specific dollar guarantee: 'We'll refund your service fee'",
       "Show the exterminator with a satisfaction guarantee badge on uniform",
@@ -1282,7 +1282,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + Free Inspection trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The 'right now' framing creates immediate urgency — termites don't stop. The structural damage angle is more compelling than a comfort issue. The free inspection is a low-commitment entry point.",
-    replicationPrompt: "Close-up macro shot of termites actively eating wood, dramatic lighting, sense of destruction. Bold red: 'TERMITES ARE EATING YOUR HOME RIGHT NOW.' Sub: 'Termites cause $5B in property damage annually. Free inspection before they reach your structure.' Red CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Close-up macro shot of termites actively eating wood, dramatic lighting, sense of destruction. Bold red: 'TERMITES ARE EATING YOUR HOME RIGHT NOW.' Sub: 'Termites cause $5B in property damage annually. Free inspection before they reach your structure.' Red CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a cost statistic: 'Average termite damage repair: $8,000'",
       "Show a home with visible structural damage — extreme visceral trigger",
@@ -1304,7 +1304,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Free Inspection trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "The specific number '14 neighbors' feels hyper-local and real. The spreading threat ('termites spread fast') creates urgency. This angle combines social proof with FOMO — if your neighbors are doing it, you should too.",
-    replicationPrompt: "Suburban neighborhood street with branded pest control truck parked in front of one home, dusk lighting. Bold: '14 OF YOUR NEIGHBORS JUST TREATED.' Sub: 'Termites spread fast. Get your free inspection before they reach your home.' Orange CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Suburban neighborhood street with branded pest control truck parked in front of one home, dusk lighting. Bold: '14 OF YOUR NEIGHBORS JUST TREATED.' Sub: 'Termites spread fast. Get your free inspection before they reach your home.' Orange CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Change to '23 homes on your street treated this month' — higher number",
       "Use a close-up macro shot of termite damage — visceral fear trigger",
@@ -1326,7 +1326,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + QualityPro Certified trust pill",
     ctaType: "Book Free Inspection →",
     whyItWorks: "QualityPro certification is the highest standard in pest control — it signals safety, professionalism, and ethical business practices. Volume (5,000+ homes) provides social proof at scale.",
-    replicationPrompt: "Professional exterminator team in branded uniforms standing in front of branded trucks. QualityPro certification badge prominently displayed. Bold: '12 YEARS. 5,000+ HOMES. QUALITYPRO CERTIFIED.' Sub: 'Licensed, bonded & insured. Pet & family safe treatments.' 3 trust badges. Orange CTA: 'BOOK FREE INSPECTION →'",
+    replicationPrompt: "Professional exterminator team in branded uniforms standing in front of branded trucks. QualityPro certification badge prominently displayed. Bold: '12 YEARS. 5,000+ HOMES. QUALITYPRO CERTIFIED.' Sub: 'Licensed, bonded & insured. Pet & family safe treatments.' 3 trust badges. Orange CTA: 'BOOK FREE INSPECTION →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the QualityPro certificate — physical proof",
       "Use a fleet shot — multiple branded trucks signals scale",
@@ -1350,7 +1350,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + Results Guaranteed trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The dramatic split image of a dead vs lush lawn is the most compelling format for landscaping. The 6-week timeline makes the transformation feel achievable and specific.",
-    replicationPrompt: "Split image: left = dead, patchy, brown lawn with bare spots; right = same yard with lush, thick, vibrant green lawn. Bold: 'DEAD, PATCHY LAWN TO LUSH GREEN. IN 6 WEEKS.' Sub: 'Fertilization, overseeding, aeration. Results guaranteed.' Green CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Split image: left = dead, patchy, brown lawn with bare spots; right = same yard with lush, thick, vibrant green lawn. Bold: 'DEAD, PATCHY LAWN TO LUSH GREEN. IN 6 WEEKS.' Sub: 'Fertilization, overseeding, aeration. Results guaranteed.' Green CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a full yard transformation — more dramatic visual",
       "Use a close-up of grass quality — material-focused buyers",
@@ -1372,7 +1372,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + No Contracts trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The golden-hour hero shot of a perfect lawn is aspirational and scroll-stopping. 'The lawn your neighbors will envy' taps into social status and pride of ownership. The weekly price anchor makes it feel like a subscription.",
-    replicationPrompt: "Stunning, perfectly manicured front yard with lush green lawn, colorful flower beds, stone pathway, beautiful home in background, golden hour sunlight. Bold: 'THE LAWN YOUR NEIGHBORS WILL ENVY.' Sub: 'Weekly lawn care from $89/month. Fertilization, edging, cleanup included.' Green CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Stunning, perfectly manicured front yard with lush green lawn, colorful flower beds, stone pathway, beautiful home in background, golden hour sunlight. Bold: 'THE LAWN YOUR NEIGHBORS WILL ENVY.' Sub: 'Weekly lawn care from $89/month. Fertilization, edging, cleanup included.' Green CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a family enjoying the lawn — shifts from product to lifestyle",
       "Use an aerial shot — shows the full scope of the transformation",
@@ -1394,7 +1394,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + No Contracts trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The feature stack answers the 'what do you do?' question fast. 'No contracts' is the most powerful differentiator in lawn care — it removes commitment anxiety.",
-    replicationPrompt: "Dark background, 4 service rows with green checkmarks: Weekly Mowing & Edging, Fertilization & Weed Control, Aeration & Overseeding, Seasonal Cleanup. Bold: 'ONE COMPANY. YOUR ENTIRE YARD.' Green CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Dark background, 4 service rows with green checkmarks: Weekly Mowing & Edging, Fertilization & Weed Control, Aeration & Overseeding, Seasonal Cleanup. Bold: 'ONE COMPANY. YOUR ENTIRE YARD.' Green CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight fertilization — highest-margin service",
       "Add a price anchor: 'Monthly plans from $89'",
@@ -1416,7 +1416,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 400+ Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The specific details ('embarrassing to the best on the block', '2 months') make the testimonial credible. The homeowner photo in front of their lawn is the most trusted creative format.",
-    replicationPrompt: "Happy homeowner couple standing in front of their beautiful, lush lawn. Speech bubble: '\"Our lawn went from embarrassing to the best on the block in 2 months.\" — Tom & Karen B.' 5 gold stars. Bold: '400+ SATISFIED HOMEOWNERS.' Green CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy homeowner couple standing in front of their beautiful, lush lawn. Speech bubble: '\"Our lawn went from embarrassing to the best on the block in 2 months.\" — Tom & Karen B.' 5 gold stars. Bold: '400+ SATISFIED HOMEOWNERS.' Green CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial — homeowner talking to camera",
       "Show a Google review screenshot overlay",
@@ -1438,7 +1438,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + Results in 6 Weeks trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The process angle builds trust by showing transparency. The results timeline ('results in 6 weeks') makes the transformation feel achievable and specific.",
-    replicationPrompt: "3-step process icons: 1. Free Lawn Assessment, 2. Custom Treatment Plan, 3. Results in 6 Weeks. Bold: 'HOW WE TRANSFORM YOUR LAWN IN 3 STEPS.' Sub: 'No contracts. Cancel anytime.' Green CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "3-step process icons: 1. Free Lawn Assessment, 2. Custom Treatment Plan, 3. Results in 6 Weeks. Bold: 'HOW WE TRANSFORM YOUR LAWN IN 3 STEPS.' Sub: 'No contracts. Cancel anytime.' Green CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the crew at each step — visual proof",
@@ -1460,7 +1460,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + Limited Availability trust pill",
     ctaType: "Claim Your Spot →",
     whyItWorks: "The seasonal urgency angle is most effective in late winter/early spring. The specific number ('12 spots') creates real scarcity. 'Lock in your rate before prices increase' adds a financial incentive.",
-    replicationPrompt: "Lush green lawn with spring tulips and daffodils blooming, golden hour sunlight. Bold: 'SPRING SLOTS FILLING FAST.' Sub: 'Only 12 new lawn care spots left this month. Lock in your rate before prices increase.' Green CTA: 'CLAIM YOUR SPOT →'",
+    replicationPrompt: "Lush green lawn with spring tulips and daffodils blooming, golden hour sunlight. Bold: 'SPRING SLOTS FILLING FAST.' Sub: 'Only 12 new lawn care spots left this month. Lock in your rate before prices increase.' Green CTA: 'CLAIM YOUR SPOT →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run in fall: 'Fall cleanup slots filling fast. Last chance before winter.'",
       "Add a specific date: 'Spring pricing ends April 30.'",
@@ -1482,7 +1482,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Financing badge + 0% For 18 Months trust pill",
     ctaType: "Get Free Design →",
     whyItWorks: "Monthly payment framing ($149/mo) makes a $5,000+ landscape project feel accessible. The free design offer is a low-commitment entry point that gets leads in the door.",
-    replicationPrompt: "Beautiful custom landscape design with stone pathways, flower beds, outdoor lighting, lush lawn. Bold: 'FULL LANDSCAPE DESIGN. $0 DOWN. $149/MO.' Sub: 'Free 3D design. 0% financing for 18 months.' Yellow financing badge: '0% For 18 Months'. Green CTA: 'GET FREE DESIGN →'",
+    replicationPrompt: "Beautiful custom landscape design with stone pathways, flower beds, outdoor lighting, lush lawn. Bold: 'FULL LANDSCAPE DESIGN. $0 DOWN. $149/MO.' Sub: 'Free 3D design. 0% financing for 18 months.' Yellow financing badge: '0% For 18 Months'. Green CTA: 'GET FREE DESIGN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the monthly payment in the headline",
       "Add a home value angle: 'Add $10,000+ to your home value'",
@@ -1504,7 +1504,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + Results Guaranteed trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "The guarantee removes the biggest objection in lawn care: 'what if it doesn't work?' By making the risk disappear, conversion rates increase significantly.",
-    replicationPrompt: "Beautiful lush lawn with large shield badge: 'RESULTS GUARANTEED'. Bold: 'NOT HAPPY WITH YOUR LAWN? WE RE-TREAT FOR FREE.' Sub: 'Results in 6 weeks or we come back. No questions asked.' Green CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Beautiful lush lawn with large shield badge: 'RESULTS GUARANTEED'. Bold: 'NOT HAPPY WITH YOUR LAWN? WE RE-TREAT FOR FREE.' Sub: 'Results in 6 weeks or we come back. No questions asked.' Green CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a specific dollar guarantee: 'We'll refund your first month'",
       "Show a before/after with the guarantee badge",
@@ -1526,7 +1526,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + Same-Week Service trust pill",
     ctaType: "Fix My Lawn Now →",
     whyItWorks: "The escalating pain framing ('every week you wait') creates urgency without being aggressive. The dead lawn visual is visceral and immediately relatable for homeowners with lawn problems.",
-    replicationPrompt: "Dead, patchy, brown lawn with bare spots and weeds, neighbor's lush green lawn visible in background. Bold: 'EVERY WEEK YOU WAIT, YOUR LAWN GETS WORSE.' Sub: 'Fertilization, weed control, aeration. Results in 6 weeks.' Green CTA: 'FIX MY LAWN NOW →'",
+    replicationPrompt: "Dead, patchy, brown lawn with bare spots and weeds, neighbor's lush green lawn visible in background. Bold: 'EVERY WEEK YOU WAIT, YOUR LAWN GETS WORSE.' Sub: 'Fertilization, weed control, aeration. Results in 6 weeks.' Green CTA: 'FIX MY LAWN NOW →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a comparison: 'Your lawn vs. your neighbor's lawn'",
       "Show a homeowner looking embarrassed at their lawn",
@@ -1548,7 +1548,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Most Popular in [City] trust pill",
     ctaType: "Get My Free Quote →",
     whyItWorks: "The specific number ('31 homes') feels hyper-local. The social aspiration angle ('the lawn your neighbors will envy') combines social proof with FOMO.",
-    replicationPrompt: "Aerial view of a neighborhood with several homes showing lush, perfectly maintained lawns, branded lawn care truck visible on the street. Bold: '31 HOMES IN YOUR NEIGHBORHOOD USE OUR LAWN SERVICE.' Sub: 'Join your neighbors. Free quote this week.' Pink badge: 'NEIGHBOR FOMO'. Green CTA: 'GET MY FREE QUOTE →'",
+    replicationPrompt: "Aerial view of a neighborhood with several homes showing lush, perfectly maintained lawns, branded lawn care truck visible on the street. Bold: '31 HOMES IN YOUR NEIGHBORHOOD USE OUR LAWN SERVICE.' Sub: 'Join your neighbors. Free quote this week.' Pink badge: 'NEIGHBOR FOMO'. Green CTA: 'GET MY FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a home value angle: 'Great curb appeal adds $5,000+ to your home value'",
       "Show a split: neglected lawn vs neighbor's perfect lawn",
@@ -1570,7 +1570,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + Award-Winning trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "Industry awards and certifications are powerful differentiators in landscaping. Volume (800+ lawns) provides social proof at scale. Years in business removes the 'will they be around?' objection.",
-    replicationPrompt: "Professional landscaping crew in branded uniforms standing in front of a stunning landscape project they completed. Award plaques visible. Bold: '10 YEARS. 800+ LAWNS. AWARD-WINNING LANDSCAPING.' Sub: 'Certified landscape professionals. Licensed & insured.' 3 trust badges. Green CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Professional landscaping crew in branded uniforms standing in front of a stunning landscape project they completed. Award plaques visible. Bold: '10 YEARS. 800+ LAWNS. AWARD-WINNING LANDSCAPING.' Sub: 'Certified landscape professionals. Licensed & insured.' 3 trust badges. Green CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the award plaques — physical proof of recognition",
       "Use a fleet shot — multiple branded trucks signals scale",
@@ -1594,7 +1594,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + Same-Day Available trust pill",
     ctaType: "Get Instant Quote →",
     whyItWorks: "The dramatic split image is the most powerful creative format for pressure washing — the contrast between dark stained concrete and bright white clean concrete is visually shocking. The 3-part headline is punchy and scannable.",
-    replicationPrompt: "Split image: left = dark, stained, mold-covered concrete driveway; right = same driveway bright white and spotless after pressure washing. Bold: 'YOUR DRIVEWAY. LIKE NEW. IN 2 HOURS.' Sub: 'Driveways, patios, roofs. Starting at $199. Fully insured.' Teal CTA: 'GET INSTANT QUOTE →'",
+    replicationPrompt: "Split image: left = dark, stained, mold-covered concrete driveway; right = same driveway bright white and spotless after pressure washing. Bold: 'YOUR DRIVEWAY. LIKE NEW. IN 2 HOURS.' Sub: 'Driveways, patios, roofs. Starting at $199. Fully insured.' Teal CTA: 'GET INSTANT QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a roof cleaning before/after — higher ticket, more dramatic contrast",
       "Show a patio/deck transformation — targets homeowners with outdoor entertaining spaces",
@@ -1616,7 +1616,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + Fully Insured trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The professional crew hero shot signals competence and scale. 'Fully insured' is the most important credential for pressure washing — it removes the liability objection for homeowners.",
-    replicationPrompt: "Professional pressure washing crew with branded truck and equipment at a suburban home, clean and professional appearance. Bold: 'PROFESSIONAL PRESSURE WASHING. ANY SURFACE. SAME DAY.' Sub: 'Driveways, decks, roofs, siding. Starting at $199. Fully insured.' Teal CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Professional pressure washing crew with branded truck and equipment at a suburban home, clean and professional appearance. Bold: 'PROFESSIONAL PRESSURE WASHING. ANY SURFACE. SAME DAY.' Sub: 'Driveways, decks, roofs, siding. Starting at $199. Fully insured.' Teal CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the crew in action — competence signal",
       "Use a gleaming clean surface as background — aspirational outcome",
@@ -1638,7 +1638,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + Fully Insured trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The feature stack answers the 'what do you do?' question fast. 'Fully insured' is the most important differentiator in pressure washing.",
-    replicationPrompt: "Dark background, 4 surface rows with teal checkmarks: Driveways & Sidewalks, Decks & Patios, Roof & Gutters, House Siding & Fences. Bold: 'ONE CREW. EVERY SURFACE.' Teal CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Dark background, 4 surface rows with teal checkmarks: Driveways & Sidewalks, Decks & Patios, Roof & Gutters, House Siding & Fences. Bold: 'ONE CREW. EVERY SURFACE.' Teal CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight roof cleaning — highest-ticket service",
       "Add a price anchor: 'Driveways from $199'",
@@ -1660,7 +1660,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 350+ Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The specific details ('brand new', 'worth every penny') make the testimonial credible. The homeowner photo in front of their clean driveway is the most trusted creative format.",
-    replicationPrompt: "Happy homeowner standing in front of their gleaming clean driveway. Speech bubble: '\"My driveway looks brand new. I can't believe the difference. Worth every penny.\" — Sandra M.' 5 gold stars. Bold: '350+ SATISFIED HOMEOWNERS.' Teal CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy homeowner standing in front of their gleaming clean driveway. Speech bubble: '\"My driveway looks brand new. I can't believe the difference. Worth every penny.\" — Sandra M.' 5 gold stars. Bold: '350+ SATISFIED HOMEOWNERS.' Teal CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial — homeowner talking to camera",
       "Show a Google review screenshot overlay",
@@ -1682,7 +1682,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + Eco-Friendly Solutions trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The process angle builds trust by showing transparency. The eco-friendly angle is a differentiator for environmentally conscious homeowners.",
-    replicationPrompt: "3-step process icons: 1. Free On-Site Assessment, 2. Eco-Friendly Deep Clean, 3. Final Inspection & Touch-Up. Bold: 'HOW WE CLEAN YOUR HOME IN 3 STEPS.' Sub: 'No mess. No damage. 100% satisfaction guaranteed.' Teal CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "3-step process icons: 1. Free On-Site Assessment, 2. Eco-Friendly Deep Clean, 3. Final Inspection & Touch-Up. Bold: 'HOW WE CLEAN YOUR HOME IN 3 STEPS.' Sub: 'No mess. No damage. 100% satisfaction guaranteed.' Teal CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the crew at each step — visual proof",
@@ -1704,7 +1704,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + This Month Only trust pill",
     ctaType: "Claim My $50 Off →",
     whyItWorks: "Spring cleaning is a natural trigger for pressure washing. The specific dollar discount ($50) is more compelling than a percentage. The deadline creates real scarcity.",
-    replicationPrompt: "Suburban home with gleaming clean driveway and siding, spring flowers blooming. Bold: 'SPRING CLEANING SPECIAL: $50 OFF ANY SERVICE THIS MONTH.' Sub: 'Driveways, decks, roofs, siding. Fully insured.' Yellow urgency badge: 'This Month Only'. Teal CTA: 'CLAIM MY $50 OFF →'",
+    replicationPrompt: "Suburban home with gleaming clean driveway and siding, spring flowers blooming. Bold: 'SPRING CLEANING SPECIAL: $50 OFF ANY SERVICE THIS MONTH.' Sub: 'Driveways, decks, roofs, siding. Fully insured.' Yellow urgency badge: 'This Month Only'. Teal CTA: 'CLAIM MY $50 OFF →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run in fall: 'Fall cleanup special before winter'",
       "Add a bundle: 'Driveway + deck bundle: $299'",
@@ -1726,7 +1726,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Offer badge + Save $100 trust pill",
     ctaType: "Book My Package →",
     whyItWorks: "Bundle pricing creates perceived value and increases average ticket. The specific price ($399) is transparent and builds trust. 'Save $100' creates urgency to book the bundle.",
-    replicationPrompt: "Clean, gleaming suburban home with spotless driveway, deck, and siding. Bold: 'WHOLE-HOME PRESSURE WASH: $399.' Sub: 'Driveway + deck + siding. Save $100 vs. individual services. Fully insured.' Yellow savings badge: 'Save $100'. Teal CTA: 'BOOK MY PACKAGE →'",
+    replicationPrompt: "Clean, gleaming suburban home with spotless driveway, deck, and siding. Bold: 'WHOLE-HOME PRESSURE WASH: $399.' Sub: 'Driveway + deck + siding. Save $100 vs. individual services. Fully insured.' Yellow savings badge: 'Save $100'. Teal CTA: 'BOOK MY PACKAGE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the savings: 'Save $100 on whole-home cleaning'",
       "Add a before/after of the whole home — dramatic transformation",
@@ -1748,7 +1748,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + Satisfaction Guarantee trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "The guarantee removes the biggest objection in pressure washing: 'what if they damage my property?' By making the risk disappear, conversion rates increase significantly.",
-    replicationPrompt: "Gleaming clean suburban home exterior. Large blue shield badge: 'SATISFACTION GUARANTEE'. Bold: 'NOT SATISFIED? WE COME BACK FREE.' Sub: '100% satisfaction guarantee. Every single job.' Blue CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Gleaming clean suburban home exterior. Large blue shield badge: 'SATISFACTION GUARANTEE'. Bold: 'NOT SATISFIED? WE COME BACK FREE.' Sub: '100% satisfaction guarantee. Every single job.' Blue CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a damage guarantee: 'We're fully insured for any damage'",
       "Show the crew with satisfaction guarantee badges on uniforms",
@@ -1770,7 +1770,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + Same-Day Available trust pill",
     ctaType: "Fix It Today →",
     whyItWorks: "The specific problem ('black mold') is more compelling than a generic 'dirty driveway.' The escalation ('isn't going away on its own') creates urgency. The price anchor ($199) makes the solution feel accessible.",
-    replicationPrompt: "Close-up of a dark, mold-covered concrete driveway with visible black stains and grime. Bold: 'THAT BLACK MOLD ON YOUR DRIVEWAY ISN'T GOING AWAY ON ITS OWN.' Sub: 'Professional pressure washing from $199. Same-day available. Fully insured.' Teal CTA: 'FIX IT TODAY →'",
+    replicationPrompt: "Close-up of a dark, mold-covered concrete driveway with visible black stains and grime. Bold: 'THAT BLACK MOLD ON YOUR DRIVEWAY ISN'T GOING AWAY ON ITS OWN.' Sub: 'Professional pressure washing from $199. Same-day available. Fully insured.' Teal CTA: 'FIX IT TODAY →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a health angle: 'Black mold is a slip hazard and health risk'",
       "Show a close-up of the mold — visceral detail",
@@ -1792,7 +1792,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Most Popular in [City] trust pill",
     ctaType: "Get My Free Quote →",
     whyItWorks: "The specific number ('27 driveways') feels hyper-local and real. The curb appeal angle combines social proof with FOMO — if your neighbors are doing it, you should too.",
-    replicationPrompt: "Aerial view of a neighborhood street with several gleaming clean driveways, branded pressure washing truck visible. Bold: '27 DRIVEWAYS CLEANED IN YOUR NEIGHBORHOOD THIS MONTH.' Sub: 'Don't be the only dirty driveway on the block. Free quote this week.' Pink badge: 'NEIGHBOR FOMO'. Teal CTA: 'GET MY FREE QUOTE →'",
+    replicationPrompt: "Aerial view of a neighborhood street with several gleaming clean driveways, branded pressure washing truck visible. Bold: '27 DRIVEWAYS CLEANED IN YOUR NEIGHBORHOOD THIS MONTH.' Sub: 'Don't be the only dirty driveway on the block. Free quote this week.' Pink badge: 'NEIGHBOR FOMO'. Teal CTA: 'GET MY FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a curb appeal angle: 'Clean driveways add instant curb appeal'",
       "Show a split: dirty driveway vs neighbor's clean driveway",
@@ -1814,7 +1814,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + Fully Insured trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "Volume (2,000+ surfaces) provides social proof at scale. 'Fully insured' is the most important credential for pressure washing — it removes the liability objection.",
-    replicationPrompt: "Professional pressure washing crew in branded uniforms standing in front of branded truck with equipment. Bold: '8 YEARS. 2,000+ SURFACES CLEANED. FULLY INSURED.' Sub: 'Licensed, bonded & insured. BBB A+ rated.' 3 trust badges. Teal CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Professional pressure washing crew in branded uniforms standing in front of branded truck with equipment. Bold: '8 YEARS. 2,000+ SURFACES CLEANED. FULLY INSURED.' Sub: 'Licensed, bonded & insured. BBB A+ rated.' 3 trust badges. Teal CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the insurance certificate — physical proof",
       "Use a fleet shot — multiple branded trucks signals scale",
@@ -1838,7 +1838,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + 1-Day Install trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The dramatic split image of cracked concrete vs gleaming epoxy floor is visually shocking. The 1-day timeline removes the biggest objection. The warranty removes risk.",
-    replicationPrompt: "Split image: left = cracked, stained, dull concrete garage floor; right = same garage with stunning metallic epoxy floor coating, gleaming and showroom-quality. Bold: 'CRACKED CONCRETE TO SHOWROOM FLOOR. DONE IN 1 DAY.' Sub: 'Epoxy floors from $3/sq ft. 15-year warranty.' Purple CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Split image: left = cracked, stained, dull concrete garage floor; right = same garage with stunning metallic epoxy floor coating, gleaming and showroom-quality. Bold: 'CRACKED CONCRETE TO SHOWROOM FLOOR. DONE IN 1 DAY.' Sub: 'Epoxy floors from $3/sq ft. 15-year warranty.' Purple CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a basement transformation — different room, same impact",
       "Use a close-up of the epoxy texture — material-focused buyers",
@@ -1860,7 +1860,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + 15-Year Warranty trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The stunning metallic epoxy hero shot is aspirational and scroll-stopping. The aspirational headline ('deserves better') taps into pride of ownership. The price anchor makes it feel accessible.",
-    replicationPrompt: "Stunning metallic epoxy garage floor, gleaming and reflective, sports car parked on it, perfect lighting. Bold: 'YOUR GARAGE DESERVES BETTER THAN BARE CONCRETE.' Sub: 'Metallic epoxy floors from $3/sq ft. 15-year warranty. Done in 1 day.' Purple CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Stunning metallic epoxy garage floor, gleaming and reflective, sports car parked on it, perfect lighting. Bold: 'YOUR GARAGE DESERVES BETTER THAN BARE CONCRETE.' Sub: 'Metallic epoxy floors from $3/sq ft. 15-year warranty. Done in 1 day.' Purple CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a basement or commercial space — different market",
       "Use a close-up of the metallic swirl texture — premium feel",
@@ -1882,7 +1882,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + 15-Year Warranty trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The feature stack answers the 'why epoxy?' question fast. Each benefit row reduces a specific objection. The comparison framing ('beats bare concrete') positions epoxy as the obvious upgrade.",
-    replicationPrompt: "Dark background, 4 benefit rows with purple checkmarks: Durable — 10x Stronger Than Concrete, Easy to Clean — Wipe Up Any Spill, Beautiful — 20+ Colors & Finishes, Protects — Resists Cracks & Stains. Bold: '4 REASONS EPOXY BEATS BARE CONCRETE.' Purple CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Dark background, 4 benefit rows with purple checkmarks: Durable — 10x Stronger Than Concrete, Easy to Clean — Wipe Up Any Spill, Beautiful — 20+ Colors & Finishes, Protects — Resists Cracks & Stains. Bold: '4 REASONS EPOXY BEATS BARE CONCRETE.' Purple CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight the durability angle — most important for garages",
       "Add a price comparison: 'Epoxy: $3/sq ft. Tile: $8/sq ft.'",
@@ -1904,7 +1904,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 250+ Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The specific details ('Ferrari dealership', '1 day', 'absolutely stunning') make the testimonial credible and aspirational. The homeowner photo in front of their epoxy garage is the most trusted creative format.",
-    replicationPrompt: "Happy homeowner standing in front of their stunning metallic epoxy garage floor with sports car visible. Speech bubble: '\"My garage looks like a Ferrari dealership. Done in 1 day. Absolutely stunning.\" — Chris M.' 5 gold stars. Bold: '250+ STUNNING TRANSFORMATIONS.' Purple CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy homeowner standing in front of their stunning metallic epoxy garage floor with sports car visible. Speech bubble: '\"My garage looks like a Ferrari dealership. Done in 1 day. Absolutely stunning.\" — Chris M.' 5 gold stars. Bold: '250+ STUNNING TRANSFORMATIONS.' Purple CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial — homeowner talking to camera",
       "Show a Google review screenshot overlay",
@@ -1926,7 +1926,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + Done in 1 Day trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The process angle builds trust by showing transparency. The 1-day timeline removes the biggest objection (disruption). The warranty at step 3 removes risk.",
-    replicationPrompt: "3-step process icons: 1. Free In-Home Estimate & Design, 2. Diamond-Grind & Prep, 3. Epoxy Pour & Cure (1 Day). Bold: 'HOW WE TRANSFORM YOUR FLOOR IN 1 DAY.' Sub: '15-year warranty. Done right.' Purple CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "3-step process icons: 1. Free In-Home Estimate & Design, 2. Diamond-Grind & Prep, 3. Epoxy Pour & Cure (1 Day). Bold: 'HOW WE TRANSFORM YOUR FLOOR IN 1 DAY.' Sub: '15-year warranty. Done right.' Purple CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the crew at each step — visual proof",
@@ -1948,7 +1948,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + This Month Only trust pill",
     ctaType: "Claim My $300 Off →",
     whyItWorks: "Seasonal urgency is most effective in spring/summer when homeowners are doing home improvement projects. The specific dollar discount ($300) is more compelling than a percentage.",
-    replicationPrompt: "Stunning metallic epoxy garage floor, sunny summer day visible through open garage door. Bold: 'SUMMER INSTALL SPECIAL: $300 OFF ANY GARAGE FLOOR.' Sub: 'This month only. Financing available. Done in 1 day.' Yellow urgency badge: 'This Month Only'. Purple CTA: 'CLAIM MY $300 OFF →'",
+    replicationPrompt: "Stunning metallic epoxy garage floor, sunny summer day visible through open garage door. Bold: 'SUMMER INSTALL SPECIAL: $300 OFF ANY GARAGE FLOOR.' Sub: 'This month only. Financing available. Done in 1 day.' Yellow urgency badge: 'This Month Only'. Purple CTA: 'CLAIM MY $300 OFF →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run in spring: 'Spring home improvement special'",
       "Add a countdown: 'Offer expires [date]'",
@@ -1970,7 +1970,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Financing badge + 0% For 18 Months trust pill",
     ctaType: "Check Financing →",
     whyItWorks: "Monthly payment framing ($79/mo) makes a $2,500 epoxy floor feel accessible. '$0 down' removes the biggest barrier. The 1-day install removes the 'I'll deal with it later' objection.",
-    replicationPrompt: "Stunning metallic epoxy garage floor with sports car. Bold: 'SHOWROOM GARAGE FLOOR. $0 DOWN. $79/MO.' Sub: '0% financing for 18 months. Done in 1 day. 15-year warranty.' Yellow financing badge: '0% For 18 Months'. Purple CTA: 'CHECK FINANCING →'",
+    replicationPrompt: "Stunning metallic epoxy garage floor with sports car. Bold: 'SHOWROOM GARAGE FLOOR. $0 DOWN. $79/MO.' Sub: '0% financing for 18 months. Done in 1 day. 15-year warranty.' Yellow financing badge: '0% For 18 Months'. Purple CTA: 'CHECK FINANCING →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the monthly payment in the headline",
       "Add a comparison: 'vs. $8/sq ft for tile'",
@@ -1992,7 +1992,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + 15-Year Warranty trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "A 15-year warranty is a powerful differentiator — most homeowners will never need to replace their floor again. The 'if it peels, we fix it free' claim removes all risk from the purchase decision.",
-    replicationPrompt: "Stunning epoxy floor with large shield badge: '15-YEAR WARRANTY'. Bold: '15-YEAR WARRANTY. IF IT PEELS, WE FIX IT FREE.' Sub: 'Covers delamination, peeling & cracking. No questions asked.' Purple CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Stunning epoxy floor with large shield badge: '15-YEAR WARRANTY'. Bold: '15-YEAR WARRANTY. IF IT PEELS, WE FIX IT FREE.' Sub: 'Covers delamination, peeling & cracking. No questions asked.' Purple CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a comparison: 'vs. industry standard 1-year warranty'",
       "Show the warranty certificate — physical proof",
@@ -2014,7 +2014,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + Same-Week Available trust pill",
     ctaType: "Fix It Today →",
     whyItWorks: "The social embarrassment angle ('embarrassing') is more compelling than a functional problem. The 1-day fix removes the 'it's too much hassle' objection.",
-    replicationPrompt: "Cracked, oil-stained, dull concrete garage floor with visible damage. Bold: 'THAT CRACKED, STAINED CONCRETE IS EMBARRASSING. FIX IT IN 1 DAY.' Sub: 'Epoxy floors from $3/sq ft. Done in 1 day. 15-year warranty.' Purple CTA: 'FIX IT TODAY →'",
+    replicationPrompt: "Cracked, oil-stained, dull concrete garage floor with visible damage. Bold: 'THAT CRACKED, STAINED CONCRETE IS EMBARRASSING. FIX IT IN 1 DAY.' Sub: 'Epoxy floors from $3/sq ft. Done in 1 day. 15-year warranty.' Purple CTA: 'FIX IT TODAY →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a comparison: 'Your garage vs. your neighbor's showroom'",
       "Show a homeowner looking embarrassed at their floor",
@@ -2036,7 +2036,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Most Popular in [City] trust pill",
     ctaType: "Get My Free Quote →",
     whyItWorks: "The specific number ('9 garages') feels hyper-local. The social aspiration angle combines social proof with FOMO — if your neighbors are doing it, you should too.",
-    replicationPrompt: "Suburban neighborhood with branded epoxy truck parked in front of a home with open garage showing stunning epoxy floor. Bold: '9 GARAGES IN YOUR NEIGHBORHOOD JUST GOT EPOXY FLOORS.' Sub: 'Free quote this week. Done in 1 day.' Pink badge: 'NEIGHBOR FOMO'. Purple CTA: 'GET MY FREE QUOTE →'",
+    replicationPrompt: "Suburban neighborhood with branded epoxy truck parked in front of a home with open garage showing stunning epoxy floor. Bold: '9 GARAGES IN YOUR NEIGHBORHOOD JUST GOT EPOXY FLOORS.' Sub: 'Free quote this week. Done in 1 day.' Pink badge: 'NEIGHBOR FOMO'. Purple CTA: 'GET MY FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a home value angle: 'Epoxy adds $3,000+ to your home value'",
       "Show a split: cracked concrete vs neighbor's epoxy",
@@ -2058,7 +2058,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + Polyurea Certified trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "Polyurea certification signals that this installer uses the highest-quality materials and installation methods. Volume (500+ floors) provides social proof at scale.",
-    replicationPrompt: "Professional epoxy installer in branded uniform standing in front of a stunning completed epoxy floor. Certification badge prominently displayed. Bold: '7 YEARS. 500+ FLOORS. POLYUREA-CERTIFIED INSTALLER.' Sub: 'Licensed, bonded & insured. 15-year warranty.' 3 trust badges. Purple CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Professional epoxy installer in branded uniform standing in front of a stunning completed epoxy floor. Certification badge prominently displayed. Bold: '7 YEARS. 500+ FLOORS. POLYUREA-CERTIFIED INSTALLER.' Sub: 'Licensed, bonded & insured. 15-year warranty.' 3 trust badges. Purple CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the certification plaque — physical proof",
       "Use a portfolio grid — multiple stunning floors",
@@ -2082,7 +2082,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + Streak-Free Guarantee trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The dramatic split image of dirty vs crystal-clear windows is visually shocking. The 2-hour timeline removes the biggest objection. The streak-free guarantee removes risk.",
-    replicationPrompt: "Split image: left = dirty, streaked, grimy window with visible dirt and water stains; right = same window crystal clear, sparkling, perfect view through it. Bold: 'FILTHY TO CRYSTAL CLEAR. IN 2 HOURS.' Sub: 'Interior & exterior. Starting at $149. Streak-free guarantee.' Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Split image: left = dirty, streaked, grimy window with visible dirt and water stains; right = same window crystal clear, sparkling, perfect view through it. Bold: 'FILTHY TO CRYSTAL CLEAR. IN 2 HOURS.' Sub: 'Interior & exterior. Starting at $149. Streak-free guarantee.' Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a whole-home window transformation — more dramatic visual",
       "Use a close-up of the glass clarity — material-focused buyers",
@@ -2104,7 +2104,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + Streak-Free Guarantee trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The professional window cleaner hero shot signals competence. 'Streak-free guarantee' is the most important credential for window cleaning — it removes the biggest objection.",
-    replicationPrompt: "Professional window cleaner in branded uniform on a ladder cleaning large windows of a beautiful suburban home, sunny day. Bold: 'CRYSTAL-CLEAR WINDOWS. SAME DAY. STREAK-FREE.' Sub: 'Interior & exterior. Starting at $149. Fully insured.' Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Professional window cleaner in branded uniform on a ladder cleaning large windows of a beautiful suburban home, sunny day. Bold: 'CRYSTAL-CLEAR WINDOWS. SAME DAY. STREAK-FREE.' Sub: 'Interior & exterior. Starting at $149. Fully insured.' Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the cleaner working on a large commercial window — different market",
       "Use a gleaming clean window as background — aspirational outcome",
@@ -2126,7 +2126,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + Streak-Free Guarantee trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The feature stack answers the 'what do you do?' question fast. 'Streak-free guarantee' is the most important differentiator in window cleaning.",
-    replicationPrompt: "Dark background, 4 service rows with blue checkmarks: Interior & Exterior Windows, Screens & Tracks Cleaned, Skylights & Hard-to-Reach Windows, Gutter Cleaning Add-On. Bold: 'ONE CREW. EVERY WINDOW. STREAK-FREE.' Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Dark background, 4 service rows with blue checkmarks: Interior & Exterior Windows, Screens & Tracks Cleaned, Skylights & Hard-to-Reach Windows, Gutter Cleaning Add-On. Bold: 'ONE CREW. EVERY WINDOW. STREAK-FREE.' Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight gutter cleaning add-on — upsell opportunity",
       "Add a price anchor: 'Starting at $149'",
@@ -2148,7 +2148,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 300+ Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The specific detail ('keep thinking they're open') is memorable and credible. The homeowner photo in front of their clean home is the most trusted creative format.",
-    replicationPrompt: "Happy homeowner standing in front of their home with gleaming clean windows. Speech bubble: '\"My windows are so clean I keep thinking they're open. Incredible service.\" — Patricia L.' 5 gold stars. Bold: '300+ SATISFIED HOMEOWNERS.' Blue CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy homeowner standing in front of their home with gleaming clean windows. Speech bubble: '\"My windows are so clean I keep thinking they're open. Incredible service.\" — Patricia L.' 5 gold stars. Bold: '300+ SATISFIED HOMEOWNERS.' Blue CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial — homeowner talking to camera",
       "Show a Google review screenshot overlay",
@@ -2170,7 +2170,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + Streak-Free Guarantee trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "The process angle builds trust by showing transparency. The streak-free guarantee at step 3 removes risk.",
-    replicationPrompt: "3-step process icons: 1. Pre-Rinse & Screen Removal, 2. Squeegee & Detail Clean, 3. Final Inspection — Streak-Free Guaranteed. Bold: 'HOW WE CLEAN YOUR WINDOWS IN 3 STEPS.' Sub: 'Interior & exterior. Same day.' Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "3-step process icons: 1. Pre-Rinse & Screen Removal, 2. Squeegee & Detail Clean, 3. Final Inspection — Streak-Free Guaranteed. Bold: 'HOW WE CLEAN YOUR WINDOWS IN 3 STEPS.' Sub: 'Interior & exterior. Same day.' Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the crew at each step — visual proof",
@@ -2192,7 +2192,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + This Month Only trust pill",
     ctaType: "Claim My $30 Off →",
     whyItWorks: "Spring cleaning is a natural trigger for window cleaning. The specific dollar discount ($30) is more compelling than a percentage. The deadline creates real scarcity.",
-    replicationPrompt: "Beautiful suburban home with gleaming clean windows, spring flowers blooming in front yard. Bold: 'SPRING CLEANING SPECIAL: $30 OFF WHOLE-HOME WINDOW CLEANING.' Sub: 'This month only. Interior & exterior. Streak-free guarantee.' Yellow urgency badge: 'This Month Only'. Blue CTA: 'CLAIM MY $30 OFF →'",
+    replicationPrompt: "Beautiful suburban home with gleaming clean windows, spring flowers blooming in front yard. Bold: 'SPRING CLEANING SPECIAL: $30 OFF WHOLE-HOME WINDOW CLEANING.' Sub: 'This month only. Interior & exterior. Streak-free guarantee.' Yellow urgency badge: 'This Month Only'. Blue CTA: 'CLAIM MY $30 OFF →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run in fall: 'Fall cleanup special before winter'",
       "Add a bundle: 'Windows + gutters bundle: $249'",
@@ -2214,7 +2214,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Offer badge + Save $50 trust pill",
     ctaType: "Book My Package →",
     whyItWorks: "Bundle pricing creates perceived value. The specific price ($199) is transparent and builds trust. 'Save $50' creates urgency to book the bundle.",
-    replicationPrompt: "Beautiful home with gleaming clean windows inside and outside. Bold: 'WHOLE-HOME WINDOW CLEANING: $199.' Sub: 'Interior + exterior. Screens & tracks included. Save $50 vs. individual services.' Yellow savings badge: 'Save $50'. Blue CTA: 'BOOK MY PACKAGE →'",
+    replicationPrompt: "Beautiful home with gleaming clean windows inside and outside. Bold: 'WHOLE-HOME WINDOW CLEANING: $199.' Sub: 'Interior + exterior. Screens & tracks included. Save $50 vs. individual services.' Yellow savings badge: 'Save $50'. Blue CTA: 'BOOK MY PACKAGE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the savings: 'Save $50 on whole-home cleaning'",
       "Add a before/after of the whole home — dramatic transformation",
@@ -2236,7 +2236,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + Streak-Free Guarantee trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "The streak-free guarantee removes the biggest objection in window cleaning: 'what if there are streaks?' By making the risk disappear, conversion rates increase significantly.",
-    replicationPrompt: "Crystal-clear window with large blue shield badge: 'STREAK-FREE GUARANTEE'. Bold: 'ANY STREAKS? WE COME BACK FREE.' Sub: '100% satisfaction guarantee. Every single window.' Blue CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Crystal-clear window with large blue shield badge: 'STREAK-FREE GUARANTEE'. Bold: 'ANY STREAKS? WE COME BACK FREE.' Sub: '100% satisfaction guarantee. Every single window.' Blue CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a specific dollar guarantee: 'We'll refund your service fee'",
       "Show the crew with satisfaction guarantee badges on uniforms",
@@ -2258,7 +2258,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + Same-Day Available trust pill",
     ctaType: "Fix It Today →",
     whyItWorks: "The dual pain framing (view AND curb appeal) doubles the relevance. The specific problem ('dirty windows') is immediately relatable. The price anchor makes the solution feel accessible.",
-    replicationPrompt: "Close-up of dirty, streaked, grimy windows with a beautiful view barely visible through them. Bold: 'THOSE DIRTY WINDOWS ARE RUINING YOUR VIEW AND YOUR CURB APPEAL.' Sub: 'Professional window cleaning from $149. Same day. Streak-free.' Blue CTA: 'FIX IT TODAY →'",
+    replicationPrompt: "Close-up of dirty, streaked, grimy windows with a beautiful view barely visible through them. Bold: 'THOSE DIRTY WINDOWS ARE RUINING YOUR VIEW AND YOUR CURB APPEAL.' Sub: 'Professional window cleaning from $149. Same day. Streak-free.' Blue CTA: 'FIX IT TODAY →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a comparison: 'Your windows vs. your neighbor's'",
       "Show a homeowner looking frustrated at dirty windows",
@@ -2280,7 +2280,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Most Popular in [City] trust pill",
     ctaType: "Get My Free Quote →",
     whyItWorks: "The specific number ('19 homes') feels hyper-local. The curb appeal angle combines social proof with FOMO.",
-    replicationPrompt: "Suburban neighborhood street with several homes showing gleaming clean windows, branded window cleaning truck visible. Bold: '19 HOMES IN YOUR NEIGHBORHOOD JUST GOT THEIR WINDOWS CLEANED.' Sub: 'Don't be the only dirty windows on the block. Free quote this week.' Pink badge: 'NEIGHBOR FOMO'. Blue CTA: 'GET MY FREE QUOTE →'",
+    replicationPrompt: "Suburban neighborhood street with several homes showing gleaming clean windows, branded window cleaning truck visible. Bold: '19 HOMES IN YOUR NEIGHBORHOOD JUST GOT THEIR WINDOWS CLEANED.' Sub: 'Don't be the only dirty windows on the block. Free quote this week.' Pink badge: 'NEIGHBOR FOMO'. Blue CTA: 'GET MY FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a curb appeal angle: 'Clean windows add instant curb appeal'",
       "Show a split: dirty windows vs neighbor's sparkling windows",
@@ -2302,7 +2302,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + WCR Certified trust pill",
     ctaType: "Get Free Quote →",
     whyItWorks: "WCR (Window Cleaning Resource) certification signals professional training and standards. Volume (1,500+ homes) provides social proof at scale.",
-    replicationPrompt: "Professional window cleaning crew in branded uniforms standing in front of branded truck. WCR certification badge prominently displayed. Bold: '6 YEARS. 1,500+ HOMES. WCR CERTIFIED.' Sub: 'Licensed, bonded & insured. Streak-free guarantee.' 3 trust badges. Blue CTA: 'GET FREE QUOTE →'",
+    replicationPrompt: "Professional window cleaning crew in branded uniforms standing in front of branded truck. WCR certification badge prominently displayed. Bold: '6 YEARS. 1,500+ HOMES. WCR CERTIFIED.' Sub: 'Licensed, bonded & insured. Streak-free guarantee.' 3 trust badges. Blue CTA: 'GET FREE QUOTE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the WCR certificate — physical proof",
       "Use a fleet shot — multiple branded trucks signals scale",
@@ -2326,7 +2326,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Before/After badge + 3-Week Timeline trust pill",
     ctaType: "Get Free Design →",
     whyItWorks: "The dramatic split image of a dated vs dream kitchen is the most compelling format for remodeling. The 3-week timeline makes the transformation feel achievable.",
-    replicationPrompt: "Split image: left = dated, old-fashioned kitchen with dark cabinets, old appliances, worn countertops; right = same kitchen completely transformed with white shaker cabinets, quartz countertops, modern appliances, stunning result. Bold: 'DATED KITCHEN TO DREAM KITCHEN. DONE IN 3 WEEKS.' Sub: 'Full remodels from $15,000. Free 3D design. 5-year warranty.' Gold CTA: 'GET FREE DESIGN →'",
+    replicationPrompt: "Split image: left = dated, old-fashioned kitchen with dark cabinets, old appliances, worn countertops; right = same kitchen completely transformed with white shaker cabinets, quartz countertops, modern appliances, stunning result. Bold: 'DATED KITCHEN TO DREAM KITCHEN. DONE IN 3 WEEKS.' Sub: 'Full remodels from $15,000. Free 3D design. 5-year warranty.' Gold CTA: 'GET FREE DESIGN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a bathroom transformation — different room, same impact",
       "Use a close-up of the cabinet and countertop quality — material-focused buyers",
@@ -2348,7 +2348,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Hero Shot badge + 3-Week Timeline trust pill",
     ctaType: "Get Free Design →",
     whyItWorks: "The stunning kitchen hero shot is aspirational and scroll-stopping. The aspirational headline ('always wanted') taps into homeowner dreams. The timeline makes it feel achievable.",
-    replicationPrompt: "Stunning modern kitchen with white shaker cabinets, quartz waterfall island, professional appliances, pendant lighting, open concept, magazine-quality photography. Bold: 'THE KITCHEN YOU\'VE ALWAYS WANTED. BUILT IN 3 WEEKS.' Sub: 'Full remodels from $15,000. Free 3D design included.' Gold CTA: 'GET FREE DESIGN →'",
+    replicationPrompt: "Stunning modern kitchen with white shaker cabinets, quartz waterfall island, professional appliances, pendant lighting, open concept, magazine-quality photography. Bold: 'THE KITCHEN YOU\'VE ALWAYS WANTED. BUILT IN 3 WEEKS.' Sub: 'Full remodels from $15,000. Free 3D design included.' Gold CTA: 'GET FREE DESIGN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show a family cooking in the kitchen — shifts from product to lifestyle",
       "Use a close-up of the island and countertops — premium feel",
@@ -2370,7 +2370,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Features badge + Free 3D Design trust pill",
     ctaType: "Get Free Design →",
     whyItWorks: "The feature stack answers the 'what do you do?' question fast. 'Free 3D design included' is the most powerful differentiator in kitchen remodeling — it removes the design barrier.",
-    replicationPrompt: "Dark background, 4 service rows with gold checkmarks: Custom Cabinets & Islands, Quartz & Granite Countertops, Appliance Installation, Flooring & Backsplash. Bold: 'ONE CONTRACTOR. YOUR DREAM KITCHEN.' Sub: 'Free 3D design included.' Gold CTA: 'GET FREE DESIGN →'",
+    replicationPrompt: "Dark background, 4 service rows with gold checkmarks: Custom Cabinets & Islands, Quartz & Granite Countertops, Appliance Installation, Flooring & Backsplash. Bold: 'ONE CONTRACTOR. YOUR DREAM KITCHEN.' Sub: 'Free 3D design included.' Gold CTA: 'GET FREE DESIGN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Highlight custom cabinets — highest-margin service",
       "Add a price anchor: 'Full remodels from $15,000'",
@@ -2392,7 +2392,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "UGC badge + ★ 4.9 · 180+ Reviews trust pill",
     ctaType: "See More Reviews →",
     whyItWorks: "The specific details ('hated to show off', '3 weeks') make the testimonial credible and aspirational. The homeowner photo in their new kitchen is the most trusted creative format.",
-    replicationPrompt: "Happy couple standing in their stunning new kitchen, proud smiles, casual clothes. Speech bubble: '\"We went from a kitchen we hated to one we show off to everyone. Done in 3 weeks.\" — James & Nicole R.' 5 gold stars. Bold: '180+ DREAM KITCHENS BUILT.' Gold CTA: 'SEE MORE REVIEWS →'",
+    replicationPrompt: "Happy couple standing in their stunning new kitchen, proud smiles, casual clothes. Speech bubble: '\"We went from a kitchen we hated to one we show off to everyone. Done in 3 weeks.\" — James & Nicole R.' 5 gold stars. Bold: '180+ DREAM KITCHENS BUILT.' Gold CTA: 'SEE MORE REVIEWS →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a video testimonial — homeowner talking to camera",
       "Show a Google review screenshot overlay",
@@ -2414,7 +2414,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Process badge + 3-Week Timeline trust pill",
     ctaType: "Get Free Design →",
     whyItWorks: "The process angle builds trust by showing transparency. The 3-week timeline makes the project feel manageable. The free design at step 1 is a low-commitment entry point.",
-    replicationPrompt: "4-step process icons: 1. Free 3D Design Consultation, 2. Material Selection & Ordering, 3. Professional Installation (2-3 Weeks), 4. Final Walkthrough & 5-Year Warranty. Bold: 'HOW WE BUILD YOUR DREAM KITCHEN IN 4 STEPS.' Gold CTA: 'GET FREE DESIGN →'",
+    replicationPrompt: "4-step process icons: 1. Free 3D Design Consultation, 2. Material Selection & Ordering, 3. Professional Installation (2-3 Weeks), 4. Final Walkthrough & 5-Year Warranty. Bold: 'HOW WE BUILD YOUR DREAM KITCHEN IN 4 STEPS.' Gold CTA: 'GET FREE DESIGN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Use a carousel — one step per slide",
       "Show the crew at each step — visual proof",
@@ -2436,7 +2436,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Seasonal badge + Limited Slots trust pill",
     ctaType: "Claim My $2,000 Off →",
     whyItWorks: "Seasonal urgency is most effective in spring when homeowners are planning home improvement projects. The specific dollar discount ($2,000) is significant and compelling.",
-    replicationPrompt: "Stunning modern kitchen with spring flowers visible through the window. Bold: 'SPRING REMODEL SPECIAL: $2,000 OFF FULL KITCHEN REMODELS.' Sub: 'Limited slots available. Financing from $299/mo. Free 3D design.' Yellow urgency badge: 'Limited Slots'. Gold CTA: 'CLAIM MY $2,000 OFF →'",
+    replicationPrompt: "Stunning modern kitchen with spring flowers visible through the window. Bold: 'SPRING REMODEL SPECIAL: $2,000 OFF FULL KITCHEN REMODELS.' Sub: 'Limited slots available. Financing from $299/mo. Free 3D design.' Yellow urgency badge: 'Limited Slots'. Gold CTA: 'CLAIM MY $2,000 OFF →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Run before the holidays: 'Have your dream kitchen for the holidays'",
       "Add a countdown: 'Offer expires [date]'",
@@ -2458,7 +2458,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Financing badge + 0% For 24 Months trust pill",
     ctaType: "Check Financing →",
     whyItWorks: "Monthly payment framing ($299/mo) makes a $15,000+ kitchen remodel feel accessible. '$0 down' removes the biggest barrier. The free design offer is a low-commitment entry point.",
-    replicationPrompt: "Stunning modern kitchen with quartz island. Bold: 'DREAM KITCHEN. $0 DOWN. $299/MO.' Sub: '0% financing for 24 months. Free 3D design. Full remodels from $15,000.' Yellow financing badge: '0% For 24 Months'. Gold CTA: 'CHECK FINANCING →'",
+    replicationPrompt: "Stunning modern kitchen with quartz island. Bold: 'DREAM KITCHEN. $0 DOWN. $299/MO.' Sub: '0% financing for 24 months. Free 3D design. Full remodels from $15,000.' Yellow financing badge: '0% For 24 Months'. Gold CTA: 'CHECK FINANCING →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Lead with the monthly payment in the headline",
       "Add a home value angle: 'Add $25,000 to your home value'",
@@ -2480,7 +2480,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Guarantee badge + 5-Year Warranty trust pill",
     ctaType: "Book Risk-Free →",
     whyItWorks: "A 5-year workmanship guarantee is a powerful differentiator in remodeling. The specific terms ('covers all labor and installation') make it feel real and comprehensive.",
-    replicationPrompt: "Stunning kitchen with large gold shield badge: '5-YEAR WORKMANSHIP GUARANTEE'. Bold: '5-YEAR WORKMANSHIP GUARANTEE. WE STAND BEHIND EVERY JOB.' Sub: 'Covers all labor and installation. No questions asked.' Gold CTA: 'BOOK RISK-FREE →'",
+    replicationPrompt: "Stunning kitchen with large gold shield badge: '5-YEAR WORKMANSHIP GUARANTEE'. Bold: '5-YEAR WORKMANSHIP GUARANTEE. WE STAND BEHIND EVERY JOB.' Sub: 'Covers all labor and installation. No questions asked.' Gold CTA: 'BOOK RISK-FREE →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a comparison: 'vs. industry standard 1-year warranty'",
       "Show the warranty certificate — physical proof",
@@ -2502,7 +2502,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Pain badge + Free Design Consultation trust pill",
     ctaType: "Get Free Design →",
     whyItWorks: "The emotional pain framing ('hate your kitchen every day') is more compelling than a functional problem. The relief statement ('doesn't have to be that way') creates hope. The financing bridge makes the solution feel accessible.",
-    replicationPrompt: "Dated, cramped, dark kitchen with old cabinets and worn countertops, homeowner looking frustrated. Bold: 'YOU HATE YOUR KITCHEN EVERY SINGLE DAY. IT DOESN\'T HAVE TO BE THAT WAY.' Sub: 'Dream kitchen from $15,000. Financing from $299/mo. Free 3D design.' Gold CTA: 'GET FREE DESIGN →'",
+    replicationPrompt: "Dated, cramped, dark kitchen with old cabinets and worn countertops, homeowner looking frustrated. Bold: 'YOU HATE YOUR KITCHEN EVERY SINGLE DAY. IT DOESN\'T HAVE TO BE THAT WAY.' Sub: 'Dream kitchen from $15,000. Financing from $299/mo. Free 3D design.' Gold CTA: 'GET FREE DESIGN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a comparison: 'Your kitchen vs. your dream kitchen'",
       "Show a homeowner looking frustrated at their kitchen",
@@ -2524,7 +2524,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Neighbor FOMO badge + Free Design Consultation trust pill",
     ctaType: "Get My Free Design →",
     whyItWorks: "The specific number ('7 kitchens') feels hyper-local. The home value angle combines social proof with FOMO — if your neighbors are upgrading, your home may be falling behind in value.",
-    replicationPrompt: "Suburban neighborhood with branded remodeling truck parked in front of a home. Bold: '7 KITCHENS REMODELED IN YOUR NEIGHBORHOOD THIS YEAR.' Sub: 'Don't let your home fall behind in value. Free design consultation this week.' Pink badge: 'NEIGHBOR FOMO'. Gold CTA: 'GET MY FREE DESIGN →'",
+    replicationPrompt: "Suburban neighborhood with branded remodeling truck parked in front of a home. Bold: '7 KITCHENS REMODELED IN YOUR NEIGHBORHOOD THIS YEAR.' Sub: 'Don't let your home fall behind in value. Free design consultation this week.' Pink badge: 'NEIGHBOR FOMO'. Gold CTA: 'GET MY FREE DESIGN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Add a home value angle: 'New kitchen adds $25,000+ to your home value'",
       "Show a split: dated kitchen vs neighbor's dream kitchen",
@@ -2546,7 +2546,7 @@ export const AD_EXAMPLES: AdExample[] = [
     trustElement: "Authority badge + NKBA Certified trust pill",
     ctaType: "Get Free Design →",
     whyItWorks: "NKBA (National Kitchen & Bath Association) certification is the highest credential in kitchen remodeling — it signals professional training and ethical business practices. Volume (300+ kitchens) provides social proof at scale.",
-    replicationPrompt: "Master kitchen designer/contractor in branded uniform standing in front of a stunning completed kitchen. NKBA certification badge prominently displayed. Bold: '15 YEARS. 300+ KITCHENS. NKBA CERTIFIED.' Sub: 'Licensed, bonded & insured. 5-year workmanship warranty.' 3 trust badges. Gold CTA: 'GET FREE DESIGN →'",
+    replicationPrompt: "Master kitchen designer/contractor in branded uniform standing in front of a stunning completed kitchen. NKBA certification badge prominently displayed. Bold: '15 YEARS. 300+ KITCHENS. NKBA CERTIFIED.' Sub: 'Licensed, bonded & insured. 5-year workmanship warranty.' 3 trust badges. Gold CTA: 'GET FREE DESIGN →' Brand: {BRAND} | Location: {LOCATION} | Season: {SEASON}.",
     variants: [
       "Show the NKBA certificate — physical proof",
       "Use a portfolio grid — multiple stunning kitchens",
