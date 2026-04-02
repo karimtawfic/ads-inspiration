@@ -44,3 +44,6 @@
 - [x] Add Saved tab to header tab switcher
 - [x] Build Saved tab content (grid of saved ads, empty state, clear-all)
 - [x] Star state visible in detail drawer too
+
+## Saved Tab Niche Grouping
+- [x] Group saved creatives by niche in Saved tab (section headers, per-niche count)

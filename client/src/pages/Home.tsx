@@ -380,6 +380,15 @@ export default function Home() {
   const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
   const { saved: savedIds, toggle: toggleSave, isSaved, clearAll: clearSaved } = useSavedAds();
   const savedAds = useMemo(() => AD_EXAMPLES.filter((a) => savedIds.has(a.id)), [savedIds]);
+  const savedByNiche = useMemo(() => {
+    const groups: Partial<Record<Niche, typeof savedAds>> = {};
+    savedAds.forEach((ad) => {
+      if (!groups[ad.niche]) groups[ad.niche] = [];
+      groups[ad.niche]!.push(ad);
+    });
+    return groups;
+  }, [savedAds]);
+  const savedNiches = useMemo(() => ALL_NICHES.filter((n) => (savedByNiche[n]?.length ?? 0) > 0), [savedByNiche]);
   const mainScrollRef = useRef<HTMLElement>(null);
   const nicheSectionRefs = useRef<Partial<Record<Niche, HTMLDivElement | null>>>({});
 
@@ -688,12 +697,13 @@ export default function Home() {
                 </button>
               </div>
             ) : (
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-8">
+                {/* Global header */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Star size={14} fill="#F59E0B" style={{ color: "#F59E0B" }} />
                     <span className="text-sm font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>Saved Creatives</span>
-                    <span className="text-[11px] font-mono" style={{ color: "#6B7280" }}>{savedAds.length} saved</span>
+                    <span className="text-[11px] font-mono" style={{ color: "#6B7280" }}>{savedAds.length} saved &middot; {savedNiches.length} {savedNiches.length === 1 ? "niche" : "niches"}</span>
                   </div>
                   <button
                     onClick={clearSaved}
@@ -703,18 +713,44 @@ export default function Home() {
                     Clear all
                   </button>
                 </div>
-                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))" }}>
-                  {savedAds.map((ad, i) => (
-                    <AdCard
-                      key={ad.id}
-                      ad={ad}
-                      index={i}
-                      onClick={() => setSelectedAd(ad)}
-                      isSaved={true}
-                      onToggleSave={() => toggleSave(ad.id)}
-                    />
-                  ))}
-                </div>
+
+                {/* Niche sections */}
+                {savedNiches.map((niche) => {
+                  const ads = savedByNiche[niche] ?? [];
+                  return (
+                    <div key={niche} className="flex flex-col gap-3">
+                      {/* Niche header */}
+                      <div className="flex items-center justify-between pb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>{niche}</span>
+                          <span className="text-[11px] font-mono rounded-full px-2 py-0.5" style={{ background: "rgba(245,158,11,0.12)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.2)" }}>
+                            {ads.length} saved
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => ads.forEach((a) => toggleSave(a.id))}
+                          className="text-[11px] font-mono rounded-md px-2 py-0.5 transition-colors hover:bg-white/8"
+                          style={{ color: "#6B7280", border: "1px solid rgba(255,255,255,0.08)" }}
+                        >
+                          Remove all
+                        </button>
+                      </div>
+                      {/* Cards */}
+                      <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))" }}>
+                        {ads.map((ad, i) => (
+                          <AdCard
+                            key={ad.id}
+                            ad={ad}
+                            index={i}
+                            onClick={() => setSelectedAd(ad)}
+                            isSaved={true}
+                            onToggleSave={() => toggleSave(ad.id)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
