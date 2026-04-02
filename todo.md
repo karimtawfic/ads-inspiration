@@ -66,4 +66,7 @@
 - [x] Show "Brand params updated" toast confirmation
 
 ## BrandParamsPanel Layout Fix
-- [ ] Rewrite BrandParamsPanel with clean non-overlapping layout (fields stacking/bleeding issue)
+- [x] Rewrite BrandParamsPanel with clean non-overlapping layout (fields stacking/bleeding issue)
+
+## BrandParamsPanel Layout Fix v2
+- [x] Rewrite BrandParamsPanel with pure inline styles (no Tailwind flex/gap) to fix field overlap
