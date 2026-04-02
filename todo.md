@@ -50,3 +50,12 @@
 
 ## Active Niche Highlight on Scroll
 - [x] IntersectionObserver tracks visible niche section and highlights it in sidebar (matrix mode only)
+
+## Brand Parameters + Blueprint Editor
+- [x] Create useBrandParams hook (localStorage: brandName, logoUrl, primaryColor, secondaryColor, language, location, season)
+- [x] Build BrandParamsPanel component (slide-in drawer, all fields editable)
+- [x] Add "Brand" button to header to open panel
+- [x] Inject brand params into replication prompt template (token replacement)
+- [x] Expand blueprint in detail drawer: editable hook, copy formula, trust element, CTA, replication prompt
+- [x] Show brand-injected prompt preview with copy button
+- [x] Show diff/highlight of injected tokens in the prompt

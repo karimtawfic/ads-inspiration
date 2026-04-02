@@ -21,10 +21,12 @@ import {
   type Format,
   type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star, Building2 } from "lucide-react";
 import { GenerateAdPanel } from "@/components/GenerateAdPanel";
 import CompetitorIntel from "@/pages/CompetitorIntel";
 import { useSavedAds } from "@/hooks/useSavedAds";
+import { useBrandParams } from "@/hooks/useBrandParams";
+import { BrandParamsPanel } from "@/components/BrandParamsPanel";
 
 // ─── Angle Badge ─────────────────────────────────────────────
 function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
@@ -75,34 +77,201 @@ function FormatBadge({ format }: { format: Format }) {
   );
 }
 
-// ─── Replication Row ──────────────────────────────────────────
-function ReplicationRow({ label, value }: { label: string; value: string }) {
+// ─── Editable Replication Row ────────────────────────────────
+function EditableReplicationRow({
+  label,
+  value,
+  onChange,
+  multiline,
+  highlight,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  multiline?: boolean;
+  highlight?: boolean;
+}) {
   const [copied, setCopied] = useState(false);
+  const [editing, setEditing] = useState(false);
   const copy = () => {
     navigator.clipboard.writeText(value);
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
   };
+  const inputStyle: React.CSSProperties = {
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(99,102,241,0.4)",
+    color: "#E5E3DF",
+    borderRadius: 6,
+    padding: "8px 10px",
+    fontSize: 13,
+    width: "100%",
+    outline: "none",
+    fontFamily: "'Inter', sans-serif",
+    lineHeight: 1.6,
+    resize: multiline ? "vertical" : "none",
+  };
   return (
-    <div className="group flex flex-col gap-1 rounded-md p-3" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+    <div
+      className="group flex flex-col gap-1.5 rounded-md p-3"
+      style={{
+        background: highlight ? "rgba(99,102,241,0.06)" : "rgba(255,255,255,0.04)",
+        border: highlight ? "1px solid rgba(99,102,241,0.2)" : "1px solid rgba(255,255,255,0.07)",
+      }}
+    >
       <div className="flex items-center justify-between">
-        <span className="text-[11px] font-mono uppercase tracking-widest" style={{ color: "#6B7280" }}>{label}</span>
-        <button
-          onClick={copy}
-          className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[10px] rounded px-1.5 py-0.5"
-          style={{ color: "#9CA3AF", background: "rgba(255,255,255,0.06)" }}
+        <span
+          className="text-[11px] font-mono uppercase tracking-widest"
+          style={{ color: highlight ? "#818CF8" : "#6B7280" }}
         >
-          {copied ? <CheckCheck size={10} /> : <Copy size={10} />}
-          {copied ? "Copied" : "Copy"}
-        </button>
+          {label}
+        </span>
+        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={() => setEditing((v) => !v)}
+            className="flex items-center gap-1 text-[10px] rounded px-1.5 py-0.5"
+            style={{ color: editing ? "#6366F1" : "#9CA3AF", background: editing ? "rgba(99,102,241,0.12)" : "rgba(255,255,255,0.06)" }}
+          >
+            {editing ? "Done" : "Edit"}
+          </button>
+          <button
+            onClick={copy}
+            className="flex items-center gap-1 text-[10px] rounded px-1.5 py-0.5"
+            style={{ color: "#9CA3AF", background: "rgba(255,255,255,0.06)" }}
+          >
+            {copied ? <CheckCheck size={10} /> : <Copy size={10} />}
+            {copied ? "Copied" : "Copy"}
+          </button>
+        </div>
       </div>
-      <p className="text-sm leading-relaxed" style={{ color: "#D1D5DB" }}>{value}</p>
+      {editing ? (
+        multiline ? (
+          <textarea
+            style={{ ...inputStyle, minHeight: 80 }}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            autoFocus
+          />
+        ) : (
+          <input
+            style={inputStyle}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            autoFocus
+          />
+        )
+      ) : (
+        <p className="text-sm leading-relaxed" style={{ color: "#D1D5DB" }}>{value}</p>
+      )}
     </div>
   );
 }
 
-// ─── Lightbox / Detail Drawer ─────────────────────────────────
+//// ─── Highlighted Prompt ──────────────────────────────────────
+const TOKEN_MAP: Record<string, keyof import('@/hooks/useBrandParams').BrandParams> = {
+  "{BRAND}": "brandName",
+  "{LOGO}": "logoUrl",
+  "{PRIMARY_COLOR}": "primaryColor",
+  "{SECONDARY_COLOR}": "secondaryColor",
+  "{LANGUAGE}": "language",
+  "{LOCATION}": "location",
+  "{SEASON}": "season",
+  "{TAGLINE}": "tagline",
+  "{PHONE}": "phone",
+  "{WEBSITE}": "website",
+};
+
+function HighlightedPrompt({
+  base,
+  injected,
+  params,
+  hasParams,
+}: {
+  base: string;
+  injected: string;
+  params: import('@/hooks/useBrandParams').BrandParams;
+  hasParams: boolean;
+}) {
+  // If no brand params, just show the plain prompt
+  if (!hasParams) {
+    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#C4C2BE" }}>{injected}</p>;
+  }
+
+  // Split the injected prompt into segments: normal text vs injected values
+  // Strategy: find all token positions in base, map to their injected values, render highlighted
+  const tokens = Object.keys(TOKEN_MAP);
+  const tokenRegex = new RegExp(tokens.map((t) => t.replace(/[{}]/g, "\\$&")).join("|"), "g");
+
+  // Build segments from base string
+  const segments: Array<{ text: string; isToken: boolean; token?: string }> = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = tokenRegex.exec(base)) !== null) {
+    if (match.index > lastIndex) {
+      segments.push({ text: base.slice(lastIndex, match.index), isToken: false });
+    }
+    const key = TOKEN_MAP[match[0]];
+    const value = params[key] as string;
+    segments.push({ text: value || match[0], isToken: true, token: match[0] });
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < base.length) {
+    segments.push({ text: base.slice(lastIndex), isToken: false });
+  }
+
+  // If no tokens found in base, show injected as-is
+  if (segments.length === 0 || segments.every((s) => !s.isToken)) {
+    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#C4C2BE" }}>{injected}</p>;
+  }
+
+  return (
+    <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#C4C2BE" }}>
+      {segments.map((seg, i) =>
+        seg.isToken ? (
+          <span
+            key={i}
+            className="rounded px-0.5"
+            style={{ background: "rgba(99,102,241,0.18)", color: "#A5B4FC", border: "1px solid rgba(99,102,241,0.25)" }}
+            title={`Injected from: ${seg.token}`}
+          >
+            {seg.text}
+          </span>
+        ) : (
+          seg.text
+        )
+      )}
+    </p>
+  );
+}
+
+// ─── Lightbox / Detail Drawer ─────────────────────────────
 function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave }: { ad: AdExample; onClose: () => void; isSaved: boolean; onToggleSave: () => void }) {
+  const { params, injectIntoPrompt, hasParams } = useBrandParams();
+
+  // Editable blueprint state — initialized from ad, reset when ad changes
+  const [hook, setHook] = useState(ad.hook);
+  const [copyFormula, setCopyFormula] = useState(ad.copyFormula);
+  const [trustElement, setTrustElement] = useState(ad.trustElement);
+  const [ctaType, setCtaType] = useState(ad.ctaType);
+  const [replicationPrompt, setReplicationPrompt] = useState(ad.replicationPrompt);
+
+  // When ad changes (user navigates), reset to new ad's values
+  useEffect(() => {
+    setHook(ad.hook);
+    setCopyFormula(ad.copyFormula);
+    setTrustElement(ad.trustElement);
+    setCtaType(ad.ctaType);
+    setReplicationPrompt(ad.replicationPrompt);
+  }, [ad.id]);
+
+  const brandInjectedPrompt = injectIntoPrompt(replicationPrompt);
+  const [promptCopied, setPromptCopied] = useState(false);
+  const copyPrompt = () => {
+    navigator.clipboard.writeText(brandInjectedPrompt);
+    setPromptCopied(true);
+    setTimeout(() => setPromptCopied(false), 1800);
+  };
+
   return (
     <AnimatePresence>
       <motion.div
@@ -198,16 +367,58 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave }: { ad: AdExample;
 
             {/* Replication Blueprint */}
             <div>
-              <div className="flex items-center gap-2 mb-3">
-                <Layers size={13} style={{ color: "#F59E0B" }} />
-                <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#F59E0B" }}>Replication Blueprint</span>
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <Layers size={13} style={{ color: "#F59E0B" }} />
+                  <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#F59E0B" }}>Replication Blueprint</span>
+                </div>
+                <span className="text-[10px] font-mono" style={{ color: "#4B5563" }}>Hover any field to edit</span>
               </div>
               <div className="flex flex-col gap-2">
-                <ReplicationRow label="Hook" value={ad.hook} />
-                <ReplicationRow label="Copy Formula" value={ad.copyFormula} />
-                <ReplicationRow label="Trust Element" value={ad.trustElement} />
-                <ReplicationRow label="CTA Type" value={ad.ctaType} />
-                <ReplicationRow label="Replication Prompt" value={ad.replicationPrompt} />
+                <EditableReplicationRow label="Hook" value={hook} onChange={setHook} />
+                <EditableReplicationRow label="Copy Formula" value={copyFormula} onChange={setCopyFormula} multiline />
+                <EditableReplicationRow label="Trust Element" value={trustElement} onChange={setTrustElement} />
+                <EditableReplicationRow label="CTA Type" value={ctaType} onChange={setCtaType} />
+                <EditableReplicationRow label="Replication Prompt (Base)" value={replicationPrompt} onChange={setReplicationPrompt} multiline />
+              </div>
+            </div>
+
+            {/* Brand-Injected Prompt */}
+            <div className="rounded-md overflow-hidden" style={{ border: "1px solid rgba(99,102,241,0.25)" }}>
+              <div className="flex items-center justify-between px-4 py-2.5" style={{ background: "rgba(99,102,241,0.1)", borderBottom: "1px solid rgba(99,102,241,0.2)" }}>
+                <div className="flex items-center gap-2">
+                  <Wand2 size={12} style={{ color: "#818CF8" }} />
+                  <span className="text-[11px] font-mono font-semibold uppercase tracking-widest" style={{ color: "#818CF8" }}>Brand-Injected Prompt</span>
+                  {hasParams && (
+                    <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(16,185,129,0.12)", color: "#10B981", border: "1px solid rgba(16,185,129,0.2)" }}>Brand Active</span>
+                  )}
+                </div>
+                <button
+                  onClick={copyPrompt}
+                  className="flex items-center gap-1.5 text-[11px] font-mono rounded-md px-2.5 py-1 transition-all hover:opacity-90"
+                  style={{ background: "rgba(99,102,241,0.2)", color: "#A5B4FC", border: "1px solid rgba(99,102,241,0.3)" }}
+                >
+                  {promptCopied ? <CheckCheck size={11} /> : <Copy size={11} />}
+                  {promptCopied ? "Copied!" : "Copy Prompt"}
+                </button>
+              </div>
+              <div className="p-4" style={{ background: "rgba(99,102,241,0.04)" }}>
+                {!hasParams && (
+                  <p className="text-[11px] font-mono mb-3 rounded-md px-3 py-2" style={{ color: "#F59E0B", background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.2)" }}>
+                    Set brand parameters (top-right → Brand) to auto-inject your logo, colors, location, and season.
+                  </p>
+                )}
+                {/* Token-highlighted prompt: show injected values in indigo, rest in normal color */}
+                <HighlightedPrompt base={replicationPrompt} injected={brandInjectedPrompt} params={params} hasParams={hasParams} />
+                {hasParams && (
+                  <div className="mt-3 pt-3 flex flex-wrap gap-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                    {params.brandName && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.brandName}</span>}
+                    {params.location && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.location}</span>}
+                    {params.season !== "Year-round" && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.season}</span>}
+                    {params.language !== "English" && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.language}</span>}
+                    <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.primaryColor}</span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -383,6 +594,8 @@ export default function Home() {
   const [activeFormats, setActiveFormats] = useState<Set<Format>>(new Set());
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [generateOpen, setGenerateOpen] = useState(false);
+  const [brandParamsOpen, setBrandParamsOpen] = useState(false);
+  const { hasParams: hasBrandParams } = useBrandParams();
   const [activeTab, setActiveTab] = useState<"swipe" | "competitor" | "saved">("swipe");
   const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
   const { saved: savedIds, toggle: toggleSave, isSaved, clearAll: clearSaved } = useSavedAds();
@@ -630,6 +843,24 @@ export default function Home() {
               Competitor Intel
             </button>
           </div>
+
+          <button
+            onClick={() => setBrandParamsOpen(true)}
+            className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-all hover:opacity-90"
+            style={{
+              background: hasBrandParams ? "rgba(99,102,241,0.15)" : "rgba(255,255,255,0.06)",
+              color: hasBrandParams ? "#818CF8" : "#9CA3AF",
+              border: hasBrandParams ? "1px solid rgba(99,102,241,0.3)" : "1px solid rgba(255,255,255,0.1)",
+              fontFamily: "'Space Grotesk', sans-serif",
+            }}
+            title="Set brand parameters"
+          >
+            <Building2 size={13} />
+            Brand
+            {hasBrandParams && (
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#10B981" }} />
+            )}
+          </button>
 
           <button
             onClick={() => setGenerateOpen(true)}
@@ -947,6 +1178,9 @@ export default function Home() {
           <GenerateAdPanel onClose={() => setGenerateOpen(false)} />
         )}
       </AnimatePresence>
+
+      {/* Brand Parameters Panel */}
+      <BrandParamsPanel open={brandParamsOpen} onClose={() => setBrandParamsOpen(false)} />
     </div>
   );
 }
