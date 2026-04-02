@@ -74,3 +74,10 @@
 ## Brand Token Injection into Prompts
 - [x] Seed all 110 replication prompts in adData.ts with {BRAND}, {LOCATION}, {SEASON}, {LANGUAGE}, {PHONE}, {WEBSITE} tokens
 - [x] Verify detail drawer injection logic replaces tokens with live brand param values
+
+## Row Density + Format Selector
+- [x] Add row density control (2-6 per row) to header toolbar — replaces fixed auto-fill grid
+- [x] Add per-creative format selector (1:1 / 4:5 / 9:16) on each AdCard
+- [x] Apply correct aspect ratio to card image container based on selected format
+- [x] Ensure 1:1 safe zone: all text/button elements in creative images stay within center square when cropped from 4:5 or 9:16
+- [x] Format selector also available in detail drawer image preview

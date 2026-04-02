@@ -21,7 +21,7 @@ import {
   type Format,
   type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star, Building2 } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star, Building2, Columns } from "lucide-react";
 import { GenerateAdPanel } from "@/components/GenerateAdPanel";
 import CompetitorIntel from "@/pages/CompetitorIntel";
 import { useSavedAds } from "@/hooks/useSavedAds";
@@ -245,7 +245,8 @@ function HighlightedPrompt({
 }
 
 // ─── Lightbox / Detail Drawer ─────────────────────────────
-function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave }: { ad: AdExample; onClose: () => void; isSaved: boolean; onToggleSave: () => void }) {
+type FormatMode = "1:1" | "4:5" | "9:16";
+function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFormatMode }: { ad: AdExample; onClose: () => void; isSaved: boolean; onToggleSave: () => void; formatMode: FormatMode; setFormatMode: (f: FormatMode) => void }) {
   const { params, injectIntoPrompt, hasParams } = useBrandParams();
 
   // Editable blueprint state — initialized from ad, reset when ad changes
@@ -328,15 +329,58 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave }: { ad: AdExample;
             </div>
           </div>
 
-          {/* Image */}
-          <div className="relative" style={{ background: "#0A0A0C" }}>
-            <img
-              src={ad.imageUrl}
-              alt={ad.title}
-              className="w-full object-contain"
-              style={{ maxHeight: "420px" }}
-            />
-          </div>
+          {/* Image — format preview with aspect ratio */}
+          {(() => {
+            const drawerAspect: Record<string, string> = { "1:1": "1/1", "4:5": "4/5", "9:16": "9/16" };
+            return (
+              <div className="relative" style={{ background: "#0A0A0C" }}>
+                <div style={{ position: "relative", width: "100%", aspectRatio: drawerAspect[formatMode] ?? "1/1", maxHeight: "520px", overflow: "hidden" }}>
+                  <img
+                    src={ad.imageUrl}
+                    alt={ad.title}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+                  />
+                  {/* Safe-zone overlay: dashed 1:1 square centered */}
+                  {formatMode !== "1:1" && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        // For 4:5: safe zone is the full width (square = 80% of height = 100% of width since 4:5 ratio)
+                        // For 9:16: safe zone square width = same as image width (9/16 of height)
+                        width: formatMode === "4:5" ? "80%" : "100%",
+                        aspectRatio: "1/1",
+                        border: "2px dashed rgba(99,102,241,0.5)",
+                        pointerEvents: "none",
+                        borderRadius: 4,
+                      }}
+                    />
+                  )}
+                </div>
+                {/* Format selector strip below image */}
+                <div className="flex items-center justify-center gap-1 py-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                  {(["1:1", "4:5", "9:16"] as const).map((fmt) => (
+                    <button
+                      key={fmt}
+                      onClick={() => setFormatMode(fmt)}
+                      className="rounded px-2.5 py-1 text-[11px] font-mono transition-all"
+                      style={{
+                        background: formatMode === fmt ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.04)",
+                        color: formatMode === fmt ? "#A5B4FC" : "#6B7280",
+                        border: formatMode === fmt ? "1px solid rgba(99,102,241,0.35)" : "1px solid rgba(255,255,255,0.07)",
+                        fontWeight: formatMode === fmt ? 700 : 400,
+                      }}
+                    >
+                      {fmt}
+                    </button>
+                  ))}
+                  <span className="text-[10px] font-mono ml-2" style={{ color: "#4B5563" }}>dashed = 1:1 safe zone</span>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Content */}
           <div className="flex flex-col gap-5 p-6 flex-1">
@@ -449,8 +493,9 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave }: { ad: AdExample;
 }
 
 // ─── Ad Card ──────────────────────────────────────────────────
-function AdCard({ ad, index, onClick, isSaved, onToggleSave }: { ad: AdExample; index: number; onClick: () => void; isSaved: boolean; onToggleSave: () => void }) {
+function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight }: { ad: AdExample; index: number; onClick: () => void; isSaved: boolean; onToggleSave: () => void; cardHeight?: number }) {
   const [hovered, setHovered] = useState(false);
+  const imgHeight = cardHeight ?? 220;
 
   return (
     <motion.div
@@ -471,8 +516,8 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave }: { ad: AdExample; 
           alt={ad.title}
           className="w-full object-cover transition-transform duration-500"
           style={{
-            height: "220px",
-            objectPosition: "top",
+            height: `${imgHeight}px`,
+            objectPosition: "center",
             transform: hovered ? "scale(1.04)" : "scale(1)",
           }}
           loading="lazy"
@@ -598,6 +643,13 @@ export default function Home() {
   const { hasParams: hasBrandParams } = useBrandParams();
   const [activeTab, setActiveTab] = useState<"swipe" | "competitor" | "saved">("swipe");
   const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
+  const [rowDensity, setRowDensity] = useState<number>(3);
+  // formatMode: shared display format for all cards (type declared at module level)
+  const [formatMode, setFormatMode] = useState<FormatMode>("1:1");
+
+  // Image height for a card given its width — fixed heights per format
+  const CARD_HEIGHTS: Record<FormatMode, number> = { "1:1": 220, "4:5": 275, "9:16": 390 };
+  const MATRIX_HEIGHTS: Record<FormatMode, number> = { "1:1": 140, "4:5": 175, "9:16": 249 };
   const { saved: savedIds, toggle: toggleSave, isSaved, clearAll: clearSaved } = useSavedAds();
   const savedAds = useMemo(() => AD_EXAMPLES.filter((a) => savedIds.has(a.id)), [savedIds]);
   const savedByNiche = useMemo(() => {
@@ -771,23 +823,63 @@ export default function Home() {
           </span>
           {/* View mode toggle */}
           {activeTab === "swipe" && (
-            <div className="flex items-center rounded-md p-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
-              <button
-                onClick={() => setViewMode("grid")}
-                className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono transition-all"
-                style={{ background: viewMode === "grid" ? "rgba(255,255,255,0.1)" : "transparent", color: viewMode === "grid" ? "#F0EEE9" : "#6B7280" }}
-                title="Card Grid"
-              >
-                <LayoutGrid size={12} />
-              </button>
-              <button
-                onClick={() => setViewMode("matrix")}
-                className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono transition-all"
-                style={{ background: viewMode === "matrix" ? "rgba(255,255,255,0.1)" : "transparent", color: viewMode === "matrix" ? "#F0EEE9" : "#6B7280" }}
-                title="Matrix View"
-              >
-                <Table2 size={12} />
-              </button>
+            <div className="flex items-center gap-2">
+              {/* Row density control */}
+              <div className="flex items-center gap-1.5 rounded-md px-2.5 py-1" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <Columns size={11} style={{ color: "#6B7280" }} />
+                {[2, 3, 4, 5, 6].map((n) => (
+                  <button
+                    key={n}
+                    onClick={() => setRowDensity(n)}
+                    className="rounded px-1.5 py-0.5 text-[11px] font-mono transition-all"
+                    style={{
+                      background: rowDensity === n ? "rgba(99,102,241,0.25)" : "transparent",
+                      color: rowDensity === n ? "#A5B4FC" : "#6B7280",
+                      fontWeight: rowDensity === n ? 700 : 400,
+                    }}
+                    title={`${n} per row`}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+              {/* Format mode selector */}
+              <div className="flex items-center rounded-md p-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                {(["1:1", "4:5", "9:16"] as const).map((fmt) => (
+                  <button
+                    key={fmt}
+                    onClick={() => setFormatMode(fmt)}
+                    className="rounded px-2 py-1 text-[11px] font-mono transition-all"
+                    style={{
+                      background: formatMode === fmt ? "rgba(255,255,255,0.1)" : "transparent",
+                      color: formatMode === fmt ? "#F0EEE9" : "#6B7280",
+                      fontWeight: formatMode === fmt ? 600 : 400,
+                    }}
+                    title={`${fmt} format`}
+                  >
+                    {fmt}
+                  </button>
+                ))}
+              </div>
+              {/* View mode toggle */}
+              <div className="flex items-center rounded-md p-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono transition-all"
+                  style={{ background: viewMode === "grid" ? "rgba(255,255,255,0.1)" : "transparent", color: viewMode === "grid" ? "#F0EEE9" : "#6B7280" }}
+                  title="Card Grid"
+                >
+                  <LayoutGrid size={12} />
+                </button>
+                <button
+                  onClick={() => setViewMode("matrix")}
+                  className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono transition-all"
+                  style={{ background: viewMode === "matrix" ? "rgba(255,255,255,0.1)" : "transparent", color: viewMode === "matrix" ? "#F0EEE9" : "#6B7280" }}
+                  title="Matrix View"
+                >
+                  <Table2 size={12} />
+                </button>
+              </div>
             </div>
           )}
           {hasFilters && viewMode === "grid" && (
@@ -1044,7 +1136,7 @@ export default function Home() {
                     <span className="text-[11px] font-mono" style={{ color: "#4B5563" }}>11 angles</span>
                   </div>
                   {/* Angle row grid */}
-                  <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+                  <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${rowDensity}, 1fr)` }}>
                     {ALL_ANGLES.map((angle) => {
                       const ad = AD_EXAMPLES.find((a) => a.niche === niche && a.angle === angle);
                       if (!ad) return null;
@@ -1061,7 +1153,7 @@ export default function Home() {
                               src={ad.imageUrl}
                               alt={ad.title}
                               className="w-full object-cover"
-                              style={{ height: "140px", objectPosition: "top" }}
+                              style={{ height: `${MATRIX_HEIGHTS[formatMode]}px`, objectPosition: "center" }}
                               loading="lazy"
                             />
                             <div className="absolute top-1.5 left-1.5">
@@ -1108,7 +1200,7 @@ export default function Home() {
               <div
                 className="grid gap-4"
                 style={{
-                  gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                  gridTemplateColumns: `repeat(${rowDensity}, 1fr)`,
                 }}
               >
                 {filtered.map((ad, i) => (
@@ -1119,6 +1211,7 @@ export default function Home() {
                     onClick={() => setSelectedAd(ad)}
                     isSaved={isSaved(ad.id)}
                     onToggleSave={() => toggleSave(ad.id)}
+                    cardHeight={CARD_HEIGHTS[formatMode]}
                   />
                 ))}
               </div>
@@ -1169,6 +1262,8 @@ export default function Home() {
           onClose={() => setSelectedAd(null)}
           isSaved={isSaved(selectedAd.id)}
           onToggleSave={() => toggleSave(selectedAd.id)}
+          formatMode={formatMode}
+          setFormatMode={setFormatMode}
         />
       )}
 
