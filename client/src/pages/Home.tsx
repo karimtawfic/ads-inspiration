@@ -595,14 +595,50 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
 }
 
 // ─── Sidebar Filter ───────────────────────────────────────────
-function SidebarSection({ title, icon, children, textMuted = "#6B7280" }: { title: string; icon: React.ReactNode; children: React.ReactNode; textMuted?: string }) {
+function SidebarSection({
+  title,
+  icon,
+  children,
+  textMuted = "#6B7280",
+  isDark = true,
+  activeCount = 0,
+  onClear,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  textMuted?: string;
+  isDark?: boolean;
+  activeCount?: number;
+  onClear?: () => void;
+}) {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2 px-1">
-        <span style={{ color: textMuted }}>{icon}</span>
-        <span className="text-[11px] font-mono uppercase tracking-widest font-semibold" style={{ color: textMuted }}>{title}</span>
+    <div className="flex flex-col gap-1.5">
+      <div className="flex items-center justify-between px-2 py-1">
+        <div className="flex items-center gap-1.5">
+          <span style={{ color: textMuted }}>{icon}</span>
+          <span
+            className="text-[10px] font-semibold uppercase tracking-[0.1em]"
+            style={{ color: textMuted, fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            {title}
+          </span>
+        </div>
+        {activeCount > 0 && onClear && (
+          <button
+            onClick={onClear}
+            className="text-[9px] font-mono rounded px-1.5 py-0.5 transition-all hover:opacity-80"
+            style={{
+              color: "#6366F1",
+              background: "rgba(99,102,241,0.1)",
+              border: "1px solid rgba(99,102,241,0.2)",
+            }}
+          >
+            Clear
+          </button>
+        )}
       </div>
-      <div className="flex flex-col gap-1">{children}</div>
+      <div className="flex flex-col gap-0.5">{children}</div>
     </div>
   );
 }
@@ -624,41 +660,73 @@ function FilterPill({
   isScrollTarget?: boolean;
   isDark?: boolean;
 }) {
-  const activeBg = color ? `${color}18` : isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)";
-  const activeColor = color || (isDark ? "#F0EEE9" : "#111113");
-  const activeBorder = color ? `1px solid ${color}40` : isDark ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(0,0,0,0.12)";
-  const inactiveBg = isScrollTarget ? (isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)") : "transparent";
-  const inactiveColor = isScrollTarget ? (isDark ? "#C4C2BE" : "#6B7280") : (isDark ? "#9CA3AF" : "#6B7280");
-  const inactiveBorder = isScrollTarget ? (isDark ? "1px solid rgba(255,255,255,0.06)" : "1px solid rgba(0,0,0,0.06)") : "1px solid transparent";
   const dotInactive = isDark ? "#374151" : "#D1D5DB";
-  const countActive = color || (isDark ? "#9CA3AF" : "#6B7280");
-  const countInactive = isDark ? "#4B5563" : "#9CA3AF";
   return (
     <button
       onClick={onClick}
-      className="relative flex items-center justify-between rounded-md px-3 py-1.5 text-sm transition-all text-left overflow-hidden"
+      className="group relative flex items-center justify-between rounded-lg px-2.5 py-[7px] text-[12.5px] transition-all text-left"
       style={{
-        background: active ? activeBg : inactiveBg,
-        color: active ? activeColor : inactiveColor,
-        border: active ? activeBorder : inactiveBorder,
-        fontFamily: active ? "'Space Grotesk', sans-serif" : "inherit",
+        background: active
+          ? color
+            ? `${color}18`
+            : isDark ? "rgba(99,102,241,0.14)" : "rgba(99,102,241,0.09)"
+          : "transparent",
+        color: active
+          ? color
+            ? color
+            : isDark ? "#A5B4FC" : "#4F46E5"
+          : isDark ? "#9CA3AF" : "#6B7280",
         fontWeight: active ? 600 : 400,
+        fontFamily: active ? "'Space Grotesk', sans-serif" : "inherit",
+      }}
+      onMouseEnter={(e) => {
+        if (!active) {
+          (e.currentTarget as HTMLButtonElement).style.background = isDark
+            ? "rgba(255,255,255,0.04)"
+            : "rgba(0,0,0,0.04)";
+          (e.currentTarget as HTMLButtonElement).style.color = isDark ? "#D1D5DB" : "#374151";
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!active) {
+          (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+          (e.currentTarget as HTMLButtonElement).style.color = isDark ? "#9CA3AF" : "#6B7280";
+        }
       }}
     >
-      {active && !color && (
+      {/* Active left accent bar */}
+      {active && (
         <span
-          className="absolute left-0 top-1 bottom-1 rounded-full"
-          style={{ width: 3, background: "#6366F1" }}
+          className="absolute left-0 top-[6px] bottom-[6px] rounded-full"
+          style={{ width: 3, background: color || "#6366F1" }}
         />
       )}
-      <span className="flex items-center gap-2" style={{ paddingLeft: active && !color ? 6 : 0 }}>
+      <span
+        className="flex items-center gap-2 min-w-0"
+        style={{ paddingLeft: active ? 10 : 2, transition: "padding 0.15s" }}
+      >
         {color && (
-          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : dotInactive }} />
+          <span
+            className="w-[7px] h-[7px] rounded-full flex-shrink-0 transition-all"
+            style={{
+              background: active ? color : dotInactive,
+              boxShadow: active ? `0 0 5px ${color}80` : "none",
+            }}
+          />
         )}
-        {label}
+        <span className="truncate leading-none">{label}</span>
       </span>
       {count !== undefined && (
-        <span className="text-[11px] font-mono" style={{ color: active ? countActive : countInactive }}>
+        <span
+          className="text-[10.5px] font-mono flex-shrink-0 ml-1 tabular-nums"
+          style={{
+            color: active
+              ? color
+                ? `${color}CC`
+                : isDark ? "#818CF8" : "#6366F1"
+              : isDark ? "#4B5563" : "#9CA3AF",
+          }}
+        >
           {count}
         </span>
       )}
@@ -1099,65 +1167,127 @@ export default function Home() {
         <AnimatePresence>
           {sidebarOpen && activeTab === "swipe" && (
             <motion.aside
-              className="flex-shrink-0 overflow-y-auto flex flex-col gap-6 py-5 px-3 h-full"
+              className="flex-shrink-0 flex flex-col h-full"
               style={{
-                width: 220,
+                width: 232,
                 background: S.sidebar,
                 borderRight: `1px solid ${S.border}`,
               }}
               initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 220, opacity: 1 }}
+              animate={{ width: 232, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.22, ease: "easeInOut" }}
             >
-              {/* Angles */}
-              <SidebarSection title="Angle" icon={<Tag size={12} />} textMuted={S.textMuted}>
-                {ALL_ANGLES.map((a) => (
-                  <FilterPill
-                    key={a}
-                    label={a}
-                    active={activeAngles.has(a)}
-                    color={ANGLE_COLORS[a]}
-                    onClick={() => toggleAngle(a)}
-                    count={angleCounts[a] || 0}
-                    isDark={isDark}
-                  />
-                ))}
-              </SidebarSection>
-
-              {/* Niches */}
-              <SidebarSection title="Niche" icon={<Layers size={12} />} textMuted={S.textMuted}>
-                {ALL_NICHES.map((n) => (
-                  <FilterPill
-                    key={n}
-                    label={n}
-                    active={viewMode === "matrix" ? n === activeMatrixNiche : activeNiches.has(n)}
-                    onClick={() => {
-                      if (viewMode === "matrix") {
-                        scrollToNiche(n);
-                      } else {
-                        toggleNiche(n);
-                      }
+              {/* Sidebar header */}
+              <div
+                className="flex items-center justify-between px-4 py-3 flex-shrink-0"
+                style={{ borderBottom: `1px solid ${S.border}` }}
+              >
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-[0.1em]"
+                  style={{ color: S.textMuted, fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  Filters
+                </span>
+                {hasFilters && (
+                  <button
+                    onClick={clearAll}
+                    className="text-[10px] font-mono rounded-md px-2 py-0.5 transition-all hover:opacity-80"
+                    style={{
+                      color: "#EF4444",
+                      background: "rgba(239,68,68,0.08)",
+                      border: "1px solid rgba(239,68,68,0.18)",
                     }}
-                    count={nicheCounts[n] || 0}
-                    isScrollTarget={viewMode === "matrix" && n !== activeMatrixNiche}
-                    isDark={isDark}
-                  />
-                ))}
-              </SidebarSection>
+                  >
+                    Clear all
+                  </button>
+                )}
+              </div>
 
-              {/* Formats */}
-              <SidebarSection title="Format" icon={<Zap size={12} />} textMuted={S.textMuted}>
-                {ALL_FORMATS.map((f) => (
-                  <FilterPill
-                    key={f}
-                    label={f}
-                    active={activeFormats.has(f)}
-                    onClick={() => toggleFormat(f)}
+              {/* Scrollable filter list */}
+              <div className="flex-1 overflow-y-auto flex flex-col py-2 px-2">
+                {/* Angles */}
+                <div className="py-3">
+                  <SidebarSection
+                    title="Angle"
+                    icon={<Tag size={11} />}
+                    textMuted={S.textMuted}
                     isDark={isDark}
-                  />
-                ))}
-              </SidebarSection>
+                    activeCount={activeAngles.size}
+                    onClear={() => setActiveAngles(new Set())}
+                  >
+                    {ALL_ANGLES.map((a) => (
+                      <FilterPill
+                        key={a}
+                        label={a}
+                        active={activeAngles.has(a)}
+                        color={ANGLE_COLORS[a]}
+                        onClick={() => toggleAngle(a)}
+                        count={angleCounts[a] || 0}
+                        isDark={isDark}
+                      />
+                    ))}
+                  </SidebarSection>
+                </div>
+
+                {/* Divider */}
+                <div className="mx-2" style={{ height: 1, background: S.border }} />
+
+                {/* Niches */}
+                <div className="py-3">
+                  <SidebarSection
+                    title="Niche"
+                    icon={<Layers size={11} />}
+                    textMuted={S.textMuted}
+                    isDark={isDark}
+                    activeCount={activeNiches.size}
+                    onClear={() => setActiveNiches(new Set())}
+                  >
+                    {ALL_NICHES.map((n) => (
+                      <FilterPill
+                        key={n}
+                        label={n}
+                        active={viewMode === "matrix" ? n === activeMatrixNiche : activeNiches.has(n)}
+                        onClick={() => {
+                          if (viewMode === "matrix") {
+                            scrollToNiche(n);
+                          } else {
+                            toggleNiche(n);
+                          }
+                        }}
+                        count={nicheCounts[n] || 0}
+                        isScrollTarget={viewMode === "matrix" && n !== activeMatrixNiche}
+                        isDark={isDark}
+                      />
+                    ))}
+                  </SidebarSection>
+                </div>
+
+                {/* Divider */}
+                <div className="mx-2" style={{ height: 1, background: S.border }} />
+
+                {/* Formats */}
+                <div className="py-3">
+                  <SidebarSection
+                    title="Format"
+                    icon={<Zap size={11} />}
+                    textMuted={S.textMuted}
+                    isDark={isDark}
+                    activeCount={activeFormats.size}
+                    onClear={() => setActiveFormats(new Set())}
+                  >
+                    {ALL_FORMATS.map((f) => (
+                      <FilterPill
+                        key={f}
+                        label={f}
+                        active={activeFormats.has(f)}
+                        onClick={() => toggleFormat(f)}
+                        isDark={isDark}
+                      />
+                    ))}
+                  </SidebarSection>
+                </div>
+              </div>
             </motion.aside>
           )}
         </AnimatePresence>
