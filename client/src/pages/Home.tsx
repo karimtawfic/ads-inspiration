@@ -938,7 +938,7 @@ export default function Home() {
                 Ad Creative Canvas
               </h1>
               <p className="text-[10px] font-mono mt-0.5 leading-none" style={{ color: S.textMuted }}>
-                110 creatives · 10 niches · 11 angles
+                {AD_EXAMPLES.length} creatives · {ALL_NICHES.length} niches · {ALL_ANGLES.length} angles
               </p>
             </div>
           </div>
