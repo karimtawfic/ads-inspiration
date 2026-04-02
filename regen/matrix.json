@@ -1,0 +1,54 @@
+{
+  "niches": [
+    "HVAC",
+    "Roofing",
+    "Plumbing",
+    "Electrical",
+    "Pest Control",
+    "Landscaping",
+    "Pressure Washing",
+    "Epoxy Flooring",
+    "Window Cleaning",
+    "Kitchen Remodeling",
+    "Bathroom Remodeling",
+    "Garage Door",
+    "Painting",
+    "Fence & Deck",
+    "Tree Service",
+    "Pool Service",
+    "Solar",
+    "Insulation",
+    "Gutter Cleaning",
+    "Carpet Cleaning"
+  ],
+  "angles": [
+    "Before / After",
+    "Hero Shot",
+    "Features / Benefits",
+    "UGC / Testimonial",
+    "Process / How-To",
+    "Seasonal Urgency",
+    "Financing",
+    "Guarantee",
+    "Pain / Urgency",
+    "Neighbor FOMO",
+    "Authority",
+    "Limited Offer",
+    "Social Proof Stats",
+    "Risk Reversal"
+  ],
+  "design_system": {
+    "format": "9:16 vertical",
+    "style": "photorealistic agency-grade Meta ad creative",
+    "layout_principles": [
+      "Bold headline text overlay at top or center",
+      "High-contrast text on semi-transparent dark scrim or white panel",
+      "Professional photography of real service scenario",
+      "Brand color accent (blue, orange, or green depending on niche)",
+      "CTA button at bottom (Get Free Quote / Book Now / Call Today)",
+      "Trust badge or star rating visible",
+      "Clean modern sans-serif typography"
+    ],
+    "negative_prompts": "cartoon, illustration, watermark, blurry, low quality, text errors, distorted faces, amateur photography, cluttered layout, small text, illegible text"
+  }
+}
