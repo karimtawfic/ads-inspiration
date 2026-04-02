@@ -23,9 +23,8 @@ export function ThemeProvider({
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
     if (switchable) {
-      const stored = localStorage.getItem("theme") as Theme | null;
-      // If stored value is valid, use it; otherwise fall back to defaultTheme
-      if (stored === "light" || stored === "dark") return stored;
+      const stored = localStorage.getItem("theme");
+      return (stored as Theme) || defaultTheme;
     }
     return defaultTheme;
   });

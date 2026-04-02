@@ -32,64 +32,9 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* ── LIGHT MODE (default) ─────────────────────────────────── */
+/* ── DARK MODE (default) ─────────────────────────────────── */
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.98 0.002 285);
-  --foreground: oklch(0.15 0.008 285);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.008 285);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.008 285);
-  --primary: oklch(0.55 0.22 260);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.94 0.004 285);
-  --secondary-foreground: oklch(0.35 0.008 285);
-  --muted: oklch(0.94 0.004 285);
-  --muted-foreground: oklch(0.5 0.01 285);
-  --accent: oklch(0.94 0.004 285);
-  --accent-foreground: oklch(0.15 0.008 285);
-  --destructive: oklch(0.6 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0 0 0 / 8%);
-  --input: oklch(0 0 0 / 6%);
-  --ring: oklch(0.55 0.22 260);
-  --sidebar: oklch(0.96 0.003 285);
-  --sidebar-foreground: oklch(0.15 0.008 285);
-  --sidebar-border: oklch(0 0 0 / 8%);
-
-  /* Surface tokens (used by inline-style components) */
-  --surface-bg: #F8F8FA;
-  --surface-card: #FFFFFF;
-  --surface-panel: #FFFFFF;
-  --surface-sidebar: #F2F2F5;
-  --surface-header: rgba(248,248,250,0.95);
-  --surface-border: rgba(0,0,0,0.07);
-  --surface-border-strong: rgba(0,0,0,0.12);
-  --surface-hover: rgba(0,0,0,0.04);
-  --surface-active: rgba(0,0,0,0.08);
-  --surface-input: rgba(0,0,0,0.04);
-  --text-primary: #111113;
-  --text-secondary: #4B5563;
-  --text-muted: #6B7280;
-  --text-faint: #9CA3AF;
-  --text-dimmer: #D1D5DB;
-
-  /* Angle accent colors */
-  --angle-before-after: oklch(0.65 0.22 260);
-  --angle-hero-shot: oklch(0.72 0.18 145);
-  --angle-pain: oklch(0.65 0.22 25);
-  --angle-features: oklch(0.7 0.12 285);
-  --angle-social-proof: oklch(0.72 0.18 145);
-  --angle-offer: oklch(0.75 0.18 75);
-  --angle-process: oklch(0.68 0.2 300);
-  --angle-fomo: oklch(0.65 0.22 25);
-  --angle-seasonal: oklch(0.75 0.18 75);
-  --angle-ugc: oklch(0.7 0.15 200);
-}
-
-/* ── DARK MODE ──────────────────────────────────────────── */
-.dark {
   --background: oklch(0.1 0.005 285);
   --foreground: oklch(0.93 0.005 65);
   --card: oklch(0.14 0.006 285);
@@ -113,7 +58,7 @@
   --sidebar-foreground: oklch(0.93 0.005 65);
   --sidebar-border: oklch(1 0 0 / 8%);
 
-  /* Surface tokens for dark mode */
+  /* Surface tokens (used by inline-style components) */
   --surface-bg: #0D0D0F;
   --surface-card: #161618;
   --surface-panel: #111113;
@@ -129,6 +74,61 @@
   --text-muted: #6B7280;
   --text-faint: #4B5563;
   --text-dimmer: #374151;
+
+  /* Angle accent colors */
+  --angle-before-after: oklch(0.65 0.22 260);
+  --angle-hero-shot: oklch(0.72 0.18 145);
+  --angle-pain: oklch(0.65 0.22 25);
+  --angle-features: oklch(0.7 0.12 285);
+  --angle-social-proof: oklch(0.72 0.18 145);
+  --angle-offer: oklch(0.75 0.18 75);
+  --angle-process: oklch(0.68 0.2 300);
+  --angle-fomo: oklch(0.65 0.22 25);
+  --angle-seasonal: oklch(0.75 0.18 75);
+  --angle-ugc: oklch(0.7 0.15 200);
+}
+
+/* ── LIGHT MODE ──────────────────────────────────────────── */
+.light {
+  --background: oklch(0.98 0.002 285);
+  --foreground: oklch(0.15 0.008 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.008 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.008 285);
+  --primary: oklch(0.55 0.22 260);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.94 0.004 285);
+  --secondary-foreground: oklch(0.35 0.008 285);
+  --muted: oklch(0.94 0.004 285);
+  --muted-foreground: oklch(0.5 0.01 285);
+  --accent: oklch(0.94 0.004 285);
+  --accent-foreground: oklch(0.15 0.008 285);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0 0 0 / 8%);
+  --input: oklch(0 0 0 / 6%);
+  --ring: oklch(0.55 0.22 260);
+  --sidebar: oklch(0.96 0.003 285);
+  --sidebar-foreground: oklch(0.15 0.008 285);
+  --sidebar-border: oklch(0 0 0 / 8%);
+
+  /* Surface tokens for light mode */
+  --surface-bg: #F8F8FA;
+  --surface-card: #FFFFFF;
+  --surface-panel: #FFFFFF;
+  --surface-sidebar: #F2F2F5;
+  --surface-header: rgba(248,248,250,0.95);
+  --surface-border: rgba(0,0,0,0.07);
+  --surface-border-strong: rgba(0,0,0,0.12);
+  --surface-hover: rgba(0,0,0,0.04);
+  --surface-active: rgba(0,0,0,0.08);
+  --surface-input: rgba(0,0,0,0.04);
+  --text-primary: #111113;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --text-faint: #9CA3AF;
+  --text-dimmer: #D1D5DB;
 }
 
 @layer base {

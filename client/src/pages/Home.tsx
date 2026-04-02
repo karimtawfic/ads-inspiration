@@ -47,8 +47,8 @@ function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
 function SourceBadge({ sourceType }: { sourceType: SourceType }) {
   const map: Record<SourceType, { color: string; label: string }> = {
     "Meta Ad Library": { color: "#1877F2", label: "Meta Library" },
-    "SwipeFile": { color: "#10B981", label: "SwipeFile" },
-    "AI Pattern": { color: "#8B5CF6", label: "AI Pattern" },
+    "Agency Curated": { color: "#10B981", label: "Agency Curated" },
+    "AI Generated": { color: "#8B5CF6", label: "AI Generated" },
   };
   const { color, label } = map[sourceType];
   return (
@@ -331,100 +331,38 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
           </div>
 
           {/* Image — format preview with aspect ratio */}
-          {/* Format crop preview — true crop simulation of 9:16 source */}
           {(() => {
-            // The source image is 9:16. We simulate how it looks cropped to each format.
-            // Strategy: fix the container to a consistent display height, then use
-            // object-fit + object-position to show only the cropped region.
-            //
-            // For 9:16 → show full image (no crop)
-            // For 4:5  → crop top+bottom: the 4:5 crop of a 9:16 image
-            //            4:5 ratio = 0.8, 9:16 ratio = 0.5625
-            //            Scale: to fill width, height needed = width/0.8
-            //            The 9:16 image height at full width = width/0.5625
-            //            Crop percentage: (width/0.8) / (width/0.5625) = 0.5625/0.8 = 70.3% of image height shown
-            //            Center crop → objectPosition: center center
-            // For 1:1  → crop top+bottom: 1:1 ratio = 1.0
-            //            Scale: to fill width, height needed = width
-            //            The 9:16 image height at full width = width/0.5625
-            //            Crop percentage: width / (width/0.5625) = 0.5625 = 56.25% of image height shown
-            //            Center crop → objectPosition: center center
-            //
-            // Implementation: set container to target aspect ratio, image fills it with object-fit:cover
-            // This is exactly what Facebook does — center crop.
-
-            const aspectRatioMap: Record<FormatMode, string> = {
-              "9:16": "9/16",
-              "4:5": "4/5",
-              "1:1": "1/1",
-            };
-
-            // For non-9:16 modes, show a subtle "cropped region" indicator
-            // showing what % of the original 9:16 is visible
-            const cropInfo: Record<FormatMode, string | null> = {
-              "9:16": null,
-              "4:5": "Showing center 70% of height — top/bottom cropped",
-              "1:1": "Showing center 56% of height — top/bottom cropped",
-            };
-
+            const drawerAspect: Record<string, string> = { "1:1": "1/1", "4:5": "4/5", "9:16": "9/16" };
             return (
-              <div style={{ background: "#0A0A0C" }}>
-                {/* Crop preview container */}
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    aspectRatio: aspectRatioMap[formatMode],
-                    maxHeight: "520px",
-                    overflow: "hidden",
-                    transition: "aspect-ratio 0.25s ease",
-                  }}
-                >
+              <div className="relative" style={{ background: "#0A0A0C" }}>
+                <div style={{ position: "relative", width: "100%", aspectRatio: drawerAspect[formatMode] ?? "1/1", maxHeight: "520px", overflow: "hidden" }}>
                   <img
                     src={ad.imageUrl}
                     alt={ad.title}
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center center",
-                      transition: "all 0.25s ease",
-                    }}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
                   />
-                  {/* Crop indicator badge */}
-                  {cropInfo[formatMode] && (
+                  {/* Safe-zone overlay: dashed 1:1 square centered */}
+                  {formatMode !== "1:1" && (
                     <div
                       style={{
                         position: "absolute",
-                        bottom: 8,
+                        top: "50%",
                         left: "50%",
-                        transform: "translateX(-50%)",
-                        background: "rgba(0,0,0,0.7)",
-                        backdropFilter: "blur(6px)",
-                        border: "1px solid rgba(99,102,241,0.4)",
-                        borderRadius: 6,
-                        padding: "3px 10px",
-                        color: "#A5B4FC",
-                        fontSize: 10,
-                        fontFamily: "'JetBrains Mono', monospace",
-                        whiteSpace: "nowrap",
+                        transform: "translate(-50%, -50%)",
+                        // For 4:5: safe zone is the full width (square = 80% of height = 100% of width since 4:5 ratio)
+                        // For 9:16: safe zone square width = same as image width (9/16 of height)
+                        width: formatMode === "4:5" ? "80%" : "100%",
+                        aspectRatio: "1/1",
+                        border: "2px dashed rgba(99,102,241,0.5)",
                         pointerEvents: "none",
+                        borderRadius: 4,
                       }}
-                    >
-                      {cropInfo[formatMode]}
-                    </div>
+                    />
                   )}
                 </div>
-
-                {/* Format selector strip */}
-                <div
-                  className="flex items-center justify-center gap-1.5 py-2.5"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
-                >
-                  <span className="text-[10px] font-mono mr-1" style={{ color: "#4B5563" }}>Preview as:</span>
-                  {(["9:16", "4:5", "1:1"] as const).map((fmt) => (
+                {/* Format selector strip below image */}
+                <div className="flex items-center justify-center gap-1 py-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                  {(["1:1", "4:5", "9:16"] as const).map((fmt) => (
                     <button
                       key={fmt}
                       onClick={() => setFormatMode(fmt)}
@@ -439,6 +377,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
                       {fmt}
                     </button>
                   ))}
+                  <span className="text-[10px] font-mono ml-2" style={{ color: "#4B5563" }}>dashed = 1:1 safe zone</span>
                 </div>
               </div>
             );
@@ -900,7 +839,7 @@ export default function Home() {
                 Ad Creative Canvas
               </h1>
               <p className="text-[10px] font-mono mt-0.5 leading-none" style={{ color: S.textMuted }}>
-                {AD_EXAMPLES.length} creatives · {ALL_NICHES.length} niches · {ALL_ANGLES.length} angles
+                110 creatives · 10 niches · 11 angles
               </p>
             </div>
           </div>
