@@ -59,3 +59,8 @@
 - [x] Expand blueprint in detail drawer: editable hook, copy formula, trust element, CTA, replication prompt
 - [x] Show brand-injected prompt preview with copy button
 - [x] Show diff/highlight of injected tokens in the prompt
+
+## Generate → Brand Params Sync
+- [x] Read GenerateAdPanel fields (companyName, location, etc.)
+- [x] Call useBrandParams.update() when Generate panel fields change
+- [x] Show "Brand params updated" toast confirmation

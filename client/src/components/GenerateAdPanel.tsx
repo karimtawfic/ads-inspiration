@@ -4,7 +4,7 @@
 // a pixel-perfect ad mockup + full replication blueprint
 // ============================================================
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trpc } from "@/lib/trpc";
 import {
@@ -26,7 +26,10 @@ import {
   Wand2,
   Zap,
   Layers,
+  RefreshCw,
 } from "lucide-react";
+import { useBrandParams } from "@/hooks/useBrandParams";
+import { toast } from "sonner";
 
 // ─── Types ────────────────────────────────────────────────────
 interface GeneratedAd {
@@ -316,6 +319,34 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
   const [batchResults, setBatchResults] = useState<GeneratedAd[]>([]);
   const [batchProgress, setBatchProgress] = useState(0);
   const [batchTotal, setBatchTotal] = useState(0);
+  const [syncedToBrand, setSyncedToBrand] = useState(false);
+  const { update: updateBrandParams, params: brandParams } = useBrandParams();
+  const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Pre-fill from brand params on mount (if brand params already set)
+  useEffect(() => {
+    if (brandParams.brandName && !companyName) setCompanyName(brandParams.brandName);
+    if (brandParams.location && location === "North America") setLocation(brandParams.location);
+    if (brandParams.tagline && !tagline) setTagline(brandParams.tagline);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Debounced sync: when company fields change, push to brand params after 800ms idle
+  useEffect(() => {
+    if (!companyName && !location && !tagline) return;
+    if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
+    syncTimerRef.current = setTimeout(() => {
+      updateBrandParams({
+        ...(companyName ? { brandName: companyName } : {}),
+        ...(location ? { location } : {}),
+        ...(tagline ? { tagline } : {}),
+      });
+      setSyncedToBrand(true);
+      setTimeout(() => setSyncedToBrand(false), 2000);
+      toast.success("Brand params synced", { description: "Company details saved to your brand profile." });
+    }, 800);
+    return () => { if (syncTimerRef.current) clearTimeout(syncTimerRef.current); };
+  }, [companyName, location, tagline]);
 
   const generateMutation = trpc.generate.createAdCreative.useMutation({
     onSuccess: (data) => {
@@ -415,9 +446,25 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
               <h2 className="text-base font-bold leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>
                 Generate Ad Creative
               </h2>
-              <p className="text-[11px] font-mono mt-0.5" style={{ color: "#6B7280" }}>
-                AI-generated mockup + full replication blueprint
-              </p>
+              <div className="flex items-center gap-2 mt-0.5">
+                <p className="text-[11px] font-mono" style={{ color: "#6B7280" }}>
+                  AI-generated mockup + full replication blueprint
+                </p>
+                <AnimatePresence>
+                  {syncedToBrand && (
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.85 }}
+                      className="flex items-center gap-1 text-[10px] font-mono rounded-full px-2 py-0.5"
+                      style={{ background: "rgba(16,185,129,0.12)", color: "#10B981", border: "1px solid rgba(16,185,129,0.25)" }}
+                    >
+                      <RefreshCw size={9} />
+                      Synced to Brand
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
           <button
