@@ -836,7 +836,7 @@ export default function Home() {
   const hasFilters = activeAngles.size > 0 || activeNiches.size > 0 || activeFormats.size > 0 || searchQuery;
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: S.bg }}>
+    <div className="h-screen flex flex-col overflow-hidden" style={{ background: S.bg }}>
       {/* Top Bar */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-0 gap-4"
@@ -1094,12 +1094,12 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="flex flex-1 min-h-0">
+      <div className="flex flex-1 min-h-0 overflow-hidden">
         {/* Sidebar — only show on swipe file tab */}
         <AnimatePresence>
           {sidebarOpen && activeTab === "swipe" && (
             <motion.aside
-              className="flex-shrink-0 overflow-y-auto flex flex-col gap-6 py-5 px-3"
+              className="flex-shrink-0 overflow-y-auto flex flex-col gap-6 py-5 px-3 h-full"
               style={{
                 width: 220,
                 background: S.sidebar,
