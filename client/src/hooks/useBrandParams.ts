@@ -45,6 +45,11 @@ export function useBrandParams() {
     setParams((prev) => ({ ...prev, ...patch }));
   }, []);
 
+  // Full replace — used when switching profiles to avoid stale merged fields
+  const loadProfile = useCallback((next: BrandParams) => {
+    setParams({ ...DEFAULT_PARAMS, ...next });
+  }, []);
+
   const reset = useCallback(() => setParams(DEFAULT_PARAMS), []);
 
   const hasParams = Object.values(params).some((v) => v !== "" && v !== DEFAULT_PARAMS.primaryColor && v !== DEFAULT_PARAMS.secondaryColor && v !== "English" && v !== "Year-round");
@@ -71,5 +76,5 @@ export function useBrandParams() {
     [params]
   );
 
-  return { params, update, reset, hasParams, injectIntoPrompt };
+  return { params, update, loadProfile, reset, hasParams, injectIntoPrompt };
 }

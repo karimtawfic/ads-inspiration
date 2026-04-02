@@ -1,6 +1,8 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { X, RotateCcw, Palette, Globe, MapPin, Sun, Phone, Link2, Tag, Building2, CheckCircle2 } from "lucide-react";
+import { useState, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { X, RotateCcw, Palette, Globe, MapPin, Sun, Phone, Link2, Tag, Building2, CheckCircle2, Plus, Pencil, Trash2, ChevronDown, Users, Check } from "lucide-react";
 import { useBrandParams, type BrandParams } from "@/hooks/useBrandParams";
+import { useClientProfiles } from "@/hooks/useClientProfiles";
 
 const LANGUAGES = ["English", "French", "Spanish", "Portuguese", "Italian", "German", "Arabic", "Mandarin"];
 const SEASONS = ["Year-round", "Spring", "Summer", "Fall", "Winter", "Holiday Season", "Back to School", "New Year"];
@@ -10,7 +12,7 @@ const SEASONS = ["Year-round", "Spring", "Summer", "Fall", "Winter", "Holiday Se
 const panelStyle: React.CSSProperties = {
   position: "relative",
   marginLeft: "auto",
-  width: "min(460px, 95vw)",
+  width: "min(480px, 95vw)",
   height: "100%",
   background: "#111113",
   borderLeft: "1px solid rgba(255,255,255,0.08)",
@@ -35,7 +37,7 @@ const headerStyle: React.CSSProperties = {
 
 const bodyStyle: React.CSSProperties = {
   padding: 20,
-  display: "block", // NOT flex — plain block so children stack naturally
+  display: "block",
 };
 
 const sectionStyle: React.CSSProperties = {
@@ -107,18 +109,81 @@ const selectStyle: React.CSSProperties = {
   appearance: "auto",
 };
 
+const btnBase: React.CSSProperties = {
+  background: "transparent",
+  border: "none",
+  cursor: "pointer",
+  padding: 6,
+  borderRadius: 6,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
 interface Props {
   open: boolean;
   onClose: () => void;
 }
 
 export function BrandParamsPanel({ open, onClose }: Props) {
-  const { params, update, reset, hasParams } = useBrandParams();
+  const { params, update, loadProfile, reset, hasParams } = useBrandParams();
+  const {
+    profiles,
+    activeId,
+    activeProfile,
+    createProfile,
+    renameProfile,
+    deleteProfile,
+    switchProfile,
+    syncActiveProfile,
+  } = useClientProfiles();
 
-  const handleChange =
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [renamingId, setRenamingId] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState("");
+  const [newProfileName, setNewProfileName] = useState("");
+  const [addingNew, setAddingNew] = useState(false);
+
+  // When a brand field changes: update the singleton store AND sync to active profile
+  const handleChange = useCallback(
     (key: keyof BrandParams) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-      update({ [key]: e.target.value });
+      (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const patch = { [key]: e.target.value };
+        update(patch);
+        syncActiveProfile({ ...params, ...patch });
+      },
+    [update, syncActiveProfile, params]
+  );
+
+  // Switch to a profile: full replace (not merge) to avoid stale fields
+  const handleSwitchProfile = useCallback(
+    (id: string) => {
+      const loaded = switchProfile(id);
+      if (loaded) {
+        loadProfile(loaded); // full replace — clears stale fields from previous profile
+      }
+      setProfileDropdownOpen(false);
+    },
+    [switchProfile, loadProfile]
+  );
+
+  // Save current params as a new profile
+  const handleCreateProfile = useCallback(() => {
+    const name = newProfileName.trim() || "New Client";
+    createProfile(name, params);
+    setNewProfileName("");
+    setAddingNew(false);
+  }, [createProfile, params, newProfileName]);
+
+  // Rename commit
+  const handleRenameCommit = useCallback(
+    (id: string) => {
+      if (renameValue.trim()) renameProfile(id, renameValue.trim());
+      setRenamingId(null);
+      setRenameValue("");
+    },
+    [renameProfile, renameValue]
+  );
 
   return (
     <AnimatePresence>
@@ -164,7 +229,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                 <button
                   onClick={reset}
                   title="Reset to defaults"
-                  style={{ background: "transparent", border: "none", cursor: "pointer", padding: 6, borderRadius: 6, color: "#6B7280", display: "flex" }}
+                  style={{ ...btnBase, color: "#6B7280" }}
                   onMouseOver={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
                   onMouseOut={(e) => (e.currentTarget.style.background = "transparent")}
                 >
@@ -172,7 +237,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                 </button>
                 <button
                   onClick={onClose}
-                  style={{ background: "transparent", border: "none", cursor: "pointer", padding: 6, borderRadius: 6, color: "#9CA3AF", display: "flex" }}
+                  style={{ ...btnBase, color: "#9CA3AF" }}
                   onMouseOver={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
                   onMouseOut={(e) => (e.currentTarget.style.background = "transparent")}
                 >
@@ -184,8 +249,152 @@ export function BrandParamsPanel({ open, onClose }: Props) {
             {/* ── Body ── */}
             <div style={bodyStyle}>
 
-              {/* Active indicator */}
-              {hasParams && (
+              {/* ── CLIENT PROFILES ── */}
+              <div style={{ ...sectionStyle, marginBottom: 20 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <Users size={12} style={{ color: "#6B7280" }} />
+                    <span style={sectionTitleStyle as React.CSSProperties & { marginBottom: 0 }}>Client Profiles</span>
+                  </div>
+                  <button
+                    onClick={() => setAddingNew((v) => !v)}
+                    title="Save current params as new profile"
+                    style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(99,102,241,0.12)", border: "1px solid rgba(99,102,241,0.25)", borderRadius: 5, padding: "4px 10px", cursor: "pointer", fontSize: 11, fontFamily: "monospace", color: "#818CF8" }}
+                  >
+                    <Plus size={11} />
+                    Save as Profile
+                  </button>
+                </div>
+
+                {/* New profile input */}
+                {addingNew && (
+                  <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
+                    <input
+                      autoFocus
+                      style={{ ...inputStyle, flex: 1, minWidth: 0 }}
+                      value={newProfileName}
+                      onChange={(e) => setNewProfileName(e.target.value)}
+                      placeholder="Client name (e.g. ProClean Montreal)"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") handleCreateProfile();
+                        if (e.key === "Escape") setAddingNew(false);
+                      }}
+                    />
+                    <button
+                      onClick={handleCreateProfile}
+                      style={{ background: "#6366F1", border: "none", borderRadius: 6, padding: "0 12px", cursor: "pointer", color: "#fff", fontSize: 12, fontFamily: "monospace", fontWeight: 600, flexShrink: 0 }}
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => setAddingNew(false)}
+                      style={{ ...btnBase, color: "#6B7280", border: "1px solid rgba(255,255,255,0.08)", flexShrink: 0 }}
+                    >
+                      <X size={13} />
+                    </button>
+                  </div>
+                )}
+
+                {/* Profile list */}
+                {profiles.length === 0 ? (
+                  <div style={{ fontFamily: "monospace", fontSize: 11, color: "#4B5563", textAlign: "center", padding: "12px 0" }}>
+                    No profiles yet — fill in your brand details and click "Save as Profile"
+                  </div>
+                ) : (
+                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    {profiles.map((profile) => (
+                      <div
+                        key={profile.id}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                          background: profile.id === activeId ? "rgba(99,102,241,0.1)" : "rgba(255,255,255,0.03)",
+                          border: `1px solid ${profile.id === activeId ? "rgba(99,102,241,0.35)" : "rgba(255,255,255,0.07)"}`,
+                          borderRadius: 6,
+                          padding: "8px 10px",
+                          cursor: "pointer",
+                          transition: "all 0.15s",
+                        }}
+                        onClick={() => handleSwitchProfile(profile.id)}
+                      >
+                        {/* Active indicator */}
+                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: profile.id === activeId ? "#6366F1" : "rgba(255,255,255,0.15)", flexShrink: 0 }} />
+
+                        {/* Name (or rename input) */}
+                        {renamingId === profile.id ? (
+                          <input
+                            autoFocus
+                            style={{ ...inputStyle, flex: 1, minWidth: 0, padding: "4px 8px", fontSize: 12 }}
+                            value={renameValue}
+                            onChange={(e) => setRenameValue(e.target.value)}
+                            onClick={(e) => e.stopPropagation()}
+                            onKeyDown={(e) => {
+                              e.stopPropagation();
+                              if (e.key === "Enter") handleRenameCommit(profile.id);
+                              if (e.key === "Escape") { setRenamingId(null); setRenameValue(""); }
+                            }}
+                          />
+                        ) : (
+                          <span style={{ flex: 1, fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: profile.id === activeId ? 600 : 400, color: profile.id === activeId ? "#E5E3DF" : "#9CA3AF", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {profile.name}
+                          </span>
+                        )}
+
+                        {/* Active check */}
+                        {profile.id === activeId && renamingId !== profile.id && (
+                          <Check size={12} style={{ color: "#6366F1", flexShrink: 0 }} />
+                        )}
+
+                        {/* Rename commit button */}
+                        {renamingId === profile.id && (
+                          <button
+                            onClick={(e) => { e.stopPropagation(); handleRenameCommit(profile.id); }}
+                            style={{ ...btnBase, background: "#6366F1", color: "#fff", padding: "3px 8px", fontSize: 11, fontFamily: "monospace", borderRadius: 4, flexShrink: 0 }}
+                          >
+                            OK
+                          </button>
+                        )}
+
+                        {/* Action buttons (rename / delete) */}
+                        {renamingId !== profile.id && (
+                          <div style={{ display: "flex", gap: 2, flexShrink: 0 }} onClick={(e) => e.stopPropagation()}>
+                            <button
+                              title="Rename"
+                              onClick={(e) => { e.stopPropagation(); setRenamingId(profile.id); setRenameValue(profile.name); }}
+                              style={{ ...btnBase, color: "#6B7280", padding: 4 }}
+                              onMouseOver={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
+                              onMouseOut={(e) => (e.currentTarget.style.background = "transparent")}
+                            >
+                              <Pencil size={11} />
+                            </button>
+                            <button
+                              title="Delete"
+                              onClick={(e) => { e.stopPropagation(); deleteProfile(profile.id); }}
+                              style={{ ...btnBase, color: "#6B7280", padding: 4 }}
+                              onMouseOver={(e) => { e.currentTarget.style.background = "rgba(239,68,68,0.12)"; e.currentTarget.style.color = "#EF4444"; }}
+                              onMouseOut={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#6B7280"; }}
+                            >
+                              <Trash2 size={11} />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Active profile indicator */}
+                {activeProfile && (
+                  <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 6, fontFamily: "monospace", fontSize: 10, color: "#6366F1" }}>
+                    <CheckCircle2 size={10} />
+                    Editing: <strong>{activeProfile.name}</strong>
+                  </div>
+                )}
+              </div>
+
+              {/* Active params indicator */}
+              {hasParams && !activeProfile && (
                 <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 6, padding: "8px 12px", marginBottom: 16 }}>
                   <CheckCircle2 size={12} style={{ color: "#10B981", flexShrink: 0 }} />
                   <span style={{ fontFamily: "monospace", fontSize: 11, color: "#10B981" }}>

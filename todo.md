@@ -81,3 +81,9 @@
 - [x] Apply correct aspect ratio to card image container based on selected format
 - [x] Ensure 1:1 safe zone: all text/button elements in creative images stay within center square when cropped from 4:5 or 9:16
 - [x] Format selector also available in detail drawer image preview
+
+## Client Profile Switcher
+- [x] Build useClientProfiles hook (CRUD: create, rename, delete, switch, list — localStorage)
+- [x] Add profile switcher UI to BrandParamsPanel header (dropdown/list, add, rename, delete, active indicator)
+- [x] Wire active profile into useBrandParams so switching profiles updates all brand params instantly
+- [x] Auto-save current params to active profile on every field change
