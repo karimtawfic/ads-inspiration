@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, votes } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -90,3 +90,40 @@ export async function getUserByOpenId(openId: string) {
 }
 
 // TODO: add feature queries here as your schema grows.
+
+/** Returns vote counts for all adIds in one query: { [adId]: count } */
+export async function getVoteCounts(): Promise<Record<string, number>> {
+  const db = await getDb();
+  if (!db) return {};
+  const rows = await db
+    .select({ adId: votes.adId, count: sql<number>`count(*)` })
+    .from(votes)
+    .groupBy(votes.adId);
+  return Object.fromEntries(rows.map(r => [r.adId, Number(r.count)]));
+}
+
+/** Returns the set of adIds the given openId has voted on */
+export async function getVotedAdIds(openId: string): Promise<string[]> {
+  const db = await getDb();
+  if (!db) return [];
+  const rows = await db.select({ adId: votes.adId }).from(votes).where(eq(votes.openId, openId));
+  return rows.map(r => r.adId);
+}
+
+/** Toggle vote: inserts if not present, deletes if present. Returns new voted state. */
+export async function toggleVote(adId: string, openId: string): Promise<{ voted: boolean }> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const existing = await db
+    .select({ id: votes.id })
+    .from(votes)
+    .where(and(eq(votes.adId, adId), eq(votes.openId, openId)))
+    .limit(1);
+  if (existing.length > 0) {
+    await db.delete(votes).where(and(eq(votes.adId, adId), eq(votes.openId, openId)));
+    return { voted: false };
+  } else {
+    await db.insert(votes).values({ adId, openId });
+    return { voted: true };
+  }
+}

@@ -26,3 +26,18 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
 // TODO: Add your tables here
+
+/**
+ * Tracks upvotes on ad creatives. One vote per user per creative (adId).
+ * adId is the string identifier from adData.ts (e.g. "hvac-before-after").
+ * Anonymous votes are stored with openId = "anon:{fingerprint}".
+ */
+export const votes = mysqlTable("votes", {
+  id: int("id").autoincrement().primaryKey(),
+  adId: varchar("adId", { length: 128 }).notNull(),
+  openId: varchar("openId", { length: 128 }).notNull(), // user openId or anon fingerprint
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Vote = typeof votes.$inferSelect;
+export type InsertVote = typeof votes.$inferInsert;

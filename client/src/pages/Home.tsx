@@ -21,11 +21,12 @@ import {
   type Format,
   type SourceType,
 } from "@/lib/adData";
-import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star, Building2, Columns, Sun, Moon } from "lucide-react";
+import { X, ExternalLink, Search, ChevronRight, Layers, Tag, Zap, Copy, CheckCheck, BookOpen, Database, Wand2, Target, LayoutGrid, Table2, Star, Building2, Columns, Sun, Moon, ThumbsUp } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { GenerateAdPanel } from "@/components/GenerateAdPanel";
 import CompetitorIntel from "@/pages/CompetitorIntel";
 import { useSavedAds } from "@/hooks/useSavedAds";
+import { useVotes } from "@/hooks/useVotes";
 import { useBrandParams } from "@/hooks/useBrandParams";
 import { BrandParamsPanel } from "@/components/BrandParamsPanel";
 
@@ -247,7 +248,7 @@ function HighlightedPrompt({
 
 // ─── Lightbox / Detail Drawer ─────────────────────────────
 type FormatMode = "1:1" | "4:5" | "9:16";
-function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFormatMode }: { ad: AdExample; onClose: () => void; isSaved: boolean; onToggleSave: () => void; formatMode: FormatMode; setFormatMode: (f: FormatMode) => void }) {
+function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFormatMode, voteCount = 0, isVoted = false, onToggleVote }: { ad: AdExample; onClose: () => void; isSaved: boolean; onToggleSave: () => void; formatMode: FormatMode; setFormatMode: (f: FormatMode) => void; voteCount?: number; isVoted?: boolean; onToggleVote?: () => void }) {
   const { params, injectIntoPrompt, hasParams } = useBrandParams();
 
   // Editable blueprint state — initialized from ad, reset when ad changes
@@ -312,6 +313,15 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
               <span className="text-xs font-mono" style={{ color: "#6B7280" }}>{ad.niche}</span>
             </div>
             <div className="flex items-center gap-1">
+              <button
+                onClick={(e) => { e.stopPropagation(); onToggleVote?.(); }}
+                className="flex items-center gap-1.5 rounded-md px-2 py-1.5 transition-all hover:bg-white/10"
+                style={{ color: isVoted ? "#6366F1" : "#6B7280" }}
+                title={isVoted ? "Remove vote" : "Upvote this creative"}
+              >
+                <ThumbsUp size={15} fill={isVoted ? "#6366F1" : "none"} />
+                {voteCount > 0 && <span className="text-xs font-mono">{voteCount}</span>}
+              </button>
               <button
                 onClick={(e) => { e.stopPropagation(); onToggleSave(); }}
                 className="rounded-md p-1.5 transition-all hover:bg-white/10"
@@ -494,7 +504,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
 }
 
 // ─── Ad Card ──────────────────────────────────────────────────
-function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark = true }: { ad: AdExample; index: number; onClick: () => void; isSaved: boolean; onToggleSave: () => void; cardHeight?: number; isDark?: boolean }) {
+function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark = true, voteCount = 0, isVoted = false, onToggleVote }: { ad: AdExample; index: number; onClick: () => void; isSaved: boolean; onToggleSave: () => void; cardHeight?: number; isDark?: boolean; voteCount?: number; isVoted?: boolean; onToggleVote?: () => void }) {
   const [hovered, setHovered] = useState(false);
   const imgHeight = cardHeight ?? 220;
 
@@ -562,7 +572,22 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
         </p>
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-mono" style={{ color: "#6B7280" }}>{ad.niche}</span>
-          <SourceBadge sourceType={ad.sourceType} />
+          <div className="flex items-center gap-2">
+            <button
+              className="flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-mono transition-all"
+              style={{
+                background: isVoted ? "rgba(99,102,241,0.15)" : "transparent",
+                color: isVoted ? "#6366F1" : "#6B7280",
+                border: isVoted ? "1px solid rgba(99,102,241,0.3)" : "1px solid transparent",
+              }}
+              onClick={(e) => { e.stopPropagation(); onToggleVote?.(); }}
+              title={isVoted ? "Remove vote" : "Upvote this creative"}
+            >
+              <ThumbsUp size={10} fill={isVoted ? "#6366F1" : "none"} />
+              {voteCount > 0 && <span>{voteCount}</span>}
+            </button>
+            <SourceBadge sourceType={ad.sourceType} />
+          </div>
         </div>
       </div>
     </motion.div>
@@ -681,6 +706,7 @@ export default function Home() {
   const CARD_HEIGHTS: Record<FormatMode, number> = { "1:1": 220, "4:5": 275, "9:16": 390 };
   const MATRIX_HEIGHTS: Record<FormatMode, number> = { "1:1": 140, "4:5": 175, "9:16": 249 };
   const { saved: savedIds, toggle: toggleSave, isSaved, clearAll: clearSaved } = useSavedAds();
+  const { counts: voteCounts, voted: votedIds, toggleVote } = useVotes();
   const savedAds = useMemo(() => AD_EXAMPLES.filter((a) => savedIds.has(a.id)), [savedIds]);
   const savedByNiche = useMemo(() => {
     const groups: Partial<Record<Niche, typeof savedAds>> = {};
@@ -767,8 +793,9 @@ export default function Home() {
     setSearchQuery("");
   };
 
+  const [sortBy, setSortBy] = useState<"default" | "votes">("default");
   const filtered = useMemo(() => {
-    return AD_EXAMPLES.filter((ad) => {
+    const results = AD_EXAMPLES.filter((ad) => {
       if (activeAngles.size > 0 && !activeAngles.has(ad.angle)) return false;
       if (activeNiches.size > 0 && !activeNiches.has(ad.niche)) return false;
       if (activeFormats.size > 0 && !activeFormats.has(ad.format)) return false;
@@ -784,7 +811,11 @@ export default function Home() {
       }
       return true;
     });
-  }, [activeAngles, activeNiches, activeFormats, searchQuery]);
+    if (sortBy === "votes") {
+      return [...results].sort((a, b) => (voteCounts[b.id] ?? 0) - (voteCounts[a.id] ?? 0));
+    }
+    return results;
+  }, [activeAngles, activeNiches, activeFormats, searchQuery, sortBy, voteCounts]);
 
   const angleCounts = useMemo(() => {
     const counts: Partial<Record<Angle, number>> = {};
@@ -923,9 +954,22 @@ export default function Home() {
                   <Table2 size={12} />
                 </button>
               </div>
+              {/* Sort by votes */}
+              <button
+                onClick={() => setSortBy(sortBy === "votes" ? "default" : "votes")}
+                className="flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-mono transition-all"
+                style={{
+                  background: sortBy === "votes" ? "rgba(99,102,241,0.15)" : S.hover,
+                  color: sortBy === "votes" ? "#818CF8" : S.textMuted,
+                  border: sortBy === "votes" ? "1px solid rgba(99,102,241,0.35)" : `1px solid ${S.border}`,
+                }}
+                title={sortBy === "votes" ? "Sort: Most Voted" : "Sort: Default"}
+              >
+                <ThumbsUp size={11} fill={sortBy === "votes" ? "#818CF8" : "none"} />
+                {sortBy === "votes" ? "Top Voted" : "Sort"}
+              </button>
             </div>
           )}
-
           {/* Clear filters */}
           {hasFilters && viewMode === "grid" && activeTab === "swipe" && (
             <button
@@ -1297,6 +1341,9 @@ export default function Home() {
                     onToggleSave={() => toggleSave(ad.id)}
                     cardHeight={CARD_HEIGHTS[formatMode]}
                     isDark={isDark}
+                    voteCount={voteCounts[ad.id] ?? 0}
+                    isVoted={votedIds.has(ad.id)}
+                    onToggleVote={() => toggleVote(ad.id)}
                   />
                 ))}
               </div>
@@ -1349,6 +1396,9 @@ export default function Home() {
           onToggleSave={() => toggleSave(selectedAd.id)}
           formatMode={formatMode}
           setFormatMode={setFormatMode}
+          voteCount={voteCounts[selectedAd.id] ?? 0}
+          isVoted={votedIds.has(selectedAd.id)}
+          onToggleVote={() => toggleVote(selectedAd.id)}
         />
       )}
 

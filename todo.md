@@ -95,3 +95,16 @@
 - [x] Remove format switcher (1:1/4:5/9:16) from header toolbar
 - [x] Add format switcher inside detail drawer (above image preview)
 - [x] Premium UI overhaul: header, sidebar, cards, drawer, typography, spacing
+
+## Voting Feature
+- [x] Add votes table to DB schema (adId, openId, createdAt)
+- [x] Run db:push to create votes table in production DB
+- [x] Add vote DB helpers (getVoteCounts, getVotedAdIds, toggleVote)
+- [x] Create votes tRPC router (getAll, toggle)
+- [x] Create useVotes hook (anonymous via localStorage anonId, optimistic updates)
+- [x] Add ThumbsUp vote button to AdCard bottom strip (with count display)
+- [x] Add vote button to AdDetailDrawer header
+- [x] Add sort-by-votes toggle to top bar toolbar
+- [x] Wire vote props to all AdCard call sites
+- [x] Vitest tests for votes router (4 tests passing)
+- [x] Save checkpoint
