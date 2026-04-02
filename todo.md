@@ -64,3 +64,6 @@
 - [x] Read GenerateAdPanel fields (companyName, location, etc.)
 - [x] Call useBrandParams.update() when Generate panel fields change
 - [x] Show "Brand params updated" toast confirmation
+
+## BrandParamsPanel Layout Fix
+- [ ] Rewrite BrandParamsPanel with clean non-overlapping layout (fields stacking/bleeding issue)
