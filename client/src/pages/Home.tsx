@@ -5,7 +5,7 @@
 // Color-coded angle taxonomy, masonry grid, lightbox drawer
 // ============================================================
 
-import { useState, useMemo, useRef, useCallback } from "react";
+import { useState, useMemo, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AD_EXAMPLES,
@@ -343,7 +343,7 @@ function FilterPill({
   return (
     <button
       onClick={onClick}
-      className="flex items-center justify-between rounded-md px-3 py-1.5 text-sm transition-all text-left"
+      className="relative flex items-center justify-between rounded-md px-3 py-1.5 text-sm transition-all text-left overflow-hidden"
       style={{
         background: active ? (color ? `${color}18` : "rgba(255,255,255,0.08)") : isScrollTarget ? "rgba(255,255,255,0.03)" : "transparent",
         color: active ? (color || "#F0EEE9") : isScrollTarget ? "#C4C2BE" : "#9CA3AF",
@@ -352,7 +352,14 @@ function FilterPill({
         fontWeight: active ? 600 : 400,
       }}
     >
-      <span className="flex items-center gap-2">
+      {/* Active indicator bar — only shown when active and no color (i.e. niche pills in matrix mode) */}
+      {active && !color && (
+        <span
+          className="absolute left-0 top-1 bottom-1 rounded-full"
+          style={{ width: 3, background: "#6366F1" }}
+        />
+      )}
+      <span className="flex items-center gap-2" style={{ paddingLeft: active && !color ? 6 : 0 }}>
         {color && (
           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : "#374151" }} />
         )}
@@ -389,8 +396,44 @@ export default function Home() {
     return groups;
   }, [savedAds]);
   const savedNiches = useMemo(() => ALL_NICHES.filter((n) => (savedByNiche[n]?.length ?? 0) > 0), [savedByNiche]);
+  const [activeMatrixNiche, setActiveMatrixNiche] = useState<Niche | null>(null);
   const mainScrollRef = useRef<HTMLElement>(null);
   const nicheSectionRefs = useRef<Partial<Record<Niche, HTMLDivElement | null>>>({});
+
+  // IntersectionObserver: track which niche section is in view during matrix scroll
+  useEffect(() => {
+    if (viewMode !== "matrix" || activeTab !== "swipe") {
+      setActiveMatrixNiche(null);
+      return;
+    }
+    const container = mainScrollRef.current;
+    if (!container) return;
+
+    const observers: IntersectionObserver[] = [];
+    const visibleRatios = new Map<Niche, number>();
+
+    ALL_NICHES.forEach((niche) => {
+      const el = nicheSectionRefs.current[niche];
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          visibleRatios.set(niche, entry.intersectionRatio);
+          // Pick the niche with the highest visible ratio
+          let best: Niche | null = null;
+          let bestRatio = 0;
+          visibleRatios.forEach((ratio, n) => {
+            if (ratio > bestRatio) { bestRatio = ratio; best = n; }
+          });
+          if (bestRatio > 0) setActiveMatrixNiche(best);
+        },
+        { root: container, threshold: Array.from({ length: 21 }, (_, i) => i * 0.05) }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, [viewMode, activeTab]);
 
   const scrollToNiche = useCallback((niche: Niche) => {
     const el = nicheSectionRefs.current[niche];
@@ -640,7 +683,7 @@ export default function Home() {
                   <FilterPill
                     key={n}
                     label={n}
-                    active={viewMode === "matrix" ? false : activeNiches.has(n)}
+                    active={viewMode === "matrix" ? n === activeMatrixNiche : activeNiches.has(n)}
                     onClick={() => {
                       if (viewMode === "matrix") {
                         scrollToNiche(n);
@@ -649,7 +692,7 @@ export default function Home() {
                       }
                     }}
                     count={nicheCounts[n] || 0}
-                    isScrollTarget={viewMode === "matrix"}
+                    isScrollTarget={viewMode === "matrix" && n !== activeMatrixNiche}
                   />
                 ))}
               </SidebarSection>

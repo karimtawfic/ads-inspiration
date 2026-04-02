@@ -47,3 +47,6 @@
 
 ## Saved Tab Niche Grouping
 - [x] Group saved creatives by niche in Saved tab (section headers, per-niche count)
+
+## Active Niche Highlight on Scroll
+- [x] IntersectionObserver tracks visible niche section and highlights it in sidebar (matrix mode only)
