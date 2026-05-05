@@ -49,7 +49,7 @@ function SourceBadge({ sourceType }: { sourceType: SourceType }) {
   const map: Record<SourceType, { color: string; label: string }> = {
     "Meta Ad Library": { color: "#1877F2", label: "Meta Library" },
     "Agency Curated": { color: "#FF5C1F", label: "Agency Curated" },
-    "AI Generated": { color: "#8B5CF6", label: "AI Generated" },
+    "AI Generated": { color: "#0284C7", label: "AI Generated" },
   };
   const { color, label } = map[sourceType];
   return (
@@ -65,7 +65,7 @@ function SourceBadge({ sourceType }: { sourceType: SourceType }) {
 function FormatBadge({ format }: { format: Format }) {
   const map: Record<Format, string> = {
     "Static Image": "#FF5C1F",
-    Carousel: "#8B5CF6",
+    Carousel: "#0284C7",
     Video: "#EF4444",
     "Lead Form": "#FF5C1F",
   };

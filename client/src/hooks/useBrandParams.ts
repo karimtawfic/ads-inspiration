@@ -16,7 +16,7 @@ export interface BrandParams {
 const DEFAULT_PARAMS: BrandParams = {
   brandName: "",
   logoUrl: "",
-  primaryColor: "#6366F1",
+  primaryColor: "#FF5C1F",
   secondaryColor: "#F59E0B",
   language: "English",
   location: "",

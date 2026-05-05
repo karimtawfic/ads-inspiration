@@ -184,8 +184,8 @@ function GeneratedResult({
   result: GeneratedAd;
   onReset: () => void;
 }) {
-  const angleColor = ANGLE_COLORS[result.angle as Angle] || "#6366F1";
-  const angleBg = ANGLE_BG[result.angle as Angle] || "#6366F118";
+  const angleColor = ANGLE_COLORS[result.angle as Angle] || "#FF5C1F";
+  const angleBg = ANGLE_BG[result.angle as Angle] || "#FF5C1F18";
 
   return (
     <motion.div
@@ -264,8 +264,8 @@ function GeneratedResult({
       {/* Variants */}
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <Sparkles size={12} style={{ color: "#A78BFA" }} />
-          <span className="text-[10px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#A78BFA" }}>
+          <Sparkles size={12} style={{ color: "#FF5C1F" }} />
+          <span className="text-[10px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#FF5C1F" }}>
             3 Variants to Test
           </span>
         </div>
@@ -278,7 +278,7 @@ function GeneratedResult({
             >
               <span
                 className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-mono font-bold mt-0.5"
-                style={{ background: "rgba(167,139,250,0.2)", color: "#A78BFA" }}
+                style={{ background: "rgba(167,139,250,0.2)", color: "#FF5C1F" }}
               >
                 {i + 1}
               </span>
@@ -399,7 +399,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
     }
   };
 
-  const angleColor = ANGLE_COLORS[angle as Angle] || "#6366F1";
+  const angleColor = ANGLE_COLORS[angle as Angle] || "#FF5C1F";
 
   return (
     <motion.div
@@ -438,9 +438,9 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
           <div className="flex items-center gap-3">
             <div
               className="w-8 h-8 rounded-lg flex items-center justify-center"
-              style={{ background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.3)" }}
+              style={{ background: "rgba(255,92,31,0.15)", border: "1px solid rgba(255,92,31,0.3)" }}
             >
-              <Wand2 size={15} style={{ color: "#818CF8" }} />
+              <Wand2 size={15} style={{ color: "#FF5C1F" }} />
             </div>
             <div>
               <h2 className="text-base font-bold leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>
@@ -569,10 +569,10 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                 disabled={generateMutation.isPending}
                 className="flex items-center justify-center gap-3 rounded-xl py-4 text-base font-bold transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
-                  background: "linear-gradient(135deg, #6366F1, #8B5CF6)",
+                  background: "linear-gradient(135deg, #FF5C1F, #D94A18)",
                   color: "#FFFFFF",
                   fontFamily: "'Space Grotesk', sans-serif",
-                  boxShadow: "0 4px 24px rgba(99,102,241,0.35)",
+                  boxShadow: "0 4px 24px rgba(255,92,31,0.35)",
                 }}
               >
                 {generateMutation.isPending ? (
@@ -594,9 +594,9 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                 disabled={generateMutation.isPending || batchMode}
                 className="flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{
-                  background: "rgba(99,102,241,0.1)",
-                  color: "#818CF8",
-                  border: "1px solid rgba(99,102,241,0.3)",
+                  background: "rgba(255,92,31,0.1)",
+                  color: "#FF5C1F",
+                  border: "1px solid rgba(255,92,31,0.3)",
                   fontFamily: "'Space Grotesk', sans-serif",
                 }}
               >
@@ -607,9 +607,9 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
               {generateMutation.isPending && !batchMode && (
                 <div className="flex flex-col items-center gap-2 py-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#6366F1", animationDelay: "0ms" }} />
-                    <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#8B5CF6", animationDelay: "150ms" }} />
-                    <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#A78BFA", animationDelay: "300ms" }} />
+                    <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#FF5C1F", animationDelay: "0ms" }} />
+                    <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#FF5C1F", animationDelay: "150ms" }} />
+                    <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#FF5C1F", animationDelay: "300ms" }} />
                   </div>
                   <p className="text-xs font-mono" style={{ color: "#6B7280" }}>
                     Building image + replication blueprint in parallel…
@@ -624,7 +624,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                     <span className="text-xs font-mono" style={{ color: "#9CA3AF" }}>
                       {batchProgress < batchTotal ? `Generating angle ${batchProgress + 1} of ${batchTotal}…` : `All ${batchTotal} angles complete`}
                     </span>
-                    <span className="text-xs font-mono" style={{ color: "#6366F1" }}>
+                    <span className="text-xs font-mono" style={{ color: "#FF5C1F" }}>
                       {batchResults.length} ready
                     </span>
                   </div>
@@ -634,7 +634,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                       className="h-1.5 rounded-full transition-all duration-500"
                       style={{
                         width: `${batchTotal > 0 ? (batchProgress / batchTotal) * 100 : 0}%`,
-                        background: "linear-gradient(90deg, #6366F1, #A78BFA)",
+                        background: "linear-gradient(90deg, #FF5C1F, #D94A18)",
                       }}
                     />
                   </div>
@@ -704,7 +704,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                     "One-click copy for each field",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
-                      <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#6366F1" }} />
+                      <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#FF5C1F" }} />
                       <span className="text-xs" style={{ color: "#9CA3AF" }}>{item}</span>
                     </div>
                   ))}

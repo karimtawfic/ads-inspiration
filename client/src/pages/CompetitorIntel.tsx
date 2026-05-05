@@ -181,11 +181,11 @@ function AdDetailDrawer({ ad, onClose }: { ad: CompetitorAd; onClose: () => void
             </div>
 
             {/* Replication Prompt */}
-            <div className="rounded-md p-4" style={{ background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.2)" }}>
+            <div className="p-4" style={{ background: "rgba(255,92,31,0.06)", border: "1px solid rgba(255,92,31,0.2)" }}>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <Zap size={13} style={{ color: "#8B5CF6" }} />
-                  <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#8B5CF6" }}>Replication Prompt</span>
+                  <Zap size={13} style={{ color: "#FF5C1F" }} />
+                  <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#FF5C1F" }}>Replication Prompt</span>
                 </div>
                 <CopyButton text={ad.replicationPrompt} label="Copy Prompt" />
               </div>

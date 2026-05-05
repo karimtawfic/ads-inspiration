@@ -213,8 +213,8 @@ export function BrandParamsPanel({ open, onClose }: Props) {
             {/* ── Header ── */}
             <div style={headerStyle}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.25)", borderRadius: 6, padding: 6, display: "flex" }}>
-                  <Building2 size={14} style={{ color: "#6366F1" }} />
+                <div style={{ background: "rgba(255,92,31,0.15)", border: "1px solid rgba(255,92,31,0.25)", borderRadius: 6, padding: 6, display: "flex" }}>
+                  <Building2 size={14} style={{ color: "#FF5C1F" }} />
                 </div>
                 <div>
                   <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 14, color: "#F0EEE9", lineHeight: 1 }}>
@@ -259,7 +259,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                   <button
                     onClick={() => setAddingNew((v) => !v)}
                     title="Save current params as new profile"
-                    style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(99,102,241,0.12)", border: "1px solid rgba(99,102,241,0.25)", borderRadius: 5, padding: "4px 10px", cursor: "pointer", fontSize: 11, fontFamily: "monospace", color: "#818CF8" }}
+                    style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(255,92,31,0.12)", border: "1px solid rgba(255,92,31,0.25)", borderRadius: 5, padding: "4px 10px", cursor: "pointer", fontSize: 11, fontFamily: "monospace", color: "#FF5C1F" }}
                   >
                     <Plus size={11} />
                     Save as Profile
@@ -282,7 +282,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                     />
                     <button
                       onClick={handleCreateProfile}
-                      style={{ background: "#6366F1", border: "none", borderRadius: 6, padding: "0 12px", cursor: "pointer", color: "#fff", fontSize: 12, fontFamily: "monospace", fontWeight: 600, flexShrink: 0 }}
+                      style={{ background: "#FF5C1F", border: "none", borderRadius: 6, padding: "0 12px", cursor: "pointer", color: "#fff", fontSize: 12, fontFamily: "monospace", fontWeight: 600, flexShrink: 0 }}
                     >
                       Save
                     </button>
@@ -309,8 +309,8 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                           display: "flex",
                           alignItems: "center",
                           gap: 8,
-                          background: profile.id === activeId ? "rgba(99,102,241,0.1)" : "rgba(255,255,255,0.03)",
-                          border: `1px solid ${profile.id === activeId ? "rgba(99,102,241,0.35)" : "rgba(255,255,255,0.07)"}`,
+                          background: profile.id === activeId ? "rgba(255,92,31,0.1)" : "rgba(255,255,255,0.03)",
+                          border: `1px solid ${profile.id === activeId ? "rgba(255,92,31,0.35)" : "rgba(255,255,255,0.07)"}`,
                           borderRadius: 6,
                           padding: "8px 10px",
                           cursor: "pointer",
@@ -319,7 +319,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                         onClick={() => handleSwitchProfile(profile.id)}
                       >
                         {/* Active indicator */}
-                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: profile.id === activeId ? "#6366F1" : "rgba(255,255,255,0.15)", flexShrink: 0 }} />
+                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: profile.id === activeId ? "#FF5C1F" : "rgba(255,255,255,0.15)", flexShrink: 0 }} />
 
                         {/* Name (or rename input) */}
                         {renamingId === profile.id ? (
@@ -343,14 +343,14 @@ export function BrandParamsPanel({ open, onClose }: Props) {
 
                         {/* Active check */}
                         {profile.id === activeId && renamingId !== profile.id && (
-                          <Check size={12} style={{ color: "#6366F1", flexShrink: 0 }} />
+                          <Check size={12} style={{ color: "#FF5C1F", flexShrink: 0 }} />
                         )}
 
                         {/* Rename commit button */}
                         {renamingId === profile.id && (
                           <button
                             onClick={(e) => { e.stopPropagation(); handleRenameCommit(profile.id); }}
-                            style={{ ...btnBase, background: "#6366F1", color: "#fff", padding: "3px 8px", fontSize: 11, fontFamily: "monospace", borderRadius: 4, flexShrink: 0 }}
+                            style={{ ...btnBase, background: "#FF5C1F", color: "#fff", padding: "3px 8px", fontSize: 11, fontFamily: "monospace", borderRadius: 4, flexShrink: 0 }}
                           >
                             OK
                           </button>
@@ -386,7 +386,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
 
                 {/* Active profile indicator */}
                 {activeProfile && (
-                  <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 6, fontFamily: "monospace", fontSize: 10, color: "#6366F1" }}>
+                  <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 6, fontFamily: "monospace", fontSize: 10, color: "#FF5C1F" }}>
                     <CheckCircle2 size={10} />
                     Editing: <strong>{activeProfile.name}</strong>
                   </div>
@@ -463,7 +463,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                         style={{ ...inputStyle, flex: 1, minWidth: 0 }}
                         value={params.primaryColor}
                         onChange={handleChange("primaryColor")}
-                        placeholder="#6366F1"
+                        placeholder="#FF5C1F"
                       />
                     </div>
                   </div>
@@ -546,15 +546,15 @@ export function BrandParamsPanel({ open, onClose }: Props) {
               </div>
 
               {/* ── TOKEN REFERENCE ── */}
-              <div style={{ background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.15)", borderRadius: 8, padding: 16 }}>
-                <div style={{ fontFamily: "monospace", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600, color: "#6366F1", marginBottom: 12 }}>
+              <div style={{ background: "rgba(255,92,31,0.06)", border: "1px solid rgba(255,92,31,0.15)", borderRadius: 8, padding: 16 }}>
+                <div style={{ fontFamily: "monospace", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600, color: "#FF5C1F", marginBottom: 12 }}>
                   Available Tokens
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
                   {["{BRAND}", "{TAGLINE}", "{LOGO}", "{PRIMARY_COLOR}", "{SECONDARY_COLOR}", "{LANGUAGE}", "{LOCATION}", "{SEASON}", "{PHONE}", "{WEBSITE}"].map((t) => (
                     <div
                       key={t}
-                      style={{ background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 4, padding: "4px 8px", fontFamily: "monospace", fontSize: 11, color: "#818CF8", textAlign: "center" }}
+                      style={{ background: "rgba(255,92,31,0.1)", border: "1px solid rgba(255,92,31,0.2)", borderRadius: 4, padding: "4px 8px", fontFamily: "monospace", fontSize: 11, color: "#FF5C1F", textAlign: "center" }}
                     >
                       {t}
                     </div>
