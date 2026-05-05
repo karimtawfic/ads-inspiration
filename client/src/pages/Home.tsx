@@ -756,7 +756,7 @@ export default function Home() {
   };
   const [activeTab, setActiveTab] = useState<"swipe" | "competitor" | "saved">("swipe");
   const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
-  const [rowDensity, setRowDensity] = useState<number>(3);
+  const [rowDensity, setRowDensity] = useState<number>(5);
   // formatMode: shared display format for all cards (type declared at module level)
   const [formatMode, setFormatMode] = useState<FormatMode>("1:1");
 
