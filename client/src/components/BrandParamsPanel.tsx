@@ -14,8 +14,8 @@ const panelStyle: React.CSSProperties = {
   marginLeft: "auto",
   width: "min(480px, 95vw)",
   height: "100%",
-  background: "#111113",
-  borderLeft: "1px solid rgba(255,255,255,0.08)",
+  background: "#E8E5DF",
+  borderLeft: "1px solid rgba(22,22,26,0.1)",
   overflowY: "auto",
   overflowX: "hidden",
   display: "flex",
@@ -30,8 +30,8 @@ const headerStyle: React.CSSProperties = {
   alignItems: "center",
   justifyContent: "space-between",
   padding: "16px 20px",
-  background: "#111113",
-  borderBottom: "1px solid rgba(255,255,255,0.07)",
+  background: "#E8E5DF",
+  borderBottom: "1px solid rgba(22,22,26,0.08)",
   flexShrink: 0,
 };
 
@@ -42,7 +42,7 @@ const bodyStyle: React.CSSProperties = {
 
 const sectionStyle: React.CSSProperties = {
   background: "rgba(255,255,255,0.025)",
-  border: "1px solid rgba(255,255,255,0.07)",
+  border: "1px solid rgba(22,22,26,0.08)",
   borderRadius: 8,
   padding: 16,
   marginBottom: 16,
@@ -55,7 +55,7 @@ const sectionTitleStyle: React.CSSProperties = {
   textTransform: "uppercase",
   letterSpacing: "0.1em",
   fontWeight: 600,
-  color: "#4B5563",
+  color: "#6B6B75",
   marginBottom: 16,
 };
 
@@ -80,7 +80,7 @@ const fieldLabelStyle: React.CSSProperties = {
   textTransform: "uppercase",
   letterSpacing: "0.08em",
   fontWeight: 600,
-  color: "#6B7280",
+  color: "#6B6B75",
 };
 
 const tokenBadgeStyle: React.CSSProperties = {
@@ -93,12 +93,12 @@ const inputStyle: React.CSSProperties = {
   display: "block",
   width: "100%",
   boxSizing: "border-box",
-  background: "rgba(255,255,255,0.05)",
-  border: "1px solid rgba(255,255,255,0.1)",
+  background: "rgba(22,22,26,0.05)",
+  border: "1px solid rgba(22,22,26,0.1)",
   borderRadius: 6,
   padding: "8px 12px",
   fontSize: 13,
-  color: "#E5E3DF",
+  color: "#16161A",
   fontFamily: "'Inter', sans-serif",
   outline: "none",
 };
@@ -217,10 +217,10 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                   <Building2 size={14} style={{ color: "#FF5C1F" }} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 14, color: "#F0EEE9", lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 14, color: "#16161A", lineHeight: 1 }}>
                     Brand Parameters
                   </div>
-                  <div style={{ fontFamily: "monospace", fontSize: 11, color: "#6B7280", marginTop: 3 }}>
+                  <div style={{ fontFamily: "monospace", fontSize: 11, color: "#6B6B75", marginTop: 3 }}>
                     Injected into every replication prompt
                   </div>
                 </div>
@@ -229,16 +229,16 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                 <button
                   onClick={reset}
                   title="Reset to defaults"
-                  style={{ ...btnBase, color: "#6B7280" }}
-                  onMouseOver={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
+                  style={{ ...btnBase, color: "#6B6B75" }}
+                  onMouseOver={(e) => (e.currentTarget.style.background = "rgba(22,22,26,0.1)")}
                   onMouseOut={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   <RotateCcw size={14} />
                 </button>
                 <button
                   onClick={onClose}
-                  style={{ ...btnBase, color: "#9CA3AF" }}
-                  onMouseOver={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
+                  style={{ ...btnBase, color: "#6B6B75" }}
+                  onMouseOver={(e) => (e.currentTarget.style.background = "rgba(22,22,26,0.1)")}
                   onMouseOut={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   <X size={18} />
@@ -253,7 +253,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
               <div style={{ ...sectionStyle, marginBottom: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                    <Users size={12} style={{ color: "#6B7280" }} />
+                    <Users size={12} style={{ color: "#6B6B75" }} />
                     <span style={sectionTitleStyle as React.CSSProperties & { marginBottom: 0 }}>Client Profiles</span>
                   </div>
                   <button
@@ -288,7 +288,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                     </button>
                     <button
                       onClick={() => setAddingNew(false)}
-                      style={{ ...btnBase, color: "#6B7280", border: "1px solid rgba(255,255,255,0.08)", flexShrink: 0 }}
+                      style={{ ...btnBase, color: "#6B6B75", border: "1px solid rgba(22,22,26,0.1)", flexShrink: 0 }}
                     >
                       <X size={13} />
                     </button>
@@ -297,7 +297,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
 
                 {/* Profile list */}
                 {profiles.length === 0 ? (
-                  <div style={{ fontFamily: "monospace", fontSize: 11, color: "#4B5563", textAlign: "center", padding: "12px 0" }}>
+                  <div style={{ fontFamily: "monospace", fontSize: 11, color: "#6B6B75", textAlign: "center", padding: "12px 0" }}>
                     No profiles yet — fill in your brand details and click "Save as Profile"
                   </div>
                 ) : (
@@ -309,8 +309,8 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                           display: "flex",
                           alignItems: "center",
                           gap: 8,
-                          background: profile.id === activeId ? "rgba(255,92,31,0.1)" : "rgba(255,255,255,0.03)",
-                          border: `1px solid ${profile.id === activeId ? "rgba(255,92,31,0.35)" : "rgba(255,255,255,0.07)"}`,
+                          background: profile.id === activeId ? "rgba(255,92,31,0.1)" : "rgba(22,22,26,0.03)",
+                          border: `1px solid ${profile.id === activeId ? "rgba(255,92,31,0.35)" : "rgba(22,22,26,0.08)"}`,
                           borderRadius: 6,
                           padding: "8px 10px",
                           cursor: "pointer",
@@ -319,7 +319,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                         onClick={() => handleSwitchProfile(profile.id)}
                       >
                         {/* Active indicator */}
-                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: profile.id === activeId ? "#FF5C1F" : "rgba(255,255,255,0.15)", flexShrink: 0 }} />
+                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: profile.id === activeId ? "#FF5C1F" : "rgba(22,22,26,0.15)", flexShrink: 0 }} />
 
                         {/* Name (or rename input) */}
                         {renamingId === profile.id ? (
@@ -336,7 +336,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                             }}
                           />
                         ) : (
-                          <span style={{ flex: 1, fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: profile.id === activeId ? 600 : 400, color: profile.id === activeId ? "#E5E3DF" : "#9CA3AF", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <span style={{ flex: 1, fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: profile.id === activeId ? 600 : 400, color: profile.id === activeId ? "#16161A" : "#6B6B75", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {profile.name}
                           </span>
                         )}
@@ -362,8 +362,8 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                             <button
                               title="Rename"
                               onClick={(e) => { e.stopPropagation(); setRenamingId(profile.id); setRenameValue(profile.name); }}
-                              style={{ ...btnBase, color: "#6B7280", padding: 4 }}
-                              onMouseOver={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
+                              style={{ ...btnBase, color: "#6B6B75", padding: 4 }}
+                              onMouseOver={(e) => (e.currentTarget.style.background = "rgba(22,22,26,0.1)")}
                               onMouseOut={(e) => (e.currentTarget.style.background = "transparent")}
                             >
                               <Pencil size={11} />
@@ -371,9 +371,9 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                             <button
                               title="Delete"
                               onClick={(e) => { e.stopPropagation(); deleteProfile(profile.id); }}
-                              style={{ ...btnBase, color: "#6B7280", padding: 4 }}
+                              style={{ ...btnBase, color: "#6B6B75", padding: 4 }}
                               onMouseOver={(e) => { e.currentTarget.style.background = "rgba(239,68,68,0.12)"; e.currentTarget.style.color = "#EF4444"; }}
-                              onMouseOut={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#6B7280"; }}
+                              onMouseOut={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#6B6B75"; }}
                             >
                               <Trash2 size={11} />
                             </button>
@@ -434,7 +434,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                       <img
                         src={params.logoUrl}
                         alt="Logo preview"
-                        style={{ height: 36, maxWidth: 100, background: "rgba(255,255,255,0.06)", padding: 4, borderRadius: 4, objectFit: "contain" }}
+                        style={{ height: 36, maxWidth: 100, background: "rgba(22,22,26,0.06)", padding: 4, borderRadius: 4, objectFit: "contain" }}
                         onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                       />
                     </div>
@@ -457,7 +457,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                         type="color"
                         value={params.primaryColor}
                         onChange={handleChange("primaryColor")}
-                        style={{ width: 34, height: 34, border: "1px solid rgba(255,255,255,0.1)", background: "transparent", padding: 2, borderRadius: 4, cursor: "pointer", flexShrink: 0 }}
+                        style={{ width: 34, height: 34, border: "1px solid rgba(22,22,26,0.1)", background: "transparent", padding: 2, borderRadius: 4, cursor: "pointer", flexShrink: 0 }}
                       />
                       <input
                         style={{ ...inputStyle, flex: 1, minWidth: 0 }}
@@ -478,7 +478,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                         type="color"
                         value={params.secondaryColor}
                         onChange={handleChange("secondaryColor")}
-                        style={{ width: 34, height: 34, border: "1px solid rgba(255,255,255,0.1)", background: "transparent", padding: 2, borderRadius: 4, cursor: "pointer", flexShrink: 0 }}
+                        style={{ width: 34, height: 34, border: "1px solid rgba(22,22,26,0.1)", background: "transparent", padding: 2, borderRadius: 4, cursor: "pointer", flexShrink: 0 }}
                       />
                       <input
                         style={{ ...inputStyle, flex: 1, minWidth: 0 }}
@@ -560,7 +560,7 @@ export function BrandParamsPanel({ open, onClose }: Props) {
                     </div>
                   ))}
                 </div>
-                <div style={{ fontFamily: "monospace", fontSize: 10, color: "#4B5563", marginTop: 12 }}>
+                <div style={{ fontFamily: "monospace", fontSize: 10, color: "#6B6B75", marginTop: 12 }}>
                   Use these tokens in any replication prompt — they'll be replaced with your brand values.
                 </div>
               </div>

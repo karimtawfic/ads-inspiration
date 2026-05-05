@@ -101,10 +101,10 @@ function EditableReplicationRow({
     setTimeout(() => setCopied(false), 1800);
   };
   const inputStyle: React.CSSProperties = {
-    background: "rgba(255,255,255,0.06)",
+    background: "rgba(22,22,26,0.04)",
     border: "1px solid rgba(255,92,31,0.4)",
-    color: "#E5E3DF",
-    borderRadius: 6,
+    color: "#16161A",
+    borderRadius: 0,
     padding: "8px 10px",
     fontSize: 13,
     width: "100%",
@@ -117,8 +117,8 @@ function EditableReplicationRow({
     <div
       className="group flex flex-col gap-1.5  p-3"
       style={{
-        background: highlight ? "rgba(255,92,31,0.06)" : "rgba(255,255,255,0.04)",
-        border: highlight ? "1px solid rgba(255,92,31,0.2)" : "1px solid rgba(255,255,255,0.07)",
+        background: highlight ? "rgba(255,92,31,0.06)" : "rgba(22,22,26,0.04)",
+        border: highlight ? "1px solid rgba(255,92,31,0.2)" : "1px solid rgba(22,22,26,0.1)",
       }}
     >
       <div className="flex items-center justify-between">
@@ -132,14 +132,14 @@ function EditableReplicationRow({
           <button
             onClick={() => setEditing((v) => !v)}
             className="flex items-center gap-1 text-[10px] rounded px-1.5 py-0.5"
-            style={{ color: editing ? "#FF5C1F" : "#9CA3AF", background: editing ? "rgba(255,92,31,0.12)" : "rgba(255,255,255,0.06)" }}
+            style={{ color: editing ? "#FF5C1F" : "#6B6B75", background: editing ? "rgba(255,92,31,0.12)" : "rgba(22,22,26,0.06)" }}
           >
             {editing ? "Done" : "Edit"}
           </button>
           <button
             onClick={copy}
             className="flex items-center gap-1 text-[10px] rounded px-1.5 py-0.5"
-            style={{ color: "#9CA3AF", background: "rgba(255,255,255,0.06)" }}
+            style={{ color: "#6B6B75", background: "rgba(22,22,26,0.06)" }}
           >
             {copied ? <CheckCheck size={10} /> : <Copy size={10} />}
             {copied ? "Copied" : "Copy"}
@@ -163,7 +163,7 @@ function EditableReplicationRow({
           />
         )
       ) : (
-        <p className="text-sm leading-relaxed" style={{ color: "#D1D5DB" }}>{value}</p>
+        <p className="text-sm leading-relaxed" style={{ color: "#16161A" }}>{value}</p>
       )}
     </div>
   );
@@ -196,7 +196,7 @@ function HighlightedPrompt({
 }) {
   // If no brand params, just show the plain prompt
   if (!hasParams) {
-    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#6B6B75" }}>{injected}</p>;
+    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#16161A" }}>{injected}</p>;
   }
 
   // Split the injected prompt into segments: normal text vs injected values
@@ -223,11 +223,11 @@ function HighlightedPrompt({
 
   // If no tokens found in base, show injected as-is
   if (segments.length === 0 || segments.every((s) => !s.isToken)) {
-    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#6B6B75" }}>{injected}</p>;
+    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#16161A" }}>{injected}</p>;
   }
 
   return (
-    <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#4A4A52" }}>
+    <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#16161A" }}>
       {segments.map((seg, i) =>
         seg.isToken ? (
           <span
@@ -387,7 +387,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
                       {fmt}
                     </button>
                   ))}
-                  <span className="text-[10px] font-mono ml-2" style={{ color: "#4B5563" }}>dashed = 1:1 safe zone</span>
+                  <span className="text-[10px] font-mono ml-2" style={{ color: "#6B6B75" }}>dashed = 1:1 safe zone</span>
                 </div>
               </div>
             );
@@ -427,7 +427,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
                   <Layers size={13} style={{ color: "#FF5C1F" }} />
                   <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#FF5C1F" }}>Replication Blueprint</span>
                 </div>
-                <span className="text-[10px] font-mono" style={{ color: "#4B5563" }}>Hover any field to edit</span>
+                <span className="text-[10px] font-mono" style={{ color: "#6B6B75" }}>Hover any field to edit</span>
               </div>
               <div className="flex flex-col gap-2">
                 <EditableReplicationRow label="Hook" value={hook} onChange={setHook} />
@@ -555,7 +555,7 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
           style={{
             background: isSaved ? "rgba(255,92,31,0.18)" : "rgba(0,0,0,0.45)",
             color: isSaved ? "#FF5C1F" : "#9CA3AF",
-            border: isSaved ? "1px solid rgba(255,92,31,0.35)" : "1px solid rgba(255,255,255,0.1)",
+            border: isSaved ? "1px solid rgba(255,92,31,0.35)" : "1px solid rgba(22,22,26,0.12)",
             backdropFilter: "blur(4px)",
           }}
           onClick={(e) => { e.stopPropagation(); onToggleSave(); }}
@@ -1442,7 +1442,7 @@ export default function Home() {
                               style={{
                                 background: isSaved(ad.id) ? "rgba(255,92,31,0.18)" : "rgba(0,0,0,0.45)",
                                 color: isSaved(ad.id) ? "#FF5C1F" : "#9CA3AF",
-                                border: isSaved(ad.id) ? "1px solid rgba(255,92,31,0.35)" : "1px solid rgba(255,255,255,0.1)",
+                                border: isSaved(ad.id) ? "1px solid rgba(255,92,31,0.35)" : "1px solid rgba(22,22,26,0.12)",
                                 backdropFilter: "blur(4px)",
                               }}
                               onClick={(e) => { e.stopPropagation(); toggleSave(ad.id); }}

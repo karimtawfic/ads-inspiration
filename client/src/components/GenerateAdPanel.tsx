@@ -59,9 +59,9 @@ function CopyButton({ text, label }: { text: string; label: string }) {
       }}
       className="flex items-center gap-1.5 text-[11px] font-mono rounded px-2 py-1 transition-all"
       style={{
-        color: copied ? "#10B981" : "#9CA3AF",
-        background: copied ? "rgba(16,185,129,0.1)" : "rgba(255,255,255,0.06)",
-        border: `1px solid ${copied ? "rgba(16,185,129,0.3)" : "rgba(255,255,255,0.08)"}`,
+        color: copied ? "#10B981" : "#6B6B75",
+        background: copied ? "rgba(16,185,129,0.1)" : "rgba(22,22,26,0.06)",
+        border: `1px solid ${copied ? "rgba(16,185,129,0.3)" : "rgba(22,22,26,0.1)"}`,
       }}
     >
       {copied ? <CheckCheck size={10} /> : <Copy size={10} />}
@@ -75,15 +75,15 @@ function BlueprintRow({ label, value }: { label: string; value: string }) {
   return (
     <div
       className="group flex flex-col gap-1.5 rounded-lg p-3"
-      style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+      style={{ background: "rgba(22,22,26,0.03)", border: "1px solid rgba(22,22,26,0.08)" }}
     >
       <div className="flex items-center justify-between">
-        <span className="text-[10px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B7280" }}>
+        <span className="text-[10px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B6B75" }}>
           {label}
         </span>
         <CopyButton text={value} label="Copy" />
       </div>
-      <p className="text-sm leading-relaxed" style={{ color: "#D1D5DB" }}>{value}</p>
+      <p className="text-sm leading-relaxed" style={{ color: "#16161A" }}>{value}</p>
     </div>
   );
 }
@@ -104,7 +104,7 @@ function SelectField({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-[11px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B7280" }}>
+      <label className="text-[11px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B6B75" }}>
         {label}
       </label>
       <div className="relative">
@@ -113,14 +113,14 @@ function SelectField({
           onChange={(e) => onChange(e.target.value)}
           className="w-full appearance-none rounded-lg px-3 py-2.5 text-sm pr-8 outline-none transition-all cursor-pointer"
           style={{
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            color: colorMap?.[value] || "#E5E3DF",
+            background: "rgba(22,22,26,0.05)",
+            border: "1px solid rgba(22,22,26,0.1)",
+            color: colorMap?.[value] || "#16161A",
             fontFamily: "'Space Grotesk', sans-serif",
           }}
         >
           {options.map((opt) => (
-            <option key={opt} value={opt} style={{ background: "#1A1A1C", color: "#E5E3DF" }}>
+            <option key={opt} value={opt} style={{ background: "#1A1A1C", color: "#16161A" }}>
               {opt}
             </option>
           ))}
@@ -128,7 +128,7 @@ function SelectField({
         <ChevronDown
           size={14}
           className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"
-          style={{ color: "#6B7280" }}
+          style={{ color: "#6B6B75" }}
         />
       </div>
     </div>
@@ -152,11 +152,11 @@ function TextField({
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex items-center gap-2">
-        <label className="text-[11px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B7280" }}>
+        <label className="text-[11px] font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B6B75" }}>
           {label}
         </label>
         {optional && (
-          <span className="text-[10px] font-mono" style={{ color: "#4B5563" }}>optional</span>
+          <span className="text-[10px] font-mono" style={{ color: "#6B6B75" }}>optional</span>
         )}
       </div>
       <input
@@ -166,9 +166,9 @@ function TextField({
         placeholder={placeholder}
         className="rounded-lg px-3 py-2.5 text-sm outline-none transition-all"
         style={{
-          background: "rgba(255,255,255,0.05)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          color: "#E5E3DF",
+          background: "rgba(22,22,26,0.05)",
+          border: "1px solid rgba(22,22,26,0.1)",
+          color: "#16161A",
           fontFamily: "'Inter', sans-serif",
         }}
       />
@@ -194,7 +194,7 @@ function GeneratedResult({
       className="flex flex-col gap-5"
     >
       {/* Generated Image */}
-      <div className="relative rounded-xl overflow-hidden" style={{ background: "#0A0A0C" }}>
+      <div className="relative rounded-xl overflow-hidden" style={{ background: "#D8D4CC" }}>
         <img
           src={result.imageUrl}
           alt={`${result.angle} — ${result.niche}`}
@@ -211,7 +211,7 @@ function GeneratedResult({
           </span>
           <span
             className="text-[11px] font-mono font-semibold px-2 py-1 rounded-md"
-            style={{ color: "#E5E3DF", background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.15)" }}
+            style={{ color: "#16161A", background: "rgba(0,0,0,0.6)", border: "1px solid rgba(22,22,26,0.15)" }}
           >
             {result.niche}
           </span>
@@ -223,7 +223,7 @@ function GeneratedResult({
           target="_blank"
           rel="noopener noreferrer"
           className="absolute top-3 right-3 flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[11px] font-mono font-semibold transition-all hover:opacity-90"
-          style={{ background: "rgba(0,0,0,0.7)", color: "#E5E3DF", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(8px)" }}
+          style={{ background: "rgba(0,0,0,0.7)", color: "#16161A", border: "1px solid rgba(22,22,26,0.15)", backdropFilter: "blur(8px)" }}
         >
           <Download size={11} />
           Save
@@ -241,7 +241,7 @@ function GeneratedResult({
             Why It Works
           </span>
         </div>
-        <p className="text-sm leading-relaxed" style={{ color: "#D1D5DB" }}>{result.whyItWorks}</p>
+        <p className="text-sm leading-relaxed" style={{ color: "#16161A" }}>{result.whyItWorks}</p>
       </div>
 
       {/* Replication Blueprint */}
@@ -293,9 +293,9 @@ function GeneratedResult({
         onClick={onReset}
         className="flex items-center justify-center gap-2 rounded-lg py-3 text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
         style={{
-          background: "rgba(255,255,255,0.06)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          color: "#E5E3DF",
+          background: "rgba(22,22,26,0.06)",
+          border: "1px solid rgba(22,22,26,0.1)",
+          color: "#16161A",
           fontFamily: "'Space Grotesk', sans-serif",
         }}
       >
@@ -422,8 +422,8 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
         className="relative ml-auto h-full overflow-y-auto flex flex-col"
         style={{
           width: "min(720px, 95vw)",
-          background: "#111113",
-          borderLeft: "1px solid rgba(255,255,255,0.08)",
+          background: "#E8E5DF",
+          borderLeft: "1px solid rgba(22,22,26,0.1)",
         }}
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
@@ -433,7 +433,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
         {/* Header */}
         <div
           className="sticky top-0 z-10 flex items-center justify-between px-6 py-4"
-          style={{ background: "#111113", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+          style={{ background: "#E8E5DF", borderBottom: "1px solid rgba(22,22,26,0.08)" }}
         >
           <div className="flex items-center gap-3">
             <div
@@ -443,11 +443,11 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
               <Wand2 size={15} style={{ color: "#FF5C1F" }} />
             </div>
             <div>
-              <h2 className="text-base font-bold leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>
+              <h2 className="text-base font-bold leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#16161A" }}>
                 Generate Ad Creative
               </h2>
               <div className="flex items-center gap-2 mt-0.5">
-                <p className="text-[11px] font-mono" style={{ color: "#6B7280" }}>
+                <p className="text-[11px] font-mono" style={{ color: "#6B6B75" }}>
                   AI-generated mockup + full replication blueprint
                 </p>
                 <AnimatePresence>
@@ -470,7 +470,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
           <button
             onClick={onClose}
             className="rounded-md p-1.5 transition-colors hover:bg-white/10"
-            style={{ color: "#9CA3AF" }}
+            style={{ color: "#6B6B75" }}
           >
             <X size={18} />
           </button>
@@ -611,7 +611,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                     <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#FF5C1F", animationDelay: "150ms" }} />
                     <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#FF5C1F", animationDelay: "300ms" }} />
                   </div>
-                  <p className="text-xs font-mono" style={{ color: "#6B7280" }}>
+                  <p className="text-xs font-mono" style={{ color: "#6B6B75" }}>
                     Building image + replication blueprint in parallel…
                   </p>
                 </div>
@@ -621,7 +621,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
               {batchMode && (
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono" style={{ color: "#9CA3AF" }}>
+                    <span className="text-xs font-mono" style={{ color: "#6B6B75" }}>
                       {batchProgress < batchTotal ? `Generating angle ${batchProgress + 1} of ${batchTotal}…` : `All ${batchTotal} angles complete`}
                     </span>
                     <span className="text-xs font-mono" style={{ color: "#FF5C1F" }}>
@@ -629,7 +629,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                     </span>
                   </div>
                   {/* Progress bar */}
-                  <div className="w-full rounded-full h-1.5" style={{ background: "rgba(255,255,255,0.08)" }}>
+                  <div className="w-full rounded-full h-1.5" style={{ background: "rgba(22,22,26,0.1)" }}>
                     <div
                       className="h-1.5 rounded-full transition-all duration-500"
                       style={{
@@ -645,7 +645,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                         <div
                           key={i}
                           className="rounded-lg overflow-hidden"
-                          style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+                          style={{ border: "1px solid rgba(22,22,26,0.1)" }}
                         >
                           <img
                             src={r.imageUrl}
@@ -653,8 +653,8 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                             className="w-full object-cover"
                             style={{ height: "120px", objectPosition: "top" }}
                           />
-                          <div className="px-2 py-1.5 flex items-center justify-between" style={{ background: "#161618" }}>
-                            <span className="text-[10px] font-mono" style={{ color: ANGLE_COLORS[r.angle as Angle] || "#9CA3AF" }}>
+                          <div className="px-2 py-1.5 flex items-center justify-between" style={{ background: "#EEEAE3" }}>
+                            <span className="text-[10px] font-mono" style={{ color: ANGLE_COLORS[r.angle as Angle] || "#6B6B75" }}>
                               {r.angle}
                             </span>
                             <a
@@ -663,7 +663,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-[10px] font-mono hover:opacity-80"
-                              style={{ color: "#6B7280" }}
+                              style={{ color: "#6B6B75" }}
                             >
                               Save
                             </a>
@@ -676,7 +676,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                     <button
                       onClick={() => { setBatchMode(false); setBatchResults([]); setBatchProgress(0); }}
                       className="text-xs font-mono rounded-md px-3 py-1.5 transition-colors hover:bg-white/8 self-start"
-                      style={{ color: "#6B7280", border: "1px solid rgba(255,255,255,0.1)" }}
+                      style={{ color: "#6B6B75", border: "1px solid rgba(22,22,26,0.1)" }}
                     >
                       Clear batch results
                     </button>
@@ -687,9 +687,9 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
               {/* What you'll get */}
               <div
                 className="rounded-xl p-4"
-                style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.07)" }}
+                style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(22,22,26,0.08)" }}
               >
-                <p className="text-[11px] font-mono uppercase tracking-widest font-semibold mb-3" style={{ color: "#4B5563" }}>
+                <p className="text-[11px] font-mono uppercase tracking-widest font-semibold mb-3" style={{ color: "#6B6B75" }}>
                   What you'll get
                 </p>
                 <div className="grid grid-cols-2 gap-2">
@@ -705,7 +705,7 @@ export function GenerateAdPanel({ onClose }: { onClose: () => void }) {
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#FF5C1F" }} />
-                      <span className="text-xs" style={{ color: "#9CA3AF" }}>{item}</span>
+                      <span className="text-xs" style={{ color: "#6B6B75" }}>{item}</span>
                     </div>
                   ))}
                 </div>
