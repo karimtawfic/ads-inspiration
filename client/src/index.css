@@ -1,212 +1,201 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* ─── Google Fonts ─────────────────────────────────────────── */
+/* Loaded via index.html: Archivo Black, JetBrains Mono, Inter */
 
+/* ─── DTG Brand Tokens ─────────────────────────────────────── */
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Archivo Black', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --color-background: oklch(91.2% 0.008 75);      /* #E8E5DF linen */
+  --color-foreground: oklch(9.8% 0.004 280);       /* #16161A near-black */
+  --color-primary: oklch(59.2% 0.19 35);           /* #FF5C1F orange */
+  --color-primary-foreground: oklch(100% 0 0);     /* white */
+  --color-secondary: oklch(9.8% 0.004 280);        /* #16161A */
+  --color-secondary-foreground: oklch(91.2% 0.008 75); /* linen */
+  --color-muted: oklch(85% 0.008 75);              /* slightly darker linen */
+  --color-muted-foreground: oklch(45% 0.008 280);  /* #6B6B75 */
+  --color-accent: oklch(59.2% 0.19 35);            /* orange */
+  --color-accent-foreground: oklch(100% 0 0);
+  --color-card: oklch(88.5% 0.009 75);             /* #DEDAD3 card bg */
+  --color-card-foreground: oklch(9.8% 0.004 280);
+  --color-border: oklch(9.8% 0.004 280);           /* #16161A sharp black borders */
+  --color-input: oklch(9.8% 0.004 280);
+  --color-ring: oklch(59.2% 0.19 35);              /* orange focus ring */
+  --color-popover: oklch(91.2% 0.008 75);
+  --color-popover-foreground: oklch(9.8% 0.004 280);
+  --color-destructive: oklch(55% 0.22 25);
+  --color-destructive-foreground: oklch(100% 0 0);
+  --radius: 0px;                                   /* DTG uses 0 border-radius */
+  --font-sans: "Inter", -apple-system, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Archivo Black", Anton, "Bebas Neue", sans-serif;
 }
 
-/* ── DTG LIGHT MODE (default) ─────────────────────────────── */
-:root {
-  --radius: 0.25rem; /* sharper corners — brutalist */
-
-  /* Core palette */
-  --dtg-linen: #E8E5DF;
-  --dtg-linen-dark: #DEDAD3;
-  --dtg-black: #16161A;
-  --dtg-orange: #FF5C1F;
-  --dtg-orange-hover: #E84E14;
-  --dtg-orange-muted: rgba(255, 92, 31, 0.12);
-
-  /* Semantic tokens */
-  --background: oklch(0.91 0.006 75);       /* #E8E5DF linen */
-  --foreground: oklch(0.12 0.005 285);      /* #16161A near-black */
-  --card: oklch(0.94 0.005 75);             /* slightly lighter linen */
-  --card-foreground: oklch(0.12 0.005 285);
-  --popover: oklch(0.96 0.003 75);
-  --popover-foreground: oklch(0.12 0.005 285);
-  --primary: oklch(0.6 0.22 35);            /* orange #FF5C1F */
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.87 0.007 75);        /* darker linen */
-  --secondary-foreground: oklch(0.12 0.005 285);
-  --muted: oklch(0.87 0.007 75);
-  --muted-foreground: oklch(0.45 0.01 75);
-  --accent: oklch(0.6 0.22 35);             /* orange */
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.6 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0 0 0 / 12%);
-  --input: oklch(0 0 0 / 8%);
-  --ring: oklch(0.6 0.22 35);
-  --sidebar: oklch(0.88 0.007 75);
-  --sidebar-foreground: oklch(0.12 0.005 285);
-  --sidebar-border: oklch(0 0 0 / 10%);
-
-  /* Surface tokens (used by inline-style components) */
-  --surface-bg: #E8E5DF;
-  --surface-card: #EEEBe5;
-  --surface-panel: #E3E0D9;
-  --surface-sidebar: #DEDAD3;
-  --surface-header: rgba(232, 229, 223, 0.97);
-  --surface-border: rgba(22, 22, 26, 0.1);
-  --surface-border-strong: rgba(22, 22, 26, 0.2);
-  --surface-hover: rgba(22, 22, 26, 0.05);
-  --surface-active: rgba(22, 22, 26, 0.1);
-  --surface-input: rgba(22, 22, 26, 0.06);
-  --text-primary: #16161A;
-  --text-secondary: #4A4A52;
-  --text-muted: #6B6B75;
-  --text-faint: #9B9BA5;
-  --text-dimmer: #C4C4CC;
-
-  /* Angle accent colors — adjusted for light bg */
-  --angle-before-after: #10B981;
-  --angle-hero-shot: #8B5CF6;
-  --angle-pain: #EF4444;
-  --angle-features: #06B6D4;
-  --angle-social-proof: #A855F7;
-  --angle-offer: #F43F5E;
-  --angle-process: #6366F1;
-  --angle-fomo: #EC4899;
-  --angle-seasonal: #84CC16;
-  --angle-ugc: #F97316;
-}
-
-/* ── DARK MODE (optional) ─────────────────────────────────── */
-.dark {
-  --background: oklch(0.1 0.005 285);
-  --foreground: oklch(0.93 0.005 65);
-  --card: oklch(0.14 0.006 285);
-  --card-foreground: oklch(0.93 0.005 65);
-  --popover: oklch(0.14 0.006 285);
-  --popover-foreground: oklch(0.93 0.005 65);
-  --primary: oklch(0.6 0.22 35);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.18 0.006 285);
-  --secondary-foreground: oklch(0.75 0.005 65);
-  --muted: oklch(0.18 0.006 285);
-  --muted-foreground: oklch(0.55 0.01 285);
-  --accent: oklch(0.6 0.22 35);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.6 0.22 35);
-  --sidebar: oklch(0.12 0.006 285);
-  --sidebar-foreground: oklch(0.93 0.005 65);
-  --sidebar-border: oklch(1 0 0 / 8%);
-
-  --surface-bg: #0D0D0F;
-  --surface-card: #161618;
-  --surface-panel: #111113;
-  --surface-sidebar: #0F0F11;
-  --surface-header: rgba(13,13,15,0.97);
-  --surface-border: rgba(255,255,255,0.07);
-  --surface-border-strong: rgba(255,255,255,0.12);
-  --surface-hover: rgba(255,255,255,0.05);
-  --surface-active: rgba(255,255,255,0.1);
-  --surface-input: rgba(255,255,255,0.05);
-  --text-primary: #F0EEE9;
-  --text-secondary: #9CA3AF;
-  --text-muted: #6B7280;
-  --text-faint: #4B5563;
-  --text-dimmer: #374151;
-}
-
+/* ─── Base Layer ───────────────────────────────────────────── */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--color-border);
+    box-sizing: border-box;
   }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: #E8E5DF;
+    color: #16161A;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    background-color: #E8E5DF;
+    color: #16161A;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
   }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: "Archivo Black", Anton, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
     letter-spacing: -0.02em;
+    color: #16161A;
   }
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  a[href],
-  select:not(:disabled) {
-    @apply cursor-pointer;
+
+  /* Remove all border-radius globally for DTG brutalist style */
+  button, input, select, textarea, [class*="rounded"] {
+    border-radius: 0 !important;
   }
 }
 
-@layer components {
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+/* ─── Utilities ────────────────────────────────────────────── */
+@layer utilities {
+  .font-display {
+    font-family: "Archivo Black", Anton, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
   }
-  .flex {
-    min-height: 0;
-    min-width: 0;
+
+  .font-mono-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
+
+  /* DTG section label style: // LABEL TEXT */
+  .dtg-section-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #16161A;
+    border: 1px solid #16161A;
+    padding: 3px 8px;
+    display: inline-block;
   }
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      max-width: 1440px;
-    }
+
+  /* DTG pill/badge style */
+  .dtg-pill {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #16161A;
+    border: 1px solid #16161A;
+    padding: 3px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+  }
+
+  /* DTG primary button */
+  .dtg-btn-primary {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: #FF5C1F;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 0;
+    transition: opacity 0.15s;
+  }
+
+  .dtg-btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  /* DTG outlined button */
+  .dtg-btn-outline {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: transparent;
+    color: #16161A;
+    border: 2px solid #16161A;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .dtg-btn-outline:hover {
+    background: #16161A;
+    color: #E8E5DF;
+  }
+
+  /* Ticker animation */
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .ticker-track {
+    animation: ticker-scroll 30s linear infinite;
+    white-space: nowrap;
+    display: flex;
+  }
+
+  .ticker-track:hover {
+    animation-play-state: paused;
   }
 }
 
-/* Scrollbar styling */
+/* ─── Scrollbar ────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #E8E5DF;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(22, 22, 26, 0.2);
-  border-radius: 2px;
+  background: #16161A;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(22, 22, 26, 0.35);
+  background: #FF5C1F;
 }
-.dark ::-webkit-scrollbar-thumb {
-  background: oklch(0.28 0.006 285);
+
+/* ─── Container ────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.38 0.006 285);
+
+/* ─── Flex min-size fix ────────────────────────────────────── */
+.flex {
+  min-width: 0;
+  min-height: 0;
 }

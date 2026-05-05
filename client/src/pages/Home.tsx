@@ -36,7 +36,7 @@ function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
   const bg = ANGLE_BG[angle];
   return (
     <span
-      className={`inline-flex items-center rounded-sm font-mono font-medium tracking-tight ${small ? "text-[10px] px-1.5 py-0.5" : "text-xs px-2 py-1"}`}
+      className={`inline-flex items-center  font-mono font-medium tracking-tight ${small ? "text-[10px] px-1.5 py-0.5" : "text-xs px-2 py-1"}`}
       style={{ color, background: bg, border: `1px solid ${color}30` }}
     >
       {angle}
@@ -48,13 +48,13 @@ function AngleBadge({ angle, small }: { angle: Angle; small?: boolean }) {
 function SourceBadge({ sourceType }: { sourceType: SourceType }) {
   const map: Record<SourceType, { color: string; label: string }> = {
     "Meta Ad Library": { color: "#1877F2", label: "Meta Library" },
-    "Agency Curated": { color: "#10B981", label: "Agency Curated" },
+    "Agency Curated": { color: "#FF5C1F", label: "Agency Curated" },
     "AI Generated": { color: "#8B5CF6", label: "AI Generated" },
   };
   const { color, label } = map[sourceType];
   return (
     <span
-      className="inline-flex items-center rounded-sm font-mono text-[10px] px-1.5 py-0.5 font-medium"
+      className="inline-flex items-center  font-mono text-[10px] px-1.5 py-0.5 font-medium"
       style={{ color, background: `${color}18`, border: `1px solid ${color}30` }}
     >
       {label}
@@ -64,14 +64,14 @@ function SourceBadge({ sourceType }: { sourceType: SourceType }) {
 
 function FormatBadge({ format }: { format: Format }) {
   const map: Record<Format, string> = {
-    "Static Image": "#6366F1",
+    "Static Image": "#FF5C1F",
     Carousel: "#8B5CF6",
     Video: "#EF4444",
-    "Lead Form": "#10B981",
+    "Lead Form": "#FF5C1F",
   };
   return (
     <span
-      className="inline-flex items-center rounded-sm font-mono text-[10px] px-1.5 py-0.5 font-medium"
+      className="inline-flex items-center  font-mono text-[10px] px-1.5 py-0.5 font-medium"
       style={{ color: map[format], background: `${map[format]}18`, border: `1px solid ${map[format]}30` }}
     >
       {format}
@@ -102,7 +102,7 @@ function EditableReplicationRow({
   };
   const inputStyle: React.CSSProperties = {
     background: "rgba(255,255,255,0.06)",
-    border: "1px solid rgba(99,102,241,0.4)",
+    border: "1px solid rgba(255,92,31,0.4)",
     color: "#E5E3DF",
     borderRadius: 6,
     padding: "8px 10px",
@@ -115,16 +115,16 @@ function EditableReplicationRow({
   };
   return (
     <div
-      className="group flex flex-col gap-1.5 rounded-md p-3"
+      className="group flex flex-col gap-1.5  p-3"
       style={{
-        background: highlight ? "rgba(99,102,241,0.06)" : "rgba(255,255,255,0.04)",
-        border: highlight ? "1px solid rgba(99,102,241,0.2)" : "1px solid rgba(255,255,255,0.07)",
+        background: highlight ? "rgba(255,92,31,0.06)" : "rgba(255,255,255,0.04)",
+        border: highlight ? "1px solid rgba(255,92,31,0.2)" : "1px solid rgba(255,255,255,0.07)",
       }}
     >
       <div className="flex items-center justify-between">
         <span
           className="text-[11px] font-mono uppercase tracking-widest"
-          style={{ color: highlight ? "#818CF8" : "#6B7280" }}
+          style={{ color: highlight ? "#FF5C1F" : "#6B7280" }}
         >
           {label}
         </span>
@@ -132,7 +132,7 @@ function EditableReplicationRow({
           <button
             onClick={() => setEditing((v) => !v)}
             className="flex items-center gap-1 text-[10px] rounded px-1.5 py-0.5"
-            style={{ color: editing ? "#6366F1" : "#9CA3AF", background: editing ? "rgba(99,102,241,0.12)" : "rgba(255,255,255,0.06)" }}
+            style={{ color: editing ? "#FF5C1F" : "#9CA3AF", background: editing ? "rgba(255,92,31,0.12)" : "rgba(255,255,255,0.06)" }}
           >
             {editing ? "Done" : "Edit"}
           </button>
@@ -315,7 +315,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
             <div className="flex items-center gap-1">
               <button
                 onClick={(e) => { e.stopPropagation(); onToggleVote?.(); }}
-                className="flex items-center gap-1.5 rounded-md px-2 py-1.5 transition-all hover:bg-white/10"
+                className="flex items-center gap-1.5  px-2 py-1.5 transition-all hover:bg-white/10"
                 style={{ color: isVoted ? "#FF5C1F" : "#6B7280" }}
                 title={isVoted ? "Remove vote" : "Upvote this creative"}
               >
@@ -324,15 +324,15 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); onToggleSave(); }}
-                className="rounded-md p-1.5 transition-all hover:bg-black/5"
-                style={{ color: isSaved ? "#F59E0B" : "#6B7280" }}
+                className=" p-1.5 transition-all hover:bg-black/5"
+                style={{ color: isSaved ? "#FF5C1F" : "#6B7280" }}
                 title={isSaved ? "Remove from saved" : "Save creative"}
               >
-                <Star size={16} fill={isSaved ? "#F59E0B" : "none"} />
+                <Star size={16} fill={isSaved ? "#FF5C1F" : "none"} />
               </button>
               <button
                 onClick={onClose}
-                className="rounded-md p-1.5 transition-colors hover:bg-black/5"
+                className=" p-1.5 transition-colors hover:bg-black/5"
                 style={{ color: "#9CA3AF" }}
               >
                 <X size={18} />
@@ -412,7 +412,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
             </div>
 
             {/* Why It Works */}
-            <div className="rounded-md p-4" style={{ background: "rgba(255,92,31,0.07)", border: "1px solid rgba(255,92,31,0.2)" }}>
+            <div className=" p-4" style={{ background: "rgba(255,92,31,0.07)", border: "1px solid rgba(255,92,31,0.2)" }}>
               <div className="flex items-center gap-2 mb-2">
                 <Zap size={13} style={{ color: "#FF5C1F" }} />
                 <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#FF5C1F" }}>Why It Works</span>
@@ -424,8 +424,8 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
             <div>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <Layers size={13} style={{ color: "#F59E0B" }} />
-                  <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#F59E0B" }}>Replication Blueprint</span>
+                  <Layers size={13} style={{ color: "#FF5C1F" }} />
+                  <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#FF5C1F" }}>Replication Blueprint</span>
                 </div>
                 <span className="text-[10px] font-mono" style={{ color: "#4B5563" }}>Hover any field to edit</span>
               </div>
@@ -439,18 +439,18 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
             </div>
 
             {/* Brand-Injected Prompt */}
-            <div className="rounded-md overflow-hidden" style={{ border: "1px solid rgba(255,92,31,0.25)" }}>
+            <div className=" overflow-hidden" style={{ border: "1px solid rgba(255,92,31,0.25)" }}>
               <div className="flex items-center justify-between px-4 py-2.5" style={{ background: "rgba(255,92,31,0.08)", borderBottom: "1px solid rgba(255,92,31,0.15)" }}>
                 <div className="flex items-center gap-2">
                   <Wand2 size={12} style={{ color: "#FF5C1F" }} />
                   <span className="text-[11px] font-mono font-semibold uppercase tracking-widest" style={{ color: "#FF5C1F" }}>Brand-Injected Prompt</span>
                   {hasParams && (
-                    <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(16,185,129,0.12)", color: "#10B981", border: "1px solid rgba(16,185,129,0.2)" }}>Brand Active</span>
+                    <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(255,92,31,0.12)", color: "#FF5C1F", border: "1px solid rgba(255,92,31,0.2)" }}>Brand Active</span>
                   )}
                 </div>
                 <button
                   onClick={copyPrompt}
-                  className="flex items-center gap-1.5 text-[11px] font-mono rounded-md px-2.5 py-1 transition-all hover:opacity-90"
+                  className="flex items-center gap-1.5 text-[11px] font-mono  px-2.5 py-1 transition-all hover:opacity-90"
                   style={{ background: "rgba(255,92,31,0.15)", color: "#FF5C1F", border: "1px solid rgba(255,92,31,0.3)" }}
                 >
                   {promptCopied ? <CheckCheck size={11} /> : <Copy size={11} />}
@@ -459,7 +459,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
               </div>
               <div className="p-4" style={{ background: "rgba(255,92,31,0.03)" }}>
                 {!hasParams && (
-                  <p className="text-[11px] font-mono mb-3 rounded-md px-3 py-2" style={{ color: "#F59E0B", background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.2)" }}>
+                  <p className="text-[11px] font-mono mb-3  px-3 py-2" style={{ color: "#FF5C1F", background: "rgba(255,92,31,0.08)", border: "1px solid rgba(255,92,31,0.2)" }}>
                     Set brand parameters (top-right → Brand) to auto-inject your logo, colors, location, and season.
                   </p>
                 )}
@@ -479,7 +479,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
 
             {/* Advertiser info */}
             {ad.advertiser && (
-              <div className="rounded-md px-4 py-3 flex items-center gap-2" style={{ background: "rgba(22,22,26,0.04)", border: "1px solid rgba(22,22,26,0.1)" }}>
+              <div className=" px-4 py-3 flex items-center gap-2" style={{ background: "rgba(22,22,26,0.04)", border: "1px solid rgba(22,22,26,0.1)" }}>
                 <SourceBadge sourceType={ad.sourceType} />
                 <span className="text-xs font-mono" style={{ color: "#6B6B75" }}>{ad.advertiser}</span>
               </div>
@@ -490,7 +490,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
               href={ad.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-md py-3 text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
+              className="flex items-center justify-center gap-2  py-3 text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
               style={{ background: "#16161A", border: "1px solid #16161A", color: "#FFFFFF", fontFamily: "'Archivo Black', sans-serif", fontSize: 11, letterSpacing: "0.04em", textTransform: "uppercase" }}
             >
               <ExternalLink size={14} />
@@ -510,12 +510,12 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
 
   return (
     <motion.div
-      className="relative rounded-lg overflow-hidden cursor-pointer group"
-      style={{ background: isDark ? "#161618" : "#EEEAE3", border: isSaved ? "1px solid rgba(245,158,11,0.35)" : isDark ? "1px solid rgba(255,255,255,0.07)" : "1px solid rgba(22,22,26,0.1)", boxShadow: isDark ? "none" : "0 1px 4px rgba(22,22,26,0.06)" }}
+      className="relative  overflow-hidden cursor-pointer group"
+      style={{ background: isDark ? "#161618" : "#EEEAE3", border: isSaved ? "1px solid rgba(255,92,31,0.35)" : isDark ? "1px solid rgba(255,255,255,0.07)" : "1px solid rgba(22,22,26,0.1)", boxShadow: isDark ? "none" : "0 1px 4px rgba(22,22,26,0.06)" }}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      whileHover={{ scale: 1.015, borderColor: isSaved ? "rgba(245,158,11,0.55)" : isDark ? "rgba(255,255,255,0.15)" : "rgba(255,92,31,0.4)" }}
+      whileHover={{ scale: 1.015, borderColor: isSaved ? "rgba(255,92,31,0.55)" : isDark ? "rgba(255,255,255,0.15)" : "rgba(255,92,31,0.4)" }}
       onClick={onClick}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
@@ -551,17 +551,17 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
         </div>
         {/* Star button top-right */}
         <button
-          className="absolute top-2 right-2 rounded-md p-1 transition-all"
+          className="absolute top-2 right-2  p-1 transition-all"
           style={{
-            background: isSaved ? "rgba(245,158,11,0.18)" : "rgba(0,0,0,0.45)",
-            color: isSaved ? "#F59E0B" : "#9CA3AF",
-            border: isSaved ? "1px solid rgba(245,158,11,0.35)" : "1px solid rgba(255,255,255,0.1)",
+            background: isSaved ? "rgba(255,92,31,0.18)" : "rgba(0,0,0,0.45)",
+            color: isSaved ? "#FF5C1F" : "#9CA3AF",
+            border: isSaved ? "1px solid rgba(255,92,31,0.35)" : "1px solid rgba(255,255,255,0.1)",
             backdropFilter: "blur(4px)",
           }}
           onClick={(e) => { e.stopPropagation(); onToggleSave(); }}
           title={isSaved ? "Remove from saved" : "Save creative"}
         >
-          <Star size={12} fill={isSaved ? "#F59E0B" : "none"} />
+          <Star size={12} fill={isSaved ? "#FF5C1F" : "none"} />
         </button>
       </div>
 
@@ -574,7 +574,7 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
           <span className="text-[11px] font-mono" style={{ color: "#6B7280" }}>{ad.niche}</span>
           <div className="flex items-center gap-2">
             <button
-              className="flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-mono transition-all"
+              className="flex items-center gap-1  px-1.5 py-0.5 text-[11px] font-mono transition-all"
               style={{
                 background: isVoted ? "rgba(255,92,31,0.12)" : "transparent",
                 color: isVoted ? "#FF5C1F" : "#6B7280",
@@ -618,8 +618,8 @@ function SidebarSection({
         <div className="flex items-center gap-1.5">
           <span style={{ color: textMuted }}>{icon}</span>
           <span
-            className="text-[10px] font-semibold uppercase tracking-[0.1em]"
-            style={{ color: textMuted, fontFamily: "'Space Grotesk', sans-serif" }}
+            className="text-[10px] font-semibold uppercase tracking-[0.12em]"
+            style={{ color: "#16161A", fontFamily: "'JetBrains Mono', monospace" }}
           >
             {title}
           </span>
@@ -660,45 +660,36 @@ function FilterPill({
   isScrollTarget?: boolean;
   isDark?: boolean;
 }) {
-  const dotInactive = isDark ? "#374151" : "#D1D5DB";
   return (
     <button
       onClick={onClick}
-      className="group relative flex items-center justify-between rounded-lg px-2.5 py-[7px] text-[12.5px] transition-all text-left"
+      className="group relative flex items-center justify-between px-2.5 py-[6px] text-[11px] transition-all text-left"
       style={{
-        background: active
-          ? color
-            ? `${color}18`
-            : isDark ? "rgba(99,102,241,0.14)" : "rgba(99,102,241,0.09)"
-          : "transparent",
-        color: active
-          ? color
-            ? color
-            : isDark ? "#A5B4FC" : "#4F46E5"
-          : isDark ? "#9CA3AF" : "#6B7280",
+        background: active ? "rgba(255,92,31,0.1)" : "transparent",
+        color: active ? "#FF5C1F" : "#4A4A52",
         fontWeight: active ? 600 : 400,
-        fontFamily: active ? "'Space Grotesk', sans-serif" : "inherit",
+        fontFamily: "'JetBrains Mono', monospace",
+        letterSpacing: "0.04em",
+        border: active ? "1px solid rgba(255,92,31,0.35)" : "1px solid transparent",
       }}
       onMouseEnter={(e) => {
         if (!active) {
-          (e.currentTarget as HTMLButtonElement).style.background = isDark
-            ? "rgba(255,255,255,0.04)"
-            : "rgba(0,0,0,0.04)";
-          (e.currentTarget as HTMLButtonElement).style.color = isDark ? "#D1D5DB" : "#374151";
+          (e.currentTarget as HTMLButtonElement).style.background = "rgba(22,22,26,0.05)";
+          (e.currentTarget as HTMLButtonElement).style.color = "#16161A";
         }
       }}
       onMouseLeave={(e) => {
         if (!active) {
           (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-          (e.currentTarget as HTMLButtonElement).style.color = isDark ? "#9CA3AF" : "#6B7280";
+          (e.currentTarget as HTMLButtonElement).style.color = "#4A4A52";
         }
       }}
     >
       {/* Active left accent bar */}
       {active && (
         <span
-          className="absolute left-0 top-[6px] bottom-[6px] rounded-full"
-          style={{ width: 3, background: color || "#6366F1" }}
+          className="absolute left-0 top-[6px] bottom-[6px] "
+          style={{ width: 3, background: color || "#FF5C1F" }}
         />
       )}
       <span
@@ -707,9 +698,9 @@ function FilterPill({
       >
         {color && (
           <span
-            className="w-[7px] h-[7px] rounded-full flex-shrink-0 transition-all"
+            className="w-[7px] h-[7px] flex-shrink-0 transition-all"
             style={{
-              background: active ? color : dotInactive,
+              background: active ? color : "#C8C4BC",
               boxShadow: active ? `0 0 5px ${color}80` : "none",
             }}
           />
@@ -720,11 +711,7 @@ function FilterPill({
         <span
           className="text-[10.5px] font-mono flex-shrink-0 ml-1 tabular-nums"
           style={{
-            color: active
-              ? color
-                ? `${color}CC`
-                : isDark ? "#818CF8" : "#6366F1"
-              : isDark ? "#4B5563" : "#9CA3AF",
+            color: active ? (color ? `${color}CC` : "#FF5C1F") : "#9CA3AF",
           }}
         >
           {count}
@@ -936,23 +923,34 @@ export default function Home() {
   const visibleAds = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden" style={{ background: S.bg }}>
+    <div className="h-screen flex flex-col overflow-hidden" style={{ background: "#E8E5DF" }}>
+      {/* Ticker Bar */}
+      <div className="flex-shrink-0 overflow-hidden" style={{ background: "#16161A", height: 28 }}>
+        <div className="ticker-track h-full flex items-center">
+          {[...Array(4)].map((_, i) => (
+            <span key={i} className="flex items-center gap-0 flex-shrink-0" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, fontWeight: 600, color: "#FF5C1F", letterSpacing: "0.12em", textTransform: "uppercase", paddingRight: 0 }}>
+              &nbsp;▸ LIVE IN:&nbsp;<span style={{ color: "#E8E5DF" }}>ROOFING · HVAC · EPOXY FLOORS · PLUMBING · ELECTRICAL · LANDSCAPING · PAINTING · PEST CONTROL · WINDOWS · SOLAR · CONCRETE · FENCING · GUTTERS · PRESSURE WASHING · JUNK REMOVAL</span>&nbsp;
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* Top Bar */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-0 gap-4"
         style={{
-          background: S.header,
+          background: "rgba(232,229,223,0.97)",
           backdropFilter: "blur(20px)",
-          borderBottom: `1px solid ${S.border}`,
+          borderBottom: "1px solid #16161A",
           height: 56,
-          boxShadow: isDark ? "0 1px 0 rgba(255,255,255,0.04)" : "0 1px 0 rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)",
+          boxShadow: "0 1px 0 rgba(0,0,0,0.06)",
         }}
       >
         {/* Left: logo + sidebar toggle */}
         <div className="flex items-center gap-3 flex-shrink-0">
           <button
             onClick={() => setSidebarOpen((v) => !v)}
-            className="rounded-lg p-1.5 transition-all"
+            className=" p-1.5 transition-all"
             style={{ color: S.textMuted, background: sidebarOpen ? S.active : "transparent" }}
             title="Toggle sidebar"
           >
@@ -984,7 +982,7 @@ export default function Home() {
             placeholder="Search niche, angle, hook…"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-lg pl-9 pr-4 py-2 text-sm outline-none transition-all"
+            className="w-full  pl-9 pr-4 py-2 text-sm outline-none transition-all"
             style={{
               background: S.input,
               border: `1px solid ${S.border}`,
@@ -1000,7 +998,7 @@ export default function Home() {
           {/* Count badge */}
           {activeTab === "swipe" && (
             <span
-              className="text-[11px] font-mono px-2 py-0.5 rounded-full"
+              className="text-[11px] font-mono px-2 py-0.5 "
               style={{ color: S.textMuted, background: S.hover, border: `1px solid ${S.border}` }}
             >
               {viewMode === "grid" ? `${filtered.length}` : "110"} / {AD_EXAMPLES.length}
@@ -1012,7 +1010,7 @@ export default function Home() {
             <div className="flex items-center gap-1.5">
               {/* Row density */}
               <div
-                className="flex items-center gap-0.5 rounded-lg px-2 py-1"
+                className="flex items-center gap-0.5  px-2 py-1"
                 style={{ background: S.hover, border: `1px solid ${S.border}` }}
               >
                 <Columns size={10} style={{ color: S.textMuted, marginRight: 3 }} />
@@ -1022,8 +1020,8 @@ export default function Home() {
                     onClick={() => setRowDensity(n)}
                     className="rounded px-1.5 py-0.5 text-[11px] font-mono transition-all"
                     style={{
-                      background: rowDensity === n ? "rgba(99,102,241,0.2)" : "transparent",
-                      color: rowDensity === n ? "#818CF8" : S.textMuted,
+                      background: rowDensity === n ? "rgba(255,92,31,0.2)" : "transparent",
+                      color: rowDensity === n ? "#FF5C1F" : S.textMuted,
                       fontWeight: rowDensity === n ? 700 : 400,
                     }}
                     title={`${n} per row`}
@@ -1034,12 +1032,12 @@ export default function Home() {
               </div>
               {/* Grid / Matrix toggle */}
               <div
-                className="flex items-center rounded-lg p-0.5"
+                className="flex items-center  p-0.5"
                 style={{ background: S.hover, border: `1px solid ${S.border}` }}
               >
                 <button
                   onClick={() => setViewMode("grid")}
-                  className="flex items-center gap-1 rounded-md px-2 py-1 transition-all"
+                  className="flex items-center gap-1  px-2 py-1 transition-all"
                   style={{ background: viewMode === "grid" ? S.active : "transparent", color: viewMode === "grid" ? S.textPrimary : S.textMuted }}
                   title="Card Grid"
                 >
@@ -1047,7 +1045,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={() => setViewMode("matrix")}
-                  className="flex items-center gap-1 rounded-md px-2 py-1 transition-all"
+                  className="flex items-center gap-1  px-2 py-1 transition-all"
                   style={{ background: viewMode === "matrix" ? S.active : "transparent", color: viewMode === "matrix" ? S.textPrimary : S.textMuted }}
                   title="Matrix View"
                 >
@@ -1057,7 +1055,7 @@ export default function Home() {
           {/* Sort by votes */}
           <button
             onClick={() => setSortBy(sortBy === "votes" ? "default" : "votes")}
-            className="flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-mono transition-all"
+            className="flex items-center gap-1  px-2 py-1 text-[11px] font-mono transition-all"
             style={{
               background: sortBy === "votes" ? S.orangeMuted : S.hover,
               color: sortBy === "votes" ? S.orange : S.textMuted,
@@ -1065,7 +1063,7 @@ export default function Home() {
             }}
                 title={sortBy === "votes" ? "Sort: Most Voted" : "Sort: Default"}
               >
-                <ThumbsUp size={11} fill={sortBy === "votes" ? "#818CF8" : "none"} />
+                <ThumbsUp size={11} fill={sortBy === "votes" ? "#FF5C1F" : "none"} />
                 {sortBy === "votes" ? "Top Voted" : "Sort"}
               </button>
             </div>
@@ -1074,7 +1072,7 @@ export default function Home() {
           {hasFilters && viewMode === "grid" && activeTab === "swipe" && (
             <button
               onClick={clearAll}
-              className="text-[11px] font-mono rounded-lg px-2.5 py-1 transition-all"
+              className="text-[11px] font-mono  px-2.5 py-1 transition-all"
               style={{ color: "#EF4444", border: "1px solid rgba(239,68,68,0.2)", background: "rgba(239,68,68,0.06)" }}
             >
               Clear
@@ -1086,16 +1084,16 @@ export default function Home() {
 
           {/* Tab switcher */}
           <div
-            className="flex items-center rounded-lg p-0.5"
+            className="flex items-center  p-0.5"
             style={{ background: S.hover, border: `1px solid ${S.border}` }}
           >
             <button
               onClick={() => setActiveTab("swipe")}
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
+              className="flex items-center gap-1.5  px-3 py-1.5 text-xs font-semibold transition-all"
               style={{
                 background: activeTab === "swipe" ? S.active : "transparent",
                 color: activeTab === "swipe" ? S.textPrimary : S.textMuted,
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Archivo Black', sans-serif",
                 fontSize: 12,
               }}
             >
@@ -1104,20 +1102,20 @@ export default function Home() {
             </button>
             <button
               onClick={() => setActiveTab("saved")}
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
+              className="flex items-center gap-1.5  px-3 py-1.5 text-xs font-semibold transition-all"
               style={{
-                background: activeTab === "saved" ? "rgba(245,158,11,0.12)" : "transparent",
-                color: activeTab === "saved" ? "#F59E0B" : S.textMuted,
-                fontFamily: "'Space Grotesk', sans-serif",
+                background: activeTab === "saved" ? "rgba(255,92,31,0.12)" : "transparent",
+                color: activeTab === "saved" ? "#FF5C1F" : S.textMuted,
+                fontFamily: "'Archivo Black', sans-serif",
                 fontSize: 12,
               }}
             >
-              <Star size={11} fill={activeTab === "saved" ? "#F59E0B" : "none"} />
+              <Star size={11} fill={activeTab === "saved" ? "#FF5C1F" : "none"} />
               Saved
               {savedIds.size > 0 && (
                 <span
-                  className="ml-0.5 rounded-full px-1.5 py-0.5 text-[10px] font-bold leading-none"
-                  style={{ background: "rgba(245,158,11,0.2)", color: "#F59E0B" }}
+                  className="ml-0.5  px-1.5 py-0.5 text-[10px] font-bold leading-none"
+                  style={{ background: "rgba(255,92,31,0.2)", color: "#FF5C1F" }}
                 >
                   {savedIds.size}
                 </span>
@@ -1125,11 +1123,11 @@ export default function Home() {
             </button>
             <button
               onClick={() => setActiveTab("competitor")}
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all"
+              className="flex items-center gap-1.5  px-3 py-1.5 text-xs font-semibold transition-all"
               style={{
                 background: activeTab === "competitor" ? S.active : "transparent",
                 color: activeTab === "competitor" ? S.textPrimary : S.textMuted,
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Archivo Black', sans-serif",
                 fontSize: 12,
               }}
             >
@@ -1144,7 +1142,7 @@ export default function Home() {
           {/* Brand button */}
           <button
             onClick={() => setBrandParamsOpen(true)}
-            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all hover:opacity-90"
+            className="flex items-center gap-1.5  px-3 py-1.5 text-xs font-semibold transition-all hover:opacity-90"
             style={{
               background: hasBrandParams ? S.orangeMuted : S.hover,
               color: hasBrandParams ? S.orange : S.textSecondary,
@@ -1159,22 +1157,8 @@ export default function Home() {
             <Building2 size={12} />
             Brand
             {hasBrandParams && (
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#10B981" }} />
+              <span className="w-1.5 h-1.5 " style={{ background: "#FF5C1F" }} />
             )}
-          </button>
-
-          {/* Theme toggle */}
-          <button
-            onClick={toggleTheme}
-            className="rounded-lg p-2 transition-all"
-            style={{
-              background: S.hover,
-              color: S.textSecondary,
-              border: `1px solid ${S.border}`,
-            }}
-            title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {isDark ? <Sun size={13} /> : <Moon size={13} />}
           </button>
 
           {/* Generate CTA */}
@@ -1205,9 +1189,9 @@ export default function Home() {
             <motion.aside
               className="flex-shrink-0 flex flex-col h-full"
               style={{
-                width: 232,
-                background: S.sidebar,
-                borderRight: `1px solid ${S.border}`,
+                width: 240,
+                background: "#DEDAD3",
+                borderRight: "1px solid #16161A",
               }}
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: 232, opacity: 1 }}
@@ -1217,18 +1201,18 @@ export default function Home() {
               {/* Sidebar header */}
               <div
                 className="flex items-center justify-between px-4 py-3 flex-shrink-0"
-                style={{ borderBottom: `1px solid ${S.border}` }}
+                style={{ borderBottom: "1px solid #16161A" }}
               >
                 <span
-                  className="text-[11px] font-semibold uppercase tracking-[0.1em]"
-                  style={{ color: S.textMuted, fontFamily: "'Space Grotesk', sans-serif" }}
+                  className="text-[10px] font-semibold uppercase tracking-[0.12em]"
+                  style={{ color: "#16161A", fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   Filters
                 </span>
                 {hasFilters && (
                   <button
                     onClick={clearAll}
-                    className="text-[10px] font-mono rounded-md px-2 py-0.5 transition-all hover:opacity-80"
+                    className="text-[10px] font-mono  px-2 py-0.5 transition-all hover:opacity-80"
                     style={{
                       color: "#EF4444",
                       background: "rgba(239,68,68,0.08)",
@@ -1340,17 +1324,17 @@ export default function Home() {
           <div className="flex-1 overflow-y-auto p-5">
             {savedAds.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-64 gap-4">
-                <div className="rounded-full p-4" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.15)" }}>
-                  <Star size={28} style={{ color: "#F59E0B" }} />
+                <div className=" p-4" style={{ background: "rgba(255,92,31,0.08)", border: "1px solid rgba(255,92,31,0.15)" }}>
+                  <Star size={28} style={{ color: "#FF5C1F" }} />
                 </div>
                 <div className="text-center">
-                  <p className="text-sm font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#E5E3DF" }}>No saved creatives yet</p>
+                  <p className="text-sm font-semibold" style={{ fontFamily: "'Archivo Black', sans-serif", color: "#16161A" }}>No saved creatives yet</p>
                   <p className="text-xs font-mono mt-1" style={{ color: "#6B7280" }}>Star any creative to save it here for quick access</p>
                 </div>
                 <button
                   onClick={() => setActiveTab("swipe")}
-                  className="text-xs font-mono rounded-md px-3 py-1.5 transition-all hover:opacity-80"
-                  style={{ color: "#F59E0B", border: "1px solid rgba(245,158,11,0.3)", background: "rgba(245,158,11,0.08)" }}
+                  className="text-xs font-mono  px-3 py-1.5 transition-all hover:opacity-80"
+                  style={{ color: "#FF5C1F", border: "1px solid rgba(255,92,31,0.3)", background: "rgba(255,92,31,0.08)" }}
                 >
                   Browse Swipe File →
                 </button>
@@ -1360,13 +1344,13 @@ export default function Home() {
                 {/* Global header */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Star size={14} fill="#F59E0B" style={{ color: "#F59E0B" }} />
-                    <span className="text-sm font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>Saved Creatives</span>
+                    <Star size={14} fill="#FF5C1F" style={{ color: "#FF5C1F" }} />
+                    <span className="text-sm font-bold" style={{ fontFamily: "'Archivo Black', sans-serif", color: "#16161A" }}>Saved Creatives</span>
                     <span className="text-[11px] font-mono" style={{ color: "#6B7280" }}>{savedAds.length} saved &middot; {savedNiches.length} {savedNiches.length === 1 ? "niche" : "niches"}</span>
                   </div>
                   <button
                     onClick={clearSaved}
-                    className="text-xs font-mono rounded-md px-2.5 py-1 transition-colors hover:bg-white/8"
+                    className="text-xs font-mono  px-2.5 py-1 transition-colors hover:bg-white/8"
                     style={{ color: "#EF4444", border: "1px solid rgba(239,68,68,0.25)" }}
                   >
                     Clear all
@@ -1379,17 +1363,17 @@ export default function Home() {
                   return (
                     <div key={niche} className="flex flex-col gap-3">
                       {/* Niche header */}
-                      <div className="flex items-center justify-between pb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                      <div className="flex items-center justify-between pb-2" style={{ borderBottom: "1px solid rgba(22,22,26,0.15)" }}>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>{niche}</span>
-                          <span className="text-[11px] font-mono rounded-full px-2 py-0.5" style={{ background: "rgba(245,158,11,0.12)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.2)" }}>
+                          <span className="text-sm font-bold" style={{ fontFamily: "'Archivo Black', sans-serif", color: "#16161A" }}>{niche}</span>
+                          <span className="text-[11px] font-mono  px-2 py-0.5" style={{ background: "rgba(255,92,31,0.12)", color: "#FF5C1F", border: "1px solid rgba(255,92,31,0.2)" }}>
                             {ads.length} saved
                           </span>
                         </div>
                         <button
                           onClick={() => ads.forEach((a) => toggleSave(a.id))}
-                          className="text-[11px] font-mono rounded-md px-2 py-0.5 transition-colors hover:bg-white/8"
-                          style={{ color: "#6B7280", border: "1px solid rgba(255,255,255,0.08)" }}
+                          className="text-[11px] font-mono px-2 py-0.5 transition-colors"
+                          style={{ color: "#6B7280", border: "1px solid rgba(22,22,26,0.15)" }}
                         >
                           Remove all
                         </button>
@@ -1425,8 +1409,8 @@ export default function Home() {
               {ALL_NICHES.map((niche) => (
                 <div key={niche} ref={(el) => { nicheSectionRefs.current[niche] = el; }}>
                   {/* Niche header */}
-                  <div className="flex items-center gap-3 mb-4 pb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                    <span className="text-sm font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>{niche}</span>
+                  <div className="flex items-center gap-3 mb-4 pb-2" style={{ borderBottom: "1px solid rgba(22,22,26,0.15)" }}>
+                    <span className="text-sm font-bold" style={{ fontFamily: "'Archivo Black', sans-serif", color: "#16161A" }}>{niche}</span>
                     <span className="text-[11px] font-mono" style={{ color: "#4B5563" }}>11 angles</span>
                   </div>
                   {/* Angle row grid */}
@@ -1437,12 +1421,12 @@ export default function Home() {
                       return (
                         <motion.div
                           key={ad.id}
-                          className="relative rounded-lg overflow-hidden cursor-pointer group"
-                          style={{ background: S.card, border: isSaved(ad.id) ? "1px solid rgba(245,158,11,0.35)" : `1px solid ${S.border}`, boxShadow: isDark ? "none" : "0 1px 4px rgba(0,0,0,0.06)" }}
-                          whileHover={{ scale: 1.015, borderColor: isSaved(ad.id) ? "rgba(245,158,11,0.55)" : "rgba(255,255,255,0.15)" }}
+                          className="relative  overflow-hidden cursor-pointer group"
+                          style={{ background: "#EEEAE3", border: isSaved(ad.id) ? "1px solid rgba(255,92,31,0.35)" : "1px solid rgba(22,22,26,0.12)", boxShadow: "0 1px 4px rgba(22,22,26,0.06)" }}
+                          whileHover={{ scale: 1.015, borderColor: isSaved(ad.id) ? "rgba(255,92,31,0.55)" : "rgba(255,92,31,0.3)" }}
                           onClick={() => setSelectedAd(ad)}
                         >
-                          <div className="relative overflow-hidden" style={{ background: "#0D0D0F" }}>
+                          <div className="relative overflow-hidden" style={{ background: "#D8D4CC" }}>
                             <img
                               src={ad.imageUrl}
                               alt={ad.title}
@@ -1454,21 +1438,21 @@ export default function Home() {
                               <AngleBadge angle={ad.angle} small />
                             </div>
                             <button
-                              className="absolute top-1.5 right-1.5 rounded-md p-0.5 transition-all"
+                              className="absolute top-1.5 right-1.5  p-0.5 transition-all"
                               style={{
-                                background: isSaved(ad.id) ? "rgba(245,158,11,0.18)" : "rgba(0,0,0,0.45)",
-                                color: isSaved(ad.id) ? "#F59E0B" : "#9CA3AF",
-                                border: isSaved(ad.id) ? "1px solid rgba(245,158,11,0.35)" : "1px solid rgba(255,255,255,0.1)",
+                                background: isSaved(ad.id) ? "rgba(255,92,31,0.18)" : "rgba(0,0,0,0.45)",
+                                color: isSaved(ad.id) ? "#FF5C1F" : "#9CA3AF",
+                                border: isSaved(ad.id) ? "1px solid rgba(255,92,31,0.35)" : "1px solid rgba(255,255,255,0.1)",
                                 backdropFilter: "blur(4px)",
                               }}
                               onClick={(e) => { e.stopPropagation(); toggleSave(ad.id); }}
                               title={isSaved(ad.id) ? "Remove from saved" : "Save creative"}
                             >
-                              <Star size={10} fill={isSaved(ad.id) ? "#F59E0B" : "none"} />
+                              <Star size={10} fill={isSaved(ad.id) ? "#FF5C1F" : "none"} />
                             </button>
                           </div>
                           <div className="px-2.5 py-2">
-                            <p className="text-xs font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: S.textPrimary }}>
+                            <p className="text-xs font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Archivo Black', sans-serif", color: S.textPrimary }}>
                               {ad.hook}
                             </p>
                           </div>
@@ -1488,7 +1472,7 @@ export default function Home() {
               <div className="flex flex-col items-center justify-center h-64 gap-3">
                 <Search size={32} style={{ color: S.textFaint }} />
                 <p className="text-sm font-mono" style={{ color: S.textMuted }}>No examples match your filters.</p>
-                <button onClick={clearAll} className="text-xs font-mono underline" style={{ color: "#6366F1" }}>Clear all filters</button>
+                <button onClick={clearAll} className="text-xs font-mono underline" style={{ color: "#FF5C1F" }}>Clear all filters</button>
               </div>
             ) : (
               <>
@@ -1531,11 +1515,11 @@ export default function Home() {
           )}
 
           {/* Ad Intelligence Sources */}
-          <div className="rounded-xl p-6" style={{ background: S.panel, border: `1px solid ${S.border}` }}>
+          <div className="p-6" style={{ background: "#DEDAD3", border: "1px solid rgba(22,22,26,0.2)" }}>
             <div className="flex items-center gap-2 mb-5">
               <Database size={14} style={{ color: "#6B7280" }} />
-              <span className="text-xs font-mono uppercase tracking-widest font-semibold" style={{ color: "#6B7280" }}>Ad Intelligence Sources</span>
-              <span className="text-[10px] font-mono rounded px-1.5 py-0.5 ml-1" style={{ color: "#4B5563", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>Where to find real winning ads</span>
+              <span className="text-xs font-mono uppercase tracking-widest font-semibold" style={{ color: "#16161A" }}>Ad Intelligence Sources</span>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 ml-1" style={{ color: "#6B7280", background: "rgba(22,22,26,0.06)", border: "1px solid rgba(22,22,26,0.12)" }}>Where to find real winning ads</span>
             </div>
             <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
               {AD_INTELLIGENCE_SOURCES.map((src) => (
@@ -1544,13 +1528,15 @@ export default function Home() {
                   href={src.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col gap-2 rounded-lg p-4 transition-all hover:border-white/15 group"
-                  style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.07)" }}
+                  className="flex flex-col gap-2 p-4 transition-all group"
+                  style={{ background: "#E8E5DF", border: "1px solid rgba(22,22,26,0.12)" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,92,31,0.4)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(22,22,26,0.12)"; }}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#E5E3DF" }}>{src.name}</span>
+                    <span className="text-sm font-semibold" style={{ fontFamily: "'Archivo Black', sans-serif", color: "#16161A" }}>{src.name}</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ color: src.tier === "Free" ? "#10B981" : "#F59E0B", background: src.tier === "Free" ? "#10B98118" : "#F59E0B18", border: `1px solid ${src.tier === "Free" ? "#10B98130" : "#F59E0B30"}` }}>{src.tier}</span>
+                      <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ color: src.tier === "Free" ? "#FF5C1F" : "#FF5C1F", background: src.tier === "Free" ? "#FF5C1F18" : "#FF5C1F18", border: `1px solid ${src.tier === "Free" ? "#FF5C1F30" : "#FF5C1F30"}` }}>{src.tier}</span>
                       <ExternalLink size={11} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#6B7280" }} />
                     </div>
                   </div>
