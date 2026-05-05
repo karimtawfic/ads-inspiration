@@ -196,7 +196,7 @@ function HighlightedPrompt({
 }) {
   // If no brand params, just show the plain prompt
   if (!hasParams) {
-    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#C4C2BE" }}>{injected}</p>;
+    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#6B6B75" }}>{injected}</p>;
   }
 
   // Split the injected prompt into segments: normal text vs injected values
@@ -223,17 +223,17 @@ function HighlightedPrompt({
 
   // If no tokens found in base, show injected as-is
   if (segments.length === 0 || segments.every((s) => !s.isToken)) {
-    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#C4C2BE" }}>{injected}</p>;
+    return <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#6B6B75" }}>{injected}</p>;
   }
 
   return (
-    <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#C4C2BE" }}>
+    <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap" style={{ color: "#4A4A52" }}>
       {segments.map((seg, i) =>
         seg.isToken ? (
           <span
             key={i}
             className="rounded px-0.5"
-            style={{ background: "rgba(99,102,241,0.18)", color: "#A5B4FC", border: "1px solid rgba(99,102,241,0.25)" }}
+            style={{ background: "rgba(255,92,31,0.15)", color: "#FF5C1F", border: "1px solid rgba(255,92,31,0.3)" }}
             title={`Injected from: ${seg.token}`}
           >
             {seg.text}
@@ -297,8 +297,8 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
           className="relative ml-auto h-full overflow-y-auto flex flex-col"
           style={{
             width: "min(680px, 95vw)",
-            background: "#111113",
-            borderLeft: "1px solid rgba(255,255,255,0.08)",
+            background: "#E3E0D9",
+            borderLeft: "1px solid rgba(22,22,26,0.12)",
           }}
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
@@ -306,7 +306,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
           transition={{ type: "spring", damping: 28, stiffness: 300 }}
         >
           {/* Header */}
-          <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4" style={{ background: "#111113", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+          <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4" style={{ background: "#E8E5DF", borderBottom: "1px solid rgba(22,22,26,0.1)" }}>
             <div className="flex items-center gap-2 flex-wrap">
               <AngleBadge angle={ad.angle} />
               <FormatBadge format={ad.format} />
@@ -316,15 +316,15 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
               <button
                 onClick={(e) => { e.stopPropagation(); onToggleVote?.(); }}
                 className="flex items-center gap-1.5 rounded-md px-2 py-1.5 transition-all hover:bg-white/10"
-                style={{ color: isVoted ? "#6366F1" : "#6B7280" }}
+                style={{ color: isVoted ? "#FF5C1F" : "#6B7280" }}
                 title={isVoted ? "Remove vote" : "Upvote this creative"}
               >
-                <ThumbsUp size={15} fill={isVoted ? "#6366F1" : "none"} />
+                <ThumbsUp size={15} fill={isVoted ? "#FF5C1F" : "none"} />
                 {voteCount > 0 && <span className="text-xs font-mono">{voteCount}</span>}
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); onToggleSave(); }}
-                className="rounded-md p-1.5 transition-all hover:bg-white/10"
+                className="rounded-md p-1.5 transition-all hover:bg-black/5"
                 style={{ color: isSaved ? "#F59E0B" : "#6B7280" }}
                 title={isSaved ? "Remove from saved" : "Save creative"}
               >
@@ -332,7 +332,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
               </button>
               <button
                 onClick={onClose}
-                className="rounded-md p-1.5 transition-colors hover:bg-white/10"
+                className="rounded-md p-1.5 transition-colors hover:bg-black/5"
                 style={{ color: "#9CA3AF" }}
               >
                 <X size={18} />
@@ -344,7 +344,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
           {(() => {
             const drawerAspect: Record<string, string> = { "1:1": "1/1", "4:5": "4/5", "9:16": "9/16" };
             return (
-              <div className="relative" style={{ background: "#0A0A0C" }}>
+              <div className="relative" style={{ background: "#D8D4CC" }}>
                 <div style={{ position: "relative", width: "100%", aspectRatio: drawerAspect[formatMode] ?? "1/1", maxHeight: "520px", overflow: "hidden" }}>
                   <img
                     src={ad.imageUrl}
@@ -363,7 +363,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
                         // For 9:16: safe zone square width = same as image width (9/16 of height)
                         width: formatMode === "4:5" ? "80%" : "100%",
                         aspectRatio: "1/1",
-                        border: "2px dashed rgba(99,102,241,0.5)",
+                        border: "2px dashed rgba(255,92,31,0.5)",
                         pointerEvents: "none",
                         borderRadius: 4,
                       }}
@@ -371,16 +371,16 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
                   )}
                 </div>
                 {/* Format selector strip below image */}
-                <div className="flex items-center justify-center gap-1 py-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <div className="flex items-center justify-center gap-1 py-2" style={{ borderTop: "1px solid rgba(22,22,26,0.08)", background: "#E8E5DF" }}>
                   {(["1:1", "4:5", "9:16"] as const).map((fmt) => (
                     <button
                       key={fmt}
                       onClick={() => setFormatMode(fmt)}
                       className="rounded px-2.5 py-1 text-[11px] font-mono transition-all"
                       style={{
-                        background: formatMode === fmt ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.04)",
-                        color: formatMode === fmt ? "#A5B4FC" : "#6B7280",
-                        border: formatMode === fmt ? "1px solid rgba(99,102,241,0.35)" : "1px solid rgba(255,255,255,0.07)",
+                        background: formatMode === fmt ? "rgba(255,92,31,0.15)" : "rgba(22,22,26,0.05)",
+                        color: formatMode === fmt ? "#FF5C1F" : "#6B6B75",
+                        border: formatMode === fmt ? "1px solid rgba(255,92,31,0.4)" : "1px solid rgba(22,22,26,0.1)",
                         fontWeight: formatMode === fmt ? 700 : 400,
                       }}
                     >
@@ -396,7 +396,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
           {/* Content */}
           <div className="flex flex-col gap-5 p-6 flex-1">
             <div>
-              <h2 className="text-xl font-bold leading-tight mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F0EEE9" }}>
+              <h2 className="text-xl font-bold leading-tight mb-1" style={{ fontFamily: "'Archivo Black', sans-serif", color: "#16161A", letterSpacing: "-0.02em" }}>
                 {ad.title}
               </h2>
               <a
@@ -412,12 +412,12 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
             </div>
 
             {/* Why It Works */}
-            <div className="rounded-md p-4" style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)" }}>
+            <div className="rounded-md p-4" style={{ background: "rgba(255,92,31,0.07)", border: "1px solid rgba(255,92,31,0.2)" }}>
               <div className="flex items-center gap-2 mb-2">
-                <Zap size={13} style={{ color: "#3B82F6" }} />
-                <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#3B82F6" }}>Why It Works</span>
+                <Zap size={13} style={{ color: "#FF5C1F" }} />
+                <span className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: "#FF5C1F" }}>Why It Works</span>
               </div>
-              <p className="text-sm leading-relaxed" style={{ color: "#D1D5DB" }}>{ad.whyItWorks}</p>
+              <p className="text-sm leading-relaxed" style={{ color: "#4A4A52" }}>{ad.whyItWorks}</p>
             </div>
 
             {/* Replication Blueprint */}
@@ -439,11 +439,11 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
             </div>
 
             {/* Brand-Injected Prompt */}
-            <div className="rounded-md overflow-hidden" style={{ border: "1px solid rgba(99,102,241,0.25)" }}>
-              <div className="flex items-center justify-between px-4 py-2.5" style={{ background: "rgba(99,102,241,0.1)", borderBottom: "1px solid rgba(99,102,241,0.2)" }}>
+            <div className="rounded-md overflow-hidden" style={{ border: "1px solid rgba(255,92,31,0.25)" }}>
+              <div className="flex items-center justify-between px-4 py-2.5" style={{ background: "rgba(255,92,31,0.08)", borderBottom: "1px solid rgba(255,92,31,0.15)" }}>
                 <div className="flex items-center gap-2">
-                  <Wand2 size={12} style={{ color: "#818CF8" }} />
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-widest" style={{ color: "#818CF8" }}>Brand-Injected Prompt</span>
+                  <Wand2 size={12} style={{ color: "#FF5C1F" }} />
+                  <span className="text-[11px] font-mono font-semibold uppercase tracking-widest" style={{ color: "#FF5C1F" }}>Brand-Injected Prompt</span>
                   {hasParams && (
                     <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(16,185,129,0.12)", color: "#10B981", border: "1px solid rgba(16,185,129,0.2)" }}>Brand Active</span>
                   )}
@@ -451,13 +451,13 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
                 <button
                   onClick={copyPrompt}
                   className="flex items-center gap-1.5 text-[11px] font-mono rounded-md px-2.5 py-1 transition-all hover:opacity-90"
-                  style={{ background: "rgba(99,102,241,0.2)", color: "#A5B4FC", border: "1px solid rgba(99,102,241,0.3)" }}
+                  style={{ background: "rgba(255,92,31,0.15)", color: "#FF5C1F", border: "1px solid rgba(255,92,31,0.3)" }}
                 >
                   {promptCopied ? <CheckCheck size={11} /> : <Copy size={11} />}
                   {promptCopied ? "Copied!" : "Copy Prompt"}
                 </button>
               </div>
-              <div className="p-4" style={{ background: "rgba(99,102,241,0.04)" }}>
+              <div className="p-4" style={{ background: "rgba(255,92,31,0.03)" }}>
                 {!hasParams && (
                   <p className="text-[11px] font-mono mb-3 rounded-md px-3 py-2" style={{ color: "#F59E0B", background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.2)" }}>
                     Set brand parameters (top-right → Brand) to auto-inject your logo, colors, location, and season.
@@ -466,12 +466,12 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
                 {/* Token-highlighted prompt: show injected values in indigo, rest in normal color */}
                 <HighlightedPrompt base={replicationPrompt} injected={brandInjectedPrompt} params={params} hasParams={hasParams} />
                 {hasParams && (
-                  <div className="mt-3 pt-3 flex flex-wrap gap-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                    {params.brandName && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.brandName}</span>}
-                    {params.location && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.location}</span>}
-                    {params.season !== "Year-round" && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.season}</span>}
-                    {params.language !== "English" && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.language}</span>}
-                    <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(99,102,241,0.1)", color: "#818CF8" }}>{params.primaryColor}</span>
+                  <div className="mt-3 pt-3 flex flex-wrap gap-1.5" style={{ borderTop: "1px solid rgba(22,22,26,0.1)" }}>
+                    {params.brandName && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(255,92,31,0.1)", color: "#FF5C1F" }}>{params.brandName}</span>}
+                    {params.location && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(255,92,31,0.1)", color: "#FF5C1F" }}>{params.location}</span>}
+                    {params.season !== "Year-round" && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(255,92,31,0.1)", color: "#FF5C1F" }}>{params.season}</span>}
+                    {params.language !== "English" && <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(255,92,31,0.1)", color: "#FF5C1F" }}>{params.language}</span>}
+                    <span className="text-[10px] font-mono rounded px-1.5 py-0.5" style={{ background: "rgba(255,92,31,0.1)", color: "#FF5C1F" }}>{params.primaryColor}</span>
                   </div>
                 )}
               </div>
@@ -479,9 +479,9 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
 
             {/* Advertiser info */}
             {ad.advertiser && (
-              <div className="rounded-md px-4 py-3 flex items-center gap-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+              <div className="rounded-md px-4 py-3 flex items-center gap-2" style={{ background: "rgba(22,22,26,0.04)", border: "1px solid rgba(22,22,26,0.1)" }}>
                 <SourceBadge sourceType={ad.sourceType} />
-                <span className="text-xs font-mono" style={{ color: "#9CA3AF" }}>{ad.advertiser}</span>
+                <span className="text-xs font-mono" style={{ color: "#6B6B75" }}>{ad.advertiser}</span>
               </div>
             )}
 
@@ -491,7 +491,7 @@ function AdDetailDrawer({ ad, onClose, isSaved, onToggleSave, formatMode, setFor
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 rounded-md py-3 text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#F0EEE9", fontFamily: "'Space Grotesk', sans-serif" }}
+              style={{ background: "#16161A", border: "1px solid #16161A", color: "#FFFFFF", fontFamily: "'Archivo Black', sans-serif", fontSize: 11, letterSpacing: "0.04em", textTransform: "uppercase" }}
             >
               <ExternalLink size={14} />
               View Source / Ad Library
@@ -511,17 +511,17 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
   return (
     <motion.div
       className="relative rounded-lg overflow-hidden cursor-pointer group"
-      style={{ background: isDark ? "#161618" : "#FFFFFF", border: isSaved ? "1px solid rgba(245,158,11,0.35)" : isDark ? "1px solid rgba(255,255,255,0.07)" : "1px solid rgba(0,0,0,0.07)", boxShadow: isDark ? "none" : "0 1px 4px rgba(0,0,0,0.06)" }}
+      style={{ background: isDark ? "#161618" : "#EEEAE3", border: isSaved ? "1px solid rgba(245,158,11,0.35)" : isDark ? "1px solid rgba(255,255,255,0.07)" : "1px solid rgba(22,22,26,0.1)", boxShadow: isDark ? "none" : "0 1px 4px rgba(22,22,26,0.06)" }}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      whileHover={{ scale: 1.015, borderColor: isSaved ? "rgba(245,158,11,0.55)" : "rgba(255,255,255,0.15)" }}
+      whileHover={{ scale: 1.015, borderColor: isSaved ? "rgba(245,158,11,0.55)" : isDark ? "rgba(255,255,255,0.15)" : "rgba(255,92,31,0.4)" }}
       onClick={onClick}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
     >
       {/* Image */}
-      <div className="relative overflow-hidden" style={{ background: isDark ? "#0D0D0F" : "#F0F0F2" }}>
+        <div className="relative overflow-hidden" style={{ background: isDark ? "#0D0D0F" : "#D8D4CC" }}>
         <img
           src={ad.imageUrl}
           alt={ad.title}
@@ -541,7 +541,7 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
           animate={{ opacity: hovered ? 1 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="flex items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(8px)", color: "#F0EEE9", fontFamily: "'Space Grotesk', sans-serif", border: "1px solid rgba(255,255,255,0.15)" }}>
+          <div className="flex items-center gap-2 px-4 py-2 text-sm font-bold" style={{ background: "#FF5C1F", backdropFilter: "blur(8px)", color: "#FFFFFF", fontFamily: "'Archivo Black', sans-serif", fontSize: 11, letterSpacing: "0.04em", textTransform: "uppercase" }}>
             View Blueprint <ChevronRight size={14} />
           </div>
         </motion.div>
@@ -567,7 +567,7 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
 
       {/* Bottom strip */}
       <div className="px-3 py-3 flex flex-col gap-1.5">
-        <p className="text-sm font-semibold leading-tight line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: isDark ? "#E5E3DF" : "#111113" }}>
+        <p className="text-sm font-bold leading-tight line-clamp-2" style={{ fontFamily: "'Archivo Black', sans-serif", color: isDark ? "#E5E3DF" : "#16161A", letterSpacing: "-0.01em", fontSize: 12 }}>
           {ad.title}
         </p>
         <div className="flex items-center justify-between">
@@ -576,14 +576,14 @@ function AdCard({ ad, index, onClick, isSaved, onToggleSave, cardHeight, isDark 
             <button
               className="flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-mono transition-all"
               style={{
-                background: isVoted ? "rgba(99,102,241,0.15)" : "transparent",
-                color: isVoted ? "#6366F1" : "#6B7280",
-                border: isVoted ? "1px solid rgba(99,102,241,0.3)" : "1px solid transparent",
+                background: isVoted ? "rgba(255,92,31,0.12)" : "transparent",
+                color: isVoted ? "#FF5C1F" : "#6B7280",
+                border: isVoted ? "1px solid rgba(255,92,31,0.3)" : "1px solid transparent",
               }}
               onClick={(e) => { e.stopPropagation(); onToggleVote?.(); }}
               title={isVoted ? "Remove vote" : "Upvote this creative"}
             >
-              <ThumbsUp size={10} fill={isVoted ? "#6366F1" : "none"} />
+              <ThumbsUp size={10} fill={isVoted ? "#FF5C1F" : "none"} />
               {voteCount > 0 && <span>{voteCount}</span>}
             </button>
             <SourceBadge sourceType={ad.sourceType} />
@@ -629,9 +629,9 @@ function SidebarSection({
             onClick={onClear}
             className="text-[9px] font-mono rounded px-1.5 py-0.5 transition-all hover:opacity-80"
             style={{
-              color: "#6366F1",
-              background: "rgba(99,102,241,0.1)",
-              border: "1px solid rgba(99,102,241,0.2)",
+              color: "#FF5C1F",
+              background: "rgba(255,92,31,0.12)",
+              border: "1px solid rgba(255,92,31,0.3)",
             }}
           >
             Clear
@@ -749,20 +749,23 @@ export default function Home() {
   const isDark = theme === "dark";
   // Surface tokens derived from theme
   const S = {
-    bg: isDark ? "#0D0D0F" : "#F8F8FA",
-    card: isDark ? "#161618" : "#FFFFFF",
-    panel: isDark ? "#111113" : "#FFFFFF",
-    sidebar: isDark ? "#0F0F11" : "#F2F2F5",
-    header: isDark ? "rgba(13,13,15,0.95)" : "rgba(248,248,250,0.97)",
-    border: isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)",
-    borderStrong: isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
-    hover: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
-    active: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)",
-    input: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
-    textPrimary: isDark ? "#F0EEE9" : "#111113",
-    textSecondary: isDark ? "#9CA3AF" : "#4B5563",
-    textMuted: isDark ? "#6B7280" : "#6B7280",
-    textFaint: isDark ? "#4B5563" : "#9CA3AF",
+    bg: isDark ? "#0D0D0F" : "#E8E5DF",
+    card: isDark ? "#161618" : "#EEEAE3",
+    panel: isDark ? "#111113" : "#E3E0D9",
+    sidebar: isDark ? "#0F0F11" : "#DEDAD3",
+    header: isDark ? "rgba(13,13,15,0.97)" : "rgba(232,229,223,0.97)",
+    border: isDark ? "rgba(255,255,255,0.07)" : "rgba(22,22,26,0.1)",
+    borderStrong: isDark ? "rgba(255,255,255,0.12)" : "rgba(22,22,26,0.2)",
+    hover: isDark ? "rgba(255,255,255,0.05)" : "rgba(22,22,26,0.05)",
+    active: isDark ? "rgba(255,255,255,0.1)" : "rgba(22,22,26,0.1)",
+    input: isDark ? "rgba(255,255,255,0.05)" : "rgba(22,22,26,0.06)",
+    textPrimary: isDark ? "#F0EEE9" : "#16161A",
+    textSecondary: isDark ? "#9CA3AF" : "#4A4A52",
+    textMuted: isDark ? "#6B7280" : "#6B6B75",
+    textFaint: isDark ? "#4B5563" : "#9B9BA5",
+    orange: "#FF5C1F",
+    orangeHover: "#E84E14",
+    orangeMuted: "rgba(255,92,31,0.12)",
   };
   const [activeTab, setActiveTab] = useState<"swipe" | "competitor" | "saved">("swipe");
   const [viewMode, setViewMode] = useState<"grid" | "matrix">("grid");
@@ -957,17 +960,17 @@ export default function Home() {
           </button>
           <div className="flex items-center gap-2">
             <div
-              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-              style={{ background: "linear-gradient(135deg, #6366F1, #8B5CF6)", boxShadow: "0 2px 8px rgba(99,102,241,0.35)" }}
+              className="w-7 h-7 flex items-center justify-center flex-shrink-0"
+              style={{ background: S.orange, boxShadow: `0 2px 8px ${S.orangeMuted}` }}
             >
-              <Wand2 size={13} color="white" />
+              <span style={{ color: "#fff", fontFamily: "'Archivo Black', sans-serif", fontSize: 13, fontWeight: 900, letterSpacing: "-0.02em" }}>D</span>
             </div>
             <div>
-              <h1 className="text-[13px] font-bold leading-none tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif", color: S.textPrimary }}>
-                Ad Creative Canvas
+              <h1 className="text-[13px] font-bold leading-none tracking-tight" style={{ fontFamily: "'Archivo Black', sans-serif", color: S.textPrimary, letterSpacing: "-0.02em" }}>
+                DEALS TO GROW
               </h1>
-              <p className="text-[10px] font-mono mt-0.5 leading-none" style={{ color: S.textMuted }}>
-                {AD_EXAMPLES.length} creatives · {ALL_NICHES.length} niches · {ALL_ANGLES.length} angles
+              <p className="text-[10px] font-mono mt-0.5 leading-none uppercase tracking-widest" style={{ color: S.textMuted }}>
+                AD CREATIVE CANVAS
               </p>
             </div>
           </div>
@@ -1051,15 +1054,15 @@ export default function Home() {
                   <Table2 size={12} />
                 </button>
               </div>
-              {/* Sort by votes */}
-              <button
-                onClick={() => setSortBy(sortBy === "votes" ? "default" : "votes")}
-                className="flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-mono transition-all"
-                style={{
-                  background: sortBy === "votes" ? "rgba(99,102,241,0.15)" : S.hover,
-                  color: sortBy === "votes" ? "#818CF8" : S.textMuted,
-                  border: sortBy === "votes" ? "1px solid rgba(99,102,241,0.35)" : `1px solid ${S.border}`,
-                }}
+          {/* Sort by votes */}
+          <button
+            onClick={() => setSortBy(sortBy === "votes" ? "default" : "votes")}
+            className="flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-mono transition-all"
+            style={{
+              background: sortBy === "votes" ? S.orangeMuted : S.hover,
+              color: sortBy === "votes" ? S.orange : S.textMuted,
+              border: sortBy === "votes" ? `1px solid ${S.orange}40` : `1px solid ${S.border}`,
+            }}
                 title={sortBy === "votes" ? "Sort: Most Voted" : "Sort: Default"}
               >
                 <ThumbsUp size={11} fill={sortBy === "votes" ? "#818CF8" : "none"} />
@@ -1143,11 +1146,13 @@ export default function Home() {
             onClick={() => setBrandParamsOpen(true)}
             className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all hover:opacity-90"
             style={{
-              background: hasBrandParams ? "rgba(99,102,241,0.1)" : S.hover,
-              color: hasBrandParams ? "#818CF8" : S.textSecondary,
-              border: hasBrandParams ? "1px solid rgba(99,102,241,0.25)" : `1px solid ${S.border}`,
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: 12,
+              background: hasBrandParams ? S.orangeMuted : S.hover,
+              color: hasBrandParams ? S.orange : S.textSecondary,
+              border: hasBrandParams ? `1px solid ${S.orange}40` : `1px solid ${S.border}`,
+              fontFamily: "'Archivo Black', sans-serif",
+              fontSize: 11,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
             }}
             title="Set brand parameters"
           >
@@ -1175,18 +1180,20 @@ export default function Home() {
           {/* Generate CTA */}
           <button
             onClick={() => setGenerateOpen(true)}
-            className="flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-bold transition-all hover:opacity-90 active:scale-[0.98]"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold transition-all hover:opacity-90 active:scale-[0.98]"
             style={{
-              background: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
+              background: S.orange,
               color: "#FFFFFF",
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: 12,
-              boxShadow: "0 2px 10px rgba(99,102,241,0.35)",
-              letterSpacing: "0.01em",
+              fontFamily: "'Archivo Black', sans-serif",
+              fontSize: 11,
+              boxShadow: `0 2px 10px ${S.orangeMuted}`,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              borderRadius: 0,
             }}
           >
             <Wand2 size={12} />
-            Generate
+            GENERATE
           </button>
         </div>
       </header>
